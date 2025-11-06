@@ -1,0 +1,33 @@
+name: Build and Push PDF
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Pull Docker image
+        run: |
+          docker pull kyledickersoncomposer/docker-lilypond:latest
+
+      - name: Build PDF with Docker
+        run: |
+          PDF_NAME="build-$(date +'%Y_%m_%d_%H_%M_%S')"
+          echo "Building PDF: $PDF_NAME"
+          
+          docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "cd /workdir && lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_NAME -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
+
+      - name: Upload PDF as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-artifact
+          path: "*.pdf"
