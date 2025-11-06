@@ -52,7 +52,6 @@
 					class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg">
 					Download Latest PDF
 				</button>
-				<p id="file-info" class="text-sm text-muted"></p>
 			</div>
 		</div>
 	</section>
@@ -181,7 +180,6 @@
 		lucide.createIcons();
 
 		const btn = document.getElementById('download-btn');
-		const fileInfo = document.getElementById('file-info');
 
 		btn.onclick = async () => {
 			try {
@@ -213,22 +211,6 @@
 				btn.disabled = false;
 			}
 		};
-
-		// Load file info on page load
-		(async () => {
-			try {
-				const response = await fetch('https://api.github.com/repos/KyleDickersonComposer/barry-book/releases/latest');
-				const release = await response.json();
-				const pdfAsset = release.assets.find(asset => asset.name.endsWith('.pdf'));
-
-				if (pdfAsset) {
-					const sizeMB = (pdfAsset.size / 1024 / 1024).toFixed(1);
-					fileInfo.textContent = `Latest version: ${release.tag_name} • ${sizeMB} MB`;
-				}
-			} catch (error) {
-				console.error('Failed to load file info:', error);
-			}
-		})();
 	</script>
 </body>
 
