@@ -16,18 +16,31 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Pull Docker image
-        run: |
-          docker pull kyledickersoncomposer/docker-lilypond:latest
+        run: docker pull kyledickersoncomposer/docker-lilypond:latest
 
       - name: Build PDF with Docker
         run: |
-          PDF_NAME="build-$(date +'%Y_%m_%d_%H_%M_%S')"
+          PDF_NAME="BarryBook.pdf"
           echo "Building PDF: $PDF_NAME"
           
-          docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "cd /workdir && lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_NAME -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
+          docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
+            cd /workdir && \
+            lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_NAME \
+            -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
 
-      - name: Upload PDF as Artifact
+      - name: Upload PDF as Artifact (optional)
         uses: actions/upload-artifact@v4
         with:
           name: pdf-artifact
-          path: "*.pdf"
+          path: "BarryBook.pdf"
+
+      - name: Update Latest Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: latest
+          name: "Latest Barry Book PDF"
+          artifacts: "BarryBook.pdf"
+          allowUpdates: true
+          removeArtifacts: true
+          body: "Latest version of Barry Book"
+          token: ${{ secrets.GITHUB_TOKEN }}
