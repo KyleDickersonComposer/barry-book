@@ -20,7 +20,7 @@ jobs:
 
       - name: Build PDF with Docker
         run: |
-          PDF_NAME="BarryBook.pdf"
+          PDF_NAME="BarryBook"
           echo "Building PDF: $PDF_NAME"
           
           docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
