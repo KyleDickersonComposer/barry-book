@@ -1,4 +1,4 @@
-name: Build and Push PDF
+name: Build and Publish PDF
 
 on:
   push:
@@ -32,9 +32,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pdf-artifact
-          path: "BarryBook.pdf"
+          path: BarryBook.pdf
 
-      - name: Update Latest Release
+      - name: Publish PDF to Latest Release
         uses: ncipollo/release-action@v1
         with:
           tag: latest
@@ -42,5 +42,5 @@ jobs:
           artifacts: "BarryBook.pdf"
           allowUpdates: true
           removeArtifacts: true
-          body: "Latest version of Barry Book"
+          body: "Latest compiled Barry Book PDF"
           token: ${{ secrets.GITHUB_TOKEN }}
