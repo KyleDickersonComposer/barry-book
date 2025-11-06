@@ -25,7 +25,7 @@ jobs:
           
           docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
             cd /workdir && \
-            lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_NAME \
+            lilypond -dno-point-and-click -dembed-source-code -o /$PDF_NAME \
             -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
 
       - name: Upload PDF as Artifact (optional)
