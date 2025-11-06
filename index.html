@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Barry Book - Jazz Standards Collection</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.11.0/jszip.min.js"></script>
+	<!-- Added Lucide icons CDN -->
+	<script src="https://unpkg.com/lucide@latest"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						background: '#faf9f7',
+						foreground: '#1a1a1a',
+						muted: '#6b6b6b',
+						accent: '#2d2d2d',
+						border: '#e5e5e5'
+					},
+					fontFamily: {
+						serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
+						sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+					}
+				}
+			}
+		}
+	</script>
+</head>
+
+<body class="bg-background text-foreground font-sans antialiased">
+	<!-- Hero Section -->
+	<section class="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+		<div class="max-w-4xl mx-auto text-center">
+			<h1 class="text-6xl md:text-7xl lg:text-8xl font-serif font-light mb-8 text-balance leading-tight">
+				Barry Book
+			</h1>
+			<p class="text-xl md:text-2xl text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
+				A comprehensive collection of jazz standards, professionally engraved and ready for performance.
+			</p>
+
+			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+				<button id="downloadBtn"
+					class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors disabled:opacity-50 font-medium text-lg">
+					Loading...
+				</button>
+			</div>
+
+			<p id="status" class="text-sm text-muted"></p>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section class="py-20 px-6 border-t border-border">
+		<div class="max-w-6xl mx-auto">
+			<div class="grid md:grid-cols-3 gap-12">
+				<div class="text-center">
+					<div class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center">
+						<!-- Replaced inline SVG with Lucide icon -->
+						<i data-lucide="music" class="w-8 h-8 text-background"></i>
+					</div>
+					<h3 class="text-xl font-serif mb-3">Professional Engraving</h3>
+					<p class="text-muted leading-relaxed">
+						Meticulously crafted using LilyPond for publication-quality sheet music.
+					</p>
+				</div>
+
+				<div class="text-center">
+					<div class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center">
+						<!-- Replaced inline SVG with Lucide icon -->
+						<i data-lucide="download" class="w-8 h-8 text-background"></i>
+					</div>
+					<h3 class="text-xl font-serif mb-3">Always Updated</h3>
+					<p class="text-muted leading-relaxed">
+						Automatically generated from the latest source, ensuring you have the most current version.
+					</p>
+				</div>
+
+				<div class="text-center">
+					<div class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center">
+						<!-- Replaced inline SVG with Lucide icon -->
+						<i data-lucide="book-open" class="w-8 h-8 text-background"></i>
+					</div>
+					<h3 class="text-xl font-serif mb-3">Jazz Standards</h3>
+					<p class="text-muted leading-relaxed">
+						Curated collection of timeless jazz pieces for musicians of all levels.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section class="py-20 px-6 bg-accent text-background">
+		<div class="max-w-3xl mx-auto text-center">
+			<h2 class="text-4xl md:text-5xl font-serif font-light mb-6 text-balance">
+				Built for Musicians
+			</h2>
+			<p class="text-lg leading-relaxed opacity-90 mb-8">
+				This collection is automatically compiled and updated through a continuous integration pipeline,
+				ensuring that every PDF you download contains the latest corrections and improvements.
+				Perfect for practice, performance, or study.
+			</p>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="py-12 px-6 border-t border-border">
+		<div class="max-w-6xl mx-auto text-center">
+			<p class="text-muted text-sm">
+				Generated with LilyPond • Hosted on GitHub • Always Free
+			</p>
+		</div>
+	</footer>
+
+	<script>
+		const repoOwner = "KyleDickersonComposer";
+		const repoName = "barry-book";
+		const artifactName = "pdf-artifact";
+		const btn = document.getElementById("downloadBtn");
+		const status = document.getElementById("status");
+
+		async function getLatestPDF() {
+			try {
+				const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/actions/artifacts`);
+				const data = await response.json();
+
+				if (!data.artifacts || data.artifacts.length === 0) {
+					status.textContent = "No artifacts found.";
+					btn.disabled = true;
+					btn.textContent = "Unavailable";
+					return;
+				}
+
+				// Get latest artifact with the correct name
+				const artifact = data.artifacts
+					.filter(a => a.name === artifactName)
+					.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+
+				if (!artifact) {
+					status.textContent = "No PDF artifact found.";
+					btn.disabled = true;
+					btn.textContent = "Unavailable";
+					return;
+				}
+
+				btn.textContent = "Download Latest PDF";
+
+				btn.onclick = async () => {
+					btn.disabled = true;
+					btn.textContent = "Downloading...";
+					status.textContent = "Fetching artifact ZIP...";
+
+					// GitHub artifact download (anonymous, gets a zip)
+					const zipUrl = artifact.archive_download_url + "?format=zip";
+					const zipResponse = await fetch(zipUrl);
+					const arrayBuffer = await zipResponse.arrayBuffer();
+
+					status.textContent = "Extracting PDF...";
+					const zip = await JSZip.loadAsync(arrayBuffer);
+
+					// Find first PDF in the zip
+					const pdfFile = Object.keys(zip.files).find(f => f.endsWith(".pdf"));
+					if (!pdfFile) {
+						status.textContent = "No PDF found in artifact.";
+						btn.textContent = "Error";
+						return;
+					}
+
+					const pdfData = await zip.files[pdfFile].async("blob");
+					const blobUrl = URL.createObjectURL(pdfData);
+
+					// Trigger download
+					const a = document.createElement("a");
+					a.href = blobUrl;
+					a.download = pdfFile.replace(/^.*\//, ""); // strip folders
+					a.click();
+					URL.revokeObjectURL(blobUrl);
+
+					btn.disabled = false;
+					btn.textContent = "Download Latest PDF";
+					status.textContent = `Successfully downloaded: ${pdfFile.replace(/^.*\//, "")}`;
+				};
+
+			} catch (err) {
+				console.error(err);
+				status.textContent = "Failed to fetch artifact.";
+				btn.disabled = true;
+				btn.textContent = "Error";
+			}
+		}
+
+		lucide.createIcons();
+		getLatestPDF();
+	</script>
+</body>
+
+</html>
