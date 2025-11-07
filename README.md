@@ -3,7 +3,7 @@ The Barry Book is a free and open-source fakebook that conforms to Barry Harris'
 
 If you find an error in the manuscript please click on the [issues tab](https://github.com/KyleDickersonComposer/barry-book/issues) and create an issue describing the problem.
 
-Come hang out in the [Discord](https://discord.gg/twWTvcK3)!
+Come hang out in the [Discord](https://discord.gg/TQgguScv)!
 
 ### Technical Details
 - We will use [Lilypond](https://lilypond.org/) for the musical engraving with the [LilyJAZZ](https://github.com/OpenLilyPondFonts/lilyjazz) font.
