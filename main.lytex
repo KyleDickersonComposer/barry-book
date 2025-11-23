@@ -151,7 +151,7 @@ This is an open source textbook. The complete source code (every note, every cho
 \chapter{Scales for Linear Improvization}
 \input{./chapters/04-scale-map-concept.lytex}
 
-\chapter{Scale Map}
+\chapter{Scale Maps}
 \input{./chapters/04-scale-maps.lytex}
 
 \chapter{All the Little Things}
@@ -161,13 +161,13 @@ This is an open source textbook. The complete source code (every note, every cho
 \section{Thirds}
 \input{./chapters/03-thirds.lytex}
 
-\section{Chord}
-\input{./chapters/03-chord.lytex}
+\section{The Chord}
+\input{./chapters/03-the-chord.lytex}
 
 \section{Half Step Below the Chord}
 \input{./chapters/03-half-step-below-chord.lytex}
 
-\section{Pivot}
+\section{The Pivot}
 \input{./chapters/03-pivot.lytex}
 
 \section{Important Arpeggio}
@@ -234,16 +234,6 @@ This is an open source textbook. The complete source code (every note, every cho
 
 \chapter{How to Practice Comping}
 \input{./chapters/how-to-practice-comping.lytex}
-
-\chapter{Scale Maps}
-\section{Understanding Chord Progressions}
-\input{./chapters/08-understanding-progressions.lytex}
-
-\section{Creating Scale Maps}
-\input{./chapters/08-creating-change-maps.lytex}
-
-\section{Applying Scale Maps}
-\input{./chapters/08-applying-change-maps.lytex}
 
 \part{Applications}
 
