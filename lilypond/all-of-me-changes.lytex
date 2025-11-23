@@ -1,6 +1,6 @@
 \clearpage
 \thispagestyle{empty}
-\newgeometry{top=1cm,bottom=1cm,left=2cm,right=2cm,paperwidth=8.5in,paperheight=11in,heightrounded,marginparwidth=0pt,marginparsep=0pt}
+\newgeometry{top=1cm,bottom=0cm,left=0cm,right=0cm}
 \begin{lilypond}[staffsize=16,quote]
 \version "2.24.0"
 #(set-global-staff-size 16)
@@ -13,7 +13,9 @@
 	paper-width = 8.5\in
 	indent = 0\mm
 	left-margin = 0\cm
-	between-system-space = 0.8\cm
+	right-margin = 0\cm
+	bottom-margin = 0\cm
+	between-system-space = 2\cm
 	between-system-padding = #0
 	ragged-last-bottom = ##f
 	ragged-bottom = ##f
