@@ -67,16 +67,16 @@
           class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
         >
           <button
-            id="open-btn"
-            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg"
-          >
-            Open in New Tab
-          </button>
-          <button
             id="download-btn"
-            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg"
+            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg w-full sm:w-auto min-w-[200px]"
           >
             Download Latest PDF
+          </button>
+          <button
+            id="open-btn"
+            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg w-full sm:w-auto min-w-[200px]"
+          >
+            Open in New Tab
           </button>
         </div>
       </div>
@@ -275,23 +275,18 @@
 
       downloadBtn.onclick = async () => {
         try {
-          downloadBtn.textContent = "Downloading...";
+          downloadBtn.textContent = "Opening...";
           downloadBtn.disabled = true;
 
           const pdfUrl = await getLatestPDF();
-          const pdfAsset = pdfUrl.split("/").pop();
-
-          // Download the PDF
-          const link = document.createElement("a");
-          link.href = pdfUrl;
-          link.download = pdfAsset;
-          link.click();
+          // Open PDF in new tab using browser's PDF viewer
+          window.open(pdfUrl, "_blank");
 
           downloadBtn.textContent = "Download Latest PDF";
           downloadBtn.disabled = false;
         } catch (error) {
-          console.error("Download failed:", error);
-          downloadBtn.textContent = "Download Failed - Try Again";
+          console.error("Open failed:", error);
+          downloadBtn.textContent = "Open Failed - Try Again";
           downloadBtn.disabled = false;
         }
       };
