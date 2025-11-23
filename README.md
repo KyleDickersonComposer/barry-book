@@ -20,7 +20,7 @@ The Barry Book is built collaboratively. Whether you're fixing a typo, correctin
 
 **Text Writing**: Add exercises, explanations, or educational content based on your understanding of Barry Harris's methods. This could include new exercises, scale maps, harmonic analysis, or pedagogical content.
 
-**LilyPond Contributions**: Work with the music notation files (`.ly` files) to add or correct musical notation, fix chord symbols, adjust formatting, or add new tunes.
+**LilyPond Contributions**: Work with the music notation files (`.lytex` files) to add or correct musical notation, fix chord symbols, adjust formatting, or add new tunes.
 
 ### How to Get Started
 

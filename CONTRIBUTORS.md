@@ -39,7 +39,7 @@ Examples:
 
 ### 3. LilyPond Contributions
 
-Work with the music notation files (`.ly` files) to add or correct musical notation.
+Work with the music notation files (`.lytex` files) to add or correct musical notation.
 
 Examples:
 
