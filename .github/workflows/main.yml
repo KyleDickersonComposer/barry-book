@@ -27,8 +27,10 @@ jobs:
 
           docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
             cd /workdir && \
-            lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_BASE \
-            -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
+            make pdf"
+
+          # Copy the built PDF to the timestamped filename
+          cp bin/main.pdf "$PDF_NAME"
 
           echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
 
