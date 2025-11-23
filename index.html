@@ -227,6 +227,7 @@
 
 				const pdfUrl = await getLatestPDF();
 				window.location.href = pdfUrl;
+				downloadBtn.textContent = "Download Latest PDF";
 			} catch (error) {
 				console.error("Failed to load PDF:", error);
 				downloadBtn.textContent = "Failed - Try Again";
