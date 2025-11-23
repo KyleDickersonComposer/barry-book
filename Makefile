@@ -19,8 +19,8 @@ all: pdf
 .PHONY: force-rebuild
 
 pdf: force-rebuild
-	@echo "Processing $(MAIN).lytex with lilypond-book..."
 	@mkdir -p $(OUTPUT_DIR)
+	@echo "Processing $(MAIN).lytex with lilypond-book..."
 	@$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) $(MAIN).lytex
 	@echo "Building $(MAIN).pdf..."
 	@$(LATEX) $(LATEX_FLAGS) -output-directory=$(OUTPUT_DIR) $(OUTPUT_DIR)/$(MAIN).tex || true
@@ -30,7 +30,7 @@ pdf: force-rebuild
 	@find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null || true
 	@find . -maxdepth 1 -name "*.tmp" -type f -delete 2>/dev/null || true
 	@echo "Build complete! Output: $(OUTPUT_DIR)/$(MAIN).pdf"
-	@open $(OUTPUT_DIR)/$(MAIN).pdf
+	@if command -v open > /dev/null 2>&1; then open $(OUTPUT_DIR)/$(MAIN).pdf; fi
 
 clean:
 	@echo "Cleaning build artifacts..."
