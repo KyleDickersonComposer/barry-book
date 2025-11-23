@@ -24,12 +24,31 @@ The Barry Book is built collaboratively. Whether you're fixing a typo, correctin
 
 ### How to Get Started
 
-**For Small Changes**:
+**Option 1: Report Issues (No Technical Skills Required)**
 
-- Report issues on [GitHub Issues](https://github.com/KyleDickersonComposer/barry-book/issues)
-- Use GitHub's web interface to make simple text edits directly through your browser
+If you find an error or have a suggestion but don't want to edit files yourself:
 
-**For Larger Contributions**:
+1. Go to [GitHub Issues](https://github.com/KyleDickersonComposer/barry-book/issues)
+2. Click "New Issue"
+3. Describe what you found (typo, incorrect chord, unclear explanation, etc.)
+4. Someone else can fix it based on your report
+
+**Option 2: Edit Files Through Your Browser (Beginner-Friendly)**
+
+You can edit files directly on GitHub without installing anything:
+
+1. Navigate to the file you want to edit (e.g., browse to `chapters/` or `tunes/`)
+2. Click the pencil icon in the top right that says "Edit this file"
+3. Make your changes in the text editor that appears
+4. Scroll down and click "Propose changes"
+5. GitHub will guide you through creating a "pull request" (just follow the prompts)
+6. Your change will be reviewed and merged
+
+**Note**: GitHub automatically handles the technical stuff behind the scenes. You don't need to understand "forking" or "pull requests" - just click edit, make your change, and follow the prompts.
+
+**Option 3: Fork and Work Locally (For Advanced Contributors)**
+
+If you're making many changes or need to test builds:
 
 - Fork the project to create your own copy
 - Make your changes and test them locally
