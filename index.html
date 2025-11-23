@@ -67,6 +67,12 @@
           class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
         >
           <button
+            id="open-btn"
+            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg"
+          >
+            Open in New Tab
+          </button>
+          <button
             id="download-btn"
             class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg"
           >
@@ -221,52 +227,72 @@
     <script>
       lucide.createIcons();
 
-      const btn = document.getElementById("download-btn");
+      async function getLatestPDF() {
+        // Fetch latest release from GitHub
+        const response = await fetch(
+          "https://api.github.com/repos/KyleDickersonComposer/barry-book/releases/latest"
+        );
+        const release = await response.json();
 
-      btn.onclick = async () => {
-        try {
-          btn.textContent = "Downloading...";
-          btn.disabled = true;
+        // Find the PDF asset (should match BarryBook-YYYYMMDD.pdf pattern)
+        const pdfAsset = release.assets.find(
+          (asset) =>
+            asset.name.endsWith(".pdf") && asset.name.startsWith("BarryBook-")
+        );
 
-          // Fetch latest release from GitHub
-          const response = await fetch(
-            "https://api.github.com/repos/KyleDickersonComposer/barry-book/releases/latest"
+        if (!pdfAsset) {
+          // Fallback: find any PDF if pattern doesn't match
+          const fallbackPdf = release.assets.find((asset) =>
+            asset.name.endsWith(".pdf")
           );
-          const release = await response.json();
-
-          // Find the PDF asset (should match BarryBook-YYYYMMDD.pdf pattern)
-          const pdfAsset = release.assets.find(
-            (asset) =>
-              asset.name.endsWith(".pdf") && asset.name.startsWith("BarryBook-")
-          );
-
-          if (!pdfAsset) {
-            // Fallback: find any PDF if pattern doesn't match
-            const fallbackPdf = release.assets.find((asset) =>
-              asset.name.endsWith(".pdf")
-            );
-            if (!fallbackPdf) {
-              throw new Error("No PDF found in latest release");
-            }
-            // Use fallback
-            const link = document.createElement("a");
-            link.href = fallbackPdf.browser_download_url;
-            link.download = fallbackPdf.name;
-            link.click();
-          } else {
-            // Download the timestamped PDF
-            const link = document.createElement("a");
-            link.href = pdfAsset.browser_download_url;
-            link.download = pdfAsset.name;
-            link.click();
+          if (!fallbackPdf) {
+            throw new Error("No PDF found in latest release");
           }
+          return fallbackPdf.browser_download_url;
+        }
+        return pdfAsset.browser_download_url;
+      }
 
-          btn.textContent = "Download Latest PDF";
-          btn.disabled = false;
+      const openBtn = document.getElementById("open-btn");
+      const downloadBtn = document.getElementById("download-btn");
+
+      openBtn.onclick = async () => {
+        try {
+          openBtn.textContent = "Opening...";
+          openBtn.disabled = true;
+
+          const pdfUrl = await getLatestPDF();
+          window.open(pdfUrl, "_blank");
+
+          openBtn.textContent = "Open in New Tab";
+          openBtn.disabled = false;
+        } catch (error) {
+          console.error("Open failed:", error);
+          openBtn.textContent = "Open Failed - Try Again";
+          openBtn.disabled = false;
+        }
+      };
+
+      downloadBtn.onclick = async () => {
+        try {
+          downloadBtn.textContent = "Downloading...";
+          downloadBtn.disabled = true;
+
+          const pdfUrl = await getLatestPDF();
+          const pdfAsset = pdfUrl.split("/").pop();
+
+          // Download the PDF
+          const link = document.createElement("a");
+          link.href = pdfUrl;
+          link.download = pdfAsset;
+          link.click();
+
+          downloadBtn.textContent = "Download Latest PDF";
+          downloadBtn.disabled = false;
         } catch (error) {
           console.error("Download failed:", error);
-          btn.textContent = "Download Failed - Try Again";
-          btn.disabled = false;
+          downloadBtn.textContent = "Download Failed - Try Again";
+          downloadBtn.disabled = false;
         }
       };
     </script>
