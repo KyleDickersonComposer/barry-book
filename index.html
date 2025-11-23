@@ -226,18 +226,14 @@
 
 		downloadBtn.onclick = async () => {
 			try {
-				downloadBtn.textContent = "Opening...";
+				downloadBtn.textContent = "Loading...";
 				downloadBtn.disabled = true;
 
 				const pdfUrl = await getLatestPDF();
-				// Open PDF in new tab using browser's PDF viewer
-				window.open(pdfUrl);
-
-				downloadBtn.textContent = "Download Latest PDF";
-				downloadBtn.disabled = false;
+				window.location.href = pdfUrl;
 			} catch (error) {
-				console.error("Open failed:", error);
-				downloadBtn.textContent = "Open Failed - Try Again";
+				console.error("Failed to load PDF:", error);
+				downloadBtn.textContent = "Failed - Try Again";
 				downloadBtn.disabled = false;
 			}
 		};

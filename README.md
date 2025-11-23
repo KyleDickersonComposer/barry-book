@@ -130,7 +130,3 @@ The build process uses `lilypond-book` to process `.lytex` files, then compiles 
 - `tunes/` - Tune analyses (16 tunes, 5 sections each)
 - `source/` - LilyJAZZ styles and templates
 - `bin/` - Build output directory (gitignored)
-
-## License
-
-See [LICENSE](LICENSE) for details.
