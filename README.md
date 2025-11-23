@@ -1,23 +1,56 @@
-### The Barry Book
-The Barry Book is a free and open-source fakebook that conforms to Barry Harris' jazz concepts.
+# The Barry Book
 
-If you find an error in the manuscript please click on the [issues tab](https://github.com/KyleDickersonComposer/barry-book/issues) and create an issue describing the problem.
+A free and open-source textbook preserving the authentic Barry Harris tradition of jazz pedagogy.
 
-Come hang out in the [Discord](https://discord.gg/9XJukbbtFz)!
+## About
 
-### Technical Details
-- We will use [Lilypond](https://lilypond.org/) for the musical engraving with the [LilyJAZZ](https://github.com/OpenLilyPondFonts/lilyjazz) font.
-- We will include Barry Harris exercises and scale maps for each tune.
-- There will be generalized exercise material.
-- Installing the LilyJazz Font will be a challenge for those without a technical background.
+The Barry Book is an instructional resource that presents Barry Harris's jazz piano concepts in a systematic, practical format. This is an open source project, meaning the complete source code (every note, every chord symbol, every layout decision) is publicly accessible on GitHub.
 
-### How To Install
-1. Find the fonts directory of your lilypond install and add the necessary LilyJAZZ fonts.
-1. You may need to setup the font familty in the font config file in the Lilypond fonts folder.
-1. Create a `.ly` directory in you home directory.
-1. Copy the `.ily` style files from LilyJAZZ into `~/.ly`
+## Building the Book
 
-Then, build the `.ly` files with this command:
-```sh
-lilypond -I ~/.ly --pdf -o myTitle MyLilyPond.ly
-```
+### Prerequisites
+
+- LaTeX distribution (TeX Live recommended)
+- LilyPond (for musical notation)
+- LilyJAZZ fonts (for jazz notation styling)
+- Biber (for bibliography processing)
+
+### Build Instructions
+
+1. Install LilyJAZZ fonts:
+   - Find the fonts directory of your LilyPond installation
+   - Add the necessary LilyJAZZ fonts
+   - Setup the font family in the font config file
+   - Create a `~/.ly` directory in your home directory
+   - Copy the `.ily` style files from LilyJAZZ into `~/.ly`
+
+2. Build the PDF:
+   ```sh
+   make pdf
+   ```
+
+   The output will be in `bin/main.pdf`
+
+3. Clean build artifacts:
+   ```sh
+   make clean
+   ```
+
+## Project Structure
+
+- `main.lytex` - Main LaTeX document
+- `chapters/` - Concept chapters (Foundations, Linear Concepts, Harmonic Concepts)
+- `tunes/` - Tune analyses (16 tunes, 5 sections each)
+- `source/` - LilyJAZZ styles and templates
+- `bin/` - Build output directory (gitignored)
+
+## Contributing
+
+Found an error? Have a suggestion? See [CONTRIBUTORS.md](CONTRIBUTORS.md) for how to contribute.
+
+- Report issues: [GitHub Issues](https://github.com/KyleDickersonComposer/barry-book/issues)
+- Join the community: [Discord](https://discord.gg/9XJukbbtFz)
+
+## License
+
+See [LICENSE](LICENSE) for details.

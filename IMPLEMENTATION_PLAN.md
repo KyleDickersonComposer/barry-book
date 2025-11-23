@@ -137,8 +137,9 @@ Jazz standards to be analyzed (per tune basis):
 
 ### Part IV: Applications (Per Tune Basis)
 
-**Chapter 9: Tune Analysis Structure**
-For each tune:
+**Chapters 9-24: Individual Tune Analyses**
+
+Each tune chapter includes five sections:
 
 - Tune with changes
 - Scale Map
@@ -146,62 +147,109 @@ For each tune:
 - Change Map
 - Exemplar Comping
 
-**Chapters 10-24: Individual Tune Analyses**
-One chapter per tune from the tune list
+Tune list (16 tunes total):
+1. Blues (Chapter 9)
+2. Rhythm (Chapter 10)
+3. Autumn Leaves (Chapter 11)
+4. How High the Moon (Chapter 12)
+5. But Not For Me (Chapter 13)
+6. What Is This Thing Called Love? (Chapter 14)
+7. Love For Sale (Chapter 15)
+8. Softly, As in a Morning Sunrise (Chapter 16)
+9. I Can't Give You Anything But Love (Chapter 17)
+10. A Night In Tunisia (Chapter 18)
+11. On Green Dolphin Street (Chapter 19)
+12. Stella By Starlight (Chapter 20)
+13. All the Things You Are (Chapter 21)
+14. All of Me (Chapter 22)
+15. Cherokee (Chapter 23)
+16. 'Round Midnight (Chapter 24)
 
-## Implementation Steps
+## Implementation Status
 
-1. **Restructure Main LaTeX File**
+### Completed
 
-   - Replace "Modern Practice" sections with Barry Harris concepts
-   - Reorganize chapters to match Trello structure
-   - Update part divisions
+1. **Restructured Main LaTeX File**
+   - Replaced "Modern Practice" sections with Barry Harris concepts
+   - Reorganized chapters to match Trello structure
+   - Updated part divisions
+   - Removed "Tune Analysis Structure" chapter (content integrated into tune chapters)
 
-2. **Create Content Files**
+2. **Created Content Files**
+   - Created separate `.lytex` files for each major section
+   - Organized by concept/topic in `chapters/` directory
+   - Created per-tune analysis files in `tunes/` directory (5 files per tune)
 
-   - Create separate `.lytex` files for each major section
-   - Organize by concept/topic
-   - Prepare template for per-tune analysis
+3. **Build System**
+   - Created Makefile for building LaTeX document
+   - Integrated lilypond-book for processing LilyPond code
+   - Set up GitHub Actions workflow for automated builds
+   - Configured timestamped PDF releases
 
-3. **Update Bibliography**
+4. **Tune Analysis Structure**
+   - Standardized format for each tune analysis
+   - Each tune includes: changes, scale map, solo, change map, comping
+   - Added "All of Me" as example with full LilyPond score
 
-   - Add Barry Harris references
-   - Include links from Trello board
+### In Progress
 
-4. **Create Tune Templates**
-
-   - Standardize format for each tune analysis
-   - Include sections: changes, scale map, solo, change map, comping
-
-5. **Integration**
-   - Link all content files
-   - Ensure consistent formatting
-   - Verify all Trello items are covered
+- Populating chapter content files with actual Barry Harris material
+- Adding LilyPond notation for musical examples
+- Creating scale maps and change maps for each tune
+- Writing exemplar solos and comping patterns
 
 ## File Organization
 
 ```
-source/
-├── chapters/
+barry-book/
+├── main.lytex                    # Main LaTeX document
+├── Makefile                      # Build system
+├── preface.lytex                 # Preface content
+├── references.bib                 # Bibliography
+├── chapters/                     # Concept chapters
 │   ├── 01-project-overview.lytex
-│   ├── 02-essential-tools.lytex
-│   ├── 03-little-things.lytex
-│   ├── 04-linear-concepts.lytex
-│   ├── 05-rhythmic-language.lytex
-│   ├── 06-dominant-techniques.lytex
+│   ├── 01-barry-harris-overview.lytex
+│   ├── 01-teaching-philosophy.lytex
+│   ├── 02-identifying-chords.lytex
+│   ├── 02-functional-harmony.lytex
+│   ├── 02-common-progressions.lytex
+│   ├── 02-changes-pedal-harmonies.lytex
+│   ├── 03-half-step-rules.lytex
+│   ├── 03-thirds.lytex
+│   ├── 03-chord.lytex
+│   ├── 03-half-step-below-chord.lytex
+│   ├── 03-pivot.lytex
+│   ├── 03-important-arpeggio.lytex
+│   ├── 03-surrounding-notes.lytex
+│   ├── 04-scale-map-concept.lytex
+│   ├── 04-scale-maps.lytex
+│   ├── 04-practice-linear-improvisation.lytex
+│   ├── 05-jazz-syncopation.lytex
+│   ├── 05-swing-feel.lytex
+│   ├── 05-rhythm-games.lytex
+│   ├── 06-dominant-variations.lytex
+│   ├── 06-tritone-substitutions.lytex
+│   ├── 06-advanced-dominant.lytex
 │   ├── 07-comping-scales.lytex
-│   └── 08-change-maps.lytex
-├── tunes/
-│   ├── blues.lytex
-│   ├── rhythm.lytex
-│   ├── autumn-leaves.lytex
-│   └── ... (one per tune)
-└── main.lytex (or main.tex)
+│   ├── 07-voicing-techniques.lytex
+│   ├── 07-rhythm-comping.lytex
+│   ├── 08-understanding-progressions.lytex
+│   ├── 08-creating-change-maps.lytex
+│   └── 08-applying-change-maps.lytex
+├── tunes/                        # Tune analyses (5 files per tune)
+│   ├── blues-changes.lytex
+│   ├── blues-scale-map.lytex
+│   ├── blues-solo.lytex
+│   ├── blues-change-map.lytex
+│   ├── blues-comping.lytex
+│   ├── all-of-me-changes.lytex   # Includes full LilyPond score
+│   └── ... (5 files × 16 tunes = 80 files)
+├── source/
+│   ├── lilyjazz-styles/          # LilyJazz font styles
+│   └── template/                 # LilyPond templates
+└── bin/                          # Build output (gitignored)
 ```
 
-## Next Steps
+## Current Status
 
-1. Restructure main LaTeX file
-2. Create chapter content files (initially as placeholders)
-3. Create tune analysis templates
-4. Populate content progressively
+The document structure is complete with all chapters and sections defined. Content files exist as placeholders and are ready to be populated with actual Barry Harris material. The build system is functional and the workflow automatically creates timestamped PDF releases.

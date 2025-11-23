@@ -68,15 +68,9 @@
         >
           <button
             id="download-btn"
-            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg w-full sm:w-auto min-w-[200px]"
+            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg"
           >
             Download Latest PDF
-          </button>
-          <button
-            id="open-btn"
-            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg w-full sm:w-auto min-w-[200px]"
-          >
-            Open in New Tab
           </button>
         </div>
       </div>
@@ -95,7 +89,7 @@
             <h3 class="text-xl font-serif mb-3">The Barry Harris Way</h3>
             <p class="text-muted leading-relaxed">
               Learn the authentic concepts and harmonic principles as taught by
-              Barry Harris himself—not the diluted institutional approach.
+              Barry Harris himself, not the diluted institutional approach.
             </p>
           </div>
 
@@ -142,7 +136,7 @@
           institutions often teach fragmented concepts and theoretical
           abstractions, this resource preserves the complete, integrated system
           that Barry Harris developed over seven decades of playing and
-          teaching. This is the authentic bebop language—the same harmonic
+          teaching. This is the authentic bebop language, the same harmonic
           concepts, movement rules, and musical thinking that defined the golden
           age of jazz and continues to produce musicians who truly understand
           the music from the inside out.
@@ -163,11 +157,11 @@
           <p>
             <strong class="text-foreground">Open source</strong> means this
             resource is freely available, transparent, and collaborative. The
-            complete source code—every note, every chord symbol, every layout
-            decision—is publicly accessible on GitHub. Anyone can view it, learn
-            from it, suggest improvements, or adapt it for their own needs. This
-            stands in stark contrast to proprietary educational materials locked
-            behind paywalls and copyright restrictions.
+            complete source code (every note, every chord symbol, every layout
+            decision) is publicly accessible on GitHub. Anyone can view it,
+            learn from it, suggest improvements, or adapt it for their own
+            needs. This stands in stark contrast to proprietary educational
+            materials locked behind paywalls and copyright restrictions.
           </p>
 
           <p>
@@ -186,7 +180,7 @@
 
           <p>
             <strong class="text-foreground">GitHub</strong> serves as both
-            archive and workshop—preserving the Barry Harris tradition while
+            archive and workshop, preserving the Barry Harris tradition while
             enabling continuous refinement. Musicians worldwide can contribute
             corrections, suggest additions, or fork the project to create their
             own variations. This collaborative approach ensures the material
@@ -253,25 +247,7 @@
         return pdfAsset.browser_download_url;
       }
 
-      const openBtn = document.getElementById("open-btn");
       const downloadBtn = document.getElementById("download-btn");
-
-      openBtn.onclick = async () => {
-        try {
-          openBtn.textContent = "Opening...";
-          openBtn.disabled = true;
-
-          const pdfUrl = await getLatestPDF();
-          window.open(pdfUrl, "_blank");
-
-          openBtn.textContent = "Open in New Tab";
-          openBtn.disabled = false;
-        } catch (error) {
-          console.error("Open failed:", error);
-          openBtn.textContent = "Open Failed - Try Again";
-          openBtn.disabled = false;
-        }
-      };
 
       downloadBtn.onclick = async () => {
         try {
