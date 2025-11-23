@@ -33,3 +33,7 @@ bin/
 
 # LilyPond build artifacts
 *.eps
+
+# Temporary files
+tmp*
+*.tmp

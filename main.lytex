@@ -2,7 +2,7 @@
 
 \usepackage[
     top=2cm,
-    bottom=2cm,
+    bottom=1cm,
     left=2cm,
     right=2cm,
     paperwidth=8.5in,
@@ -436,6 +436,22 @@ This is an open source textbook. The complete source code—every note, every ch
 
 \section{Exemplar Comping}
 \input{./tunes/all-the-things-comping.lytex}
+
+\chapter{All of Me}
+\section{Tune with Changes}
+\input{./tunes/all-of-me-changes.lytex}
+
+\section{Scale Map}
+\input{./tunes/all-of-me-scale-map.lytex}
+
+\section{Exemplar Solo}
+\input{./tunes/all-of-me-solo.lytex}
+
+\section{Change Map}
+\input{./tunes/all-of-me-change-map.lytex}
+
+\section{Exemplar Comping}
+\input{./tunes/all-of-me-comping.lytex}
 
 \chapter{Cherokee}
 \section{Tune with Changes}
