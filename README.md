@@ -22,6 +22,8 @@ The Barry Book is built collaboratively. Whether you're fixing a typo, correctin
 
 **LilyPond Contributions**: Work with the music notation files (`.lytex` files) to add or correct musical notation, fix chord symbols, adjust formatting, or add new tunes.
 
+**Note**: Some chapters or sections may currently be placeholders or incomplete. We're actively seeking contributions to fill these empty spots. If you see a chapter marked as "Content to be written" or notice an incomplete section, consider contributing content based on your understanding of Barry Harris's methods.
+
 ### How to Get Started
 
 **Option 1: Report Issues (No Technical Skills Required)**
@@ -37,7 +39,7 @@ If you find an error or have a suggestion but don't want to edit files yourself:
 
 You can edit files directly on GitHub without installing anything:
 
-1. Navigate to the file you want to edit (e.g., browse to `chapters/` or `tunes/`)
+1. Navigate to the file you want to edit (e.g., browse to `chapters/` or `lilypond/`)
 2. Click the pencil icon in the top right that says "Edit this file"
 3. Make your changes in the text editor that appears
 4. Scroll down and click "Propose changes"
@@ -127,6 +129,6 @@ The build process uses `lilypond-book` to process `.lytex` files, then compiles 
 
 - `main.lytex` - Main LaTeX document
 - `chapters/` - Concept chapters (Foundations, Linear Concepts, Harmonic Concepts)
-- `tunes/` - Tune analyses (16 tunes, 5 sections each)
+- `lilypond/` - Tune analyses (16 tunes, 5 sections each)
 - `source/` - LilyJAZZ styles and templates
 - `bin/` - Build output directory (gitignored)
