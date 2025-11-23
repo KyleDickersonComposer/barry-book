@@ -51,5 +51,8 @@ jobs:
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
+          draft: false
+          prerelease: false
+          makeLatest: true
           body: "Latest compiled Barry Book PDF"
           token: ${{ secrets.GITHUB_TOKEN }}
