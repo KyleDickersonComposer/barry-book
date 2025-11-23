@@ -21,15 +21,24 @@ jobs:
       - name: Build PDF with Docker
         run: |
           TIMESTAMP=$(date +%Y%m%d)
-          PDF_NAME="BarryBook-${TIMESTAMP}.pdf"
+          PDF_BASE="BarryBook-${TIMESTAMP}"
+          PDF_NAME="${PDF_BASE}.pdf"
           echo "Building PDF: $PDF_NAME"
 
           docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
             cd /workdir && \
-            lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_NAME \
+            lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_BASE \
             -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
 
           echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
+
+      - name: Clean up build artifacts
+        run: |
+          # Remove LilyPond build artifacts but keep the PDF and source files
+          rm -f *.log *.ly~ *.pdf~ 2>/dev/null || true
+          # List what we're publishing
+          echo "Files to publish:"
+          ls -lh "${{ env.PDF_NAME }}" || echo "ERROR: PDF not found!"
 
       - name: Publish PDF to Latest Release
         uses: ncipollo/release-action@v1
@@ -39,5 +48,6 @@ jobs:
           artifacts: "${{ env.PDF_NAME }}"
           allowUpdates: true
           removeArtifacts: true
+          replacesArtifacts: true
           body: "Latest compiled Barry Book PDF"
           token: ${{ secrets.GITHUB_TOKEN }}
