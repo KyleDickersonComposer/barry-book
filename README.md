@@ -2,11 +2,27 @@
 
 A free and open-source textbook preserving the authentic Barry Harris tradition of jazz pedagogy.
 
+## Getting the Book
+
+**The easiest way to get the latest PDF is to visit [www.barrybook.org](https://www.barrybook.org) and download it directly from there.** The site always provides the most recent version of the book.
+
 ## About
 
 The Barry Book is an instructional resource that presents Barry Harris's jazz piano concepts in a systematic, practical format. This is an open source project, meaning the complete source code (every note, every chord symbol, every layout decision) is publicly accessible on GitHub.
 
-## Building the Book
+## Building the Book (Advanced)
+
+**⚠️ Building the book yourself requires advanced technical skills and is only recommended for developers or contributors who need to modify the source code.**
+
+Building from source involves:
+
+- Setting up a LaTeX distribution
+- Installing and configuring LilyPond
+- Installing custom LilyJAZZ fonts
+- Managing complex build dependencies
+- Troubleshooting compilation errors
+
+If you just want to read the book, **please download it from [www.barrybook.org](https://www.barrybook.org) instead.**
 
 ### Prerequisites
 
@@ -14,10 +30,12 @@ The Barry Book is an instructional resource that presents Barry Harris's jazz pi
 - LilyPond (for musical notation)
 - LilyJAZZ fonts (for jazz notation styling)
 - Biber (for bibliography processing)
+- Technical familiarity with command-line tools and build systems
 
 ### Build Instructions
 
 1. Install LilyJAZZ fonts:
+
    - Find the fonts directory of your LilyPond installation
    - Add the necessary LilyJAZZ fonts
    - Setup the font family in the font config file
@@ -25,6 +43,7 @@ The Barry Book is an instructional resource that presents Barry Harris's jazz pi
    - Copy the `.ily` style files from LilyJAZZ into `~/.ly`
 
 2. Build the PDF:
+
    ```sh
    make pdf
    ```
