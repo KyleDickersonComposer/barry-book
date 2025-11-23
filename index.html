@@ -1,228 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/static/favicon.png" />
+    <title>The Barry Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: "#faf9f7",
+              foreground: "#1a1a1a",
+              muted: "#6b6b6b",
+              accent: "#2d2d2d",
+              border: "#e5e5e5",
+            },
+            fontFamily: {
+              serif: ["Georgia", "Cambria", "Times New Roman", "serif"],
+              sans: [
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "sans-serif",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" href="/static/favicon.png">
-	<title>The Barry Book</title>
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-	<script src="https://unpkg.com/lucide@latest"></script>
-	<script>
-		tailwind.config = {
-			theme: {
-				extend: {
-					colors: {
-						background: '#faf9f7',
-						foreground: '#1a1a1a',
-						muted: '#6b6b6b',
-						accent: '#2d2d2d',
-						border: '#e5e5e5'
-					},
-					fontFamily: {
-						serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
-						sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
-					}
-				}
-			}
-		}
-	</script>
-</head>
+  <body class="bg-background text-foreground font-sans antialiased">
+    <!-- Hero Section -->
+    <section
+      class="min-h-screen flex flex-col items-center justify-center px-6 py-20"
+    >
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Updated image source to use local static file -->
+        <div class="mb-12">
+          <img
+            src="static/barry-image.webp"
+            alt="Barry Harris at the piano"
+            class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl"
+          />
+        </div>
 
-<body class="bg-background text-foreground font-sans antialiased">
-	<!-- Hero Section -->
-	<section class="min-h-screen flex flex-col items-center justify-center px-6 py-20">
-		<div class="max-w-4xl mx-auto text-center">
-			<!-- Updated image source to use local static file -->
-			<div class="mb-12">
-				<img src="static/barry-image.webp" alt="Barry Harris at the piano"
-					class="w-full max-w-2xl mx-auto rounded-lg shadow-2xl" />
-			</div>
+        <h1
+          class="text-6xl md:text-7xl lg:text-8xl font-serif font-light mb-8 text-balance leading-tight"
+        >
+          The Barry Book
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-muted mb-12 max-w-2xl mx-auto leading-relaxed"
+        >
+          An instructional resource preserving the authentic Barry Harris
+          tradition of jazz pedagogy.
+        </p>
 
-			<h1 class="text-6xl md:text-7xl lg:text-8xl font-serif font-light mb-8 text-balance leading-tight">
-				The Barry Book
-			</h1>
-			<p class="text-xl md:text-2xl text-muted mb-12 max-w-2xl mx-auto leading-relaxed">
-				An instructional resource preserving the authentic Barry Harris tradition of jazz pedagogy.
-			</p>
+        <!-- Removed GitHub button from hero section -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+        >
+          <button
+            id="download-btn"
+            class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg"
+          >
+            Download Latest PDF
+          </button>
+        </div>
+      </div>
+    </section>
 
-			<!-- Removed GitHub button from hero section -->
-			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-				<button id="download-btn"
-					class="bg-accent text-background px-8 py-4 rounded-lg hover:bg-foreground transition-colors font-medium text-lg">
-					Download Latest PDF
-				</button>
-			</div>
-		</div>
-	</section>
+    <!-- Features Section -->
+    <section class="py-20 px-6 border-t border-border">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <i data-lucide="music" class="w-8 h-8 text-background"></i>
+            </div>
+            <h3 class="text-xl font-serif mb-3">The Barry Harris Way</h3>
+            <p class="text-muted leading-relaxed">
+              Learn the authentic concepts and harmonic principles as taught by
+              Barry Harris himself—not the diluted institutional approach.
+            </p>
+          </div>
 
-	<!-- Features Section -->
-	<section class="py-20 px-6 border-t border-border">
-		<div class="max-w-6xl mx-auto">
-			<div class="grid md:grid-cols-3 gap-12">
-				<div class="text-center">
-					<div class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center">
-						<i data-lucide="music" class="w-8 h-8 text-background"></i>
-					</div>
-					<h3 class="text-xl font-serif mb-3">The Barry Harris Way</h3>
-					<p class="text-muted leading-relaxed">
-						Learn the authentic concepts and harmonic principles as taught by Barry Harris himself—not the
-						diluted institutional approach.
-					</p>
-				</div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <i data-lucide="book-open" class="w-8 h-8 text-background"></i>
+            </div>
+            <h3 class="text-xl font-serif mb-3">Direct Lineage</h3>
+            <p class="text-muted leading-relaxed">
+              This material represents the true bebop tradition, passed down
+              through Barry Harris's decades of teaching and performance.
+            </p>
+          </div>
 
-				<div class="text-center">
-					<div class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center">
-						<i data-lucide="book-open" class="w-8 h-8 text-background"></i>
-					</div>
-					<h3 class="text-xl font-serif mb-3">Direct Lineage</h3>
-					<p class="text-muted leading-relaxed">
-						This material represents the true bebop tradition, passed down through Barry Harris's decades of
-						teaching and performance.
-					</p>
-				</div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <i data-lucide="download" class="w-8 h-8 text-background"></i>
+            </div>
+            <h3 class="text-xl font-serif mb-3">Living Document</h3>
+            <p class="text-muted leading-relaxed">
+              Continuously refined and updated to maintain the highest standards
+              of accuracy and pedagogical clarity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<div class="text-center">
-					<div class="w-16 h-16 bg-accent rounded-full mx-auto mb-6 flex items-center justify-center">
-						<i data-lucide="download" class="w-8 h-8 text-background"></i>
-					</div>
-					<h3 class="text-xl font-serif mb-3">Living Document</h3>
-					<p class="text-muted leading-relaxed">
-						Continuously refined and updated to maintain the highest standards of accuracy and pedagogical
-						clarity.
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- About Section -->
+    <section class="py-20 px-6 bg-accent text-background">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2
+          class="text-4xl md:text-5xl font-serif font-light mb-6 text-balance"
+        >
+          Beyond the Jazz Institution
+        </h2>
+        <p class="text-lg leading-relaxed opacity-90 mb-8">
+          The Barry Harris tradition represents a distinct and profound approach
+          to understanding jazz harmony and improvisation. While modern jazz
+          institutions often teach fragmented concepts and theoretical
+          abstractions, this resource preserves the complete, integrated system
+          that Barry Harris developed over seven decades of playing and
+          teaching. This is the authentic bebop language—the same harmonic
+          concepts, movement rules, and musical thinking that defined the golden
+          age of jazz and continues to produce musicians who truly understand
+          the music from the inside out.
+        </p>
+      </div>
+    </section>
 
-	<!-- About Section -->
-	<section class="py-20 px-6 bg-accent text-background">
-		<div class="max-w-3xl mx-auto text-center">
-			<h2 class="text-4xl md:text-5xl font-serif font-light mb-6 text-balance">
-				Beyond the Jazz Institution
-			</h2>
-			<p class="text-lg leading-relaxed opacity-90 mb-8">
-				The Barry Harris tradition represents a distinct and profound approach to understanding jazz harmony and
-				improvisation.
-				While modern jazz institutions often teach fragmented concepts and theoretical abstractions, this
-				resource preserves
-				the complete, integrated system that Barry Harris developed over seven decades of playing and teaching.
-				This is the
-				authentic bebop language—the same harmonic concepts, movement rules, and musical thinking that defined
-				the golden age
-				of jazz and continues to produce musicians who truly understand the music from the inside out.
-			</p>
-		</div>
-	</section>
+    <!-- Open Source Section -->
+    <section class="py-20 px-6 border-t border-border">
+      <div class="max-w-4xl mx-auto">
+        <h2
+          class="text-4xl md:text-5xl font-serif font-light mb-8 text-center text-balance"
+        >
+          Open Source Musical Knowledge
+        </h2>
 
-	<!-- Open Source Section -->
-	<section class="py-20 px-6 border-t border-border">
-		<div class="max-w-4xl mx-auto">
-			<h2 class="text-4xl md:text-5xl font-serif font-light mb-8 text-center text-balance">
-				Open Source Musical Knowledge
-			</h2>
+        <div class="space-y-6 text-lg leading-relaxed text-muted">
+          <p>
+            <strong class="text-foreground">Open source</strong> means this
+            resource is freely available, transparent, and collaborative. The
+            complete source code—every note, every chord symbol, every layout
+            decision—is publicly accessible on GitHub. Anyone can view it, learn
+            from it, suggest improvements, or adapt it for their own needs. This
+            stands in stark contrast to proprietary educational materials locked
+            behind paywalls and copyright restrictions.
+          </p>
 
-			<div class="space-y-6 text-lg leading-relaxed text-muted">
-				<p>
-					<strong class="text-foreground">Open source</strong> means this resource is freely available,
-					transparent, and collaborative.
-					The complete source code—every note, every chord symbol, every layout decision—is publicly
-					accessible on GitHub.
-					Anyone can view it, learn from it, suggest improvements, or adapt it for their own needs. This
-					stands in stark
-					contrast to proprietary educational materials locked behind paywalls and copyright restrictions.
-				</p>
+          <p>
+            By combining
+            <strong class="text-foreground">LilyPond</strong> (professional
+            music engraving software) with
+            <strong class="text-foreground">LaTeX</strong> (sophisticated
+            document typesetting), we achieve publication-quality results using
+            entirely free, open-source tools. LilyPond produces beautiful,
+            traditionally-engraved notation that rivals or exceeds commercial
+            alternatives, while LaTeX handles complex layouts and text
+            formatting with precision. Together, they create a reproducible,
+            version-controlled workflow where every change is tracked and
+            documented.
+          </p>
 
-				<p>
-					By combining <strong class="text-foreground">LilyPond</strong> (professional music engraving
-					software) with
-					<strong class="text-foreground">LaTeX</strong> (sophisticated document typesetting), we achieve
-					publication-quality
-					results using entirely free, open-source tools. LilyPond produces beautiful, traditionally-engraved
-					notation that
-					rivals or exceeds commercial alternatives, while LaTeX handles complex layouts and text formatting
-					with precision.
-					Together, they create a reproducible, version-controlled workflow where every change is tracked and
-					documented.
-				</p>
+          <p>
+            <strong class="text-foreground">GitHub</strong> serves as both
+            archive and workshop—preserving the Barry Harris tradition while
+            enabling continuous refinement. Musicians worldwide can contribute
+            corrections, suggest additions, or fork the project to create their
+            own variations. This collaborative approach ensures the material
+            remains accurate, accessible, and alive, rather than frozen in a
+            commercial publication that becomes outdated the moment it's
+            printed.
+          </p>
 
-				<p>
-					<strong class="text-foreground">GitHub</strong> serves as both archive and workshop—preserving the
-					Barry Harris
-					tradition while enabling continuous refinement. Musicians worldwide can contribute corrections,
-					suggest additions,
-					or fork the project to create their own variations. This collaborative approach ensures the material
-					remains
-					accurate, accessible, and alive, rather than frozen in a commercial publication that becomes
-					outdated the moment
-					it's printed.
-				</p>
+          <p class="text-foreground font-medium pt-4">
+            Authentic jazz education should be freely shared, not commodified.
+            Open source makes that possible.
+          </p>
 
-				<p class="text-foreground font-medium pt-4">
-					Authentic jazz education should be freely shared, not commodified. Open source makes that possible.
-				</p>
+          <!-- Added GitHub link with contribution call-to-action -->
+          <div class="pt-8 text-center">
+            <a
+              href="https://github.com/KyleDickersonComposer/barry-book"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-foreground hover:text-accent transition-colors font-medium text-lg border-b-2 border-foreground hover:border-accent pb-1"
+            >
+              View the repository and learn how to contribute
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-				<!-- Added GitHub link with contribution call-to-action -->
-				<div class="pt-8 text-center">
-					<a href="https://github.com/KyleDickersonComposer/barry-book" target="_blank"
-						rel="noopener noreferrer"
-						class="inline-flex items-center gap-2 text-foreground hover:text-accent transition-colors font-medium text-lg border-b-2 border-foreground hover:border-accent pb-1">
-						View the repository and learn how to contribute
-						<i data-lucide="arrow-right" class="w-4 h-4"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-border">
+      <div class="max-w-6xl mx-auto text-center">
+        <p class="text-muted text-sm">Generated with LilyPond • Always Free</p>
+      </div>
+    </footer>
 
-	<!-- Footer -->
-	<footer class="py-12 px-6 border-t border-border">
-		<div class="max-w-6xl mx-auto text-center">
-			<p class="text-muted text-sm">
-				Generated with LilyPond • Always Free
-			</p>
-		</div>
-	</footer>
+    <!-- Added back GitHub Releases API fetch -->
+    <script>
+      lucide.createIcons();
 
-	<!-- Added back GitHub Releases API fetch -->
-	<script>
-		lucide.createIcons();
+      const btn = document.getElementById("download-btn");
 
-		const btn = document.getElementById('download-btn');
+      btn.onclick = async () => {
+        try {
+          btn.textContent = "Downloading...";
+          btn.disabled = true;
 
-		btn.onclick = async () => {
-			try {
-				btn.textContent = 'Downloading...';
-				btn.disabled = true;
+          // Fetch latest release from GitHub
+          const response = await fetch(
+            "https://api.github.com/repos/KyleDickersonComposer/barry-book/releases/latest"
+          );
+          const release = await response.json();
 
-				// Fetch latest release from GitHub
-				const response = await fetch('https://api.github.com/repos/KyleDickersonComposer/barry-book/releases/latest');
-				const release = await response.json();
+          // Find the PDF asset (should match BarryBook-YYYYMMDD.pdf pattern)
+          const pdfAsset = release.assets.find(
+            (asset) =>
+              asset.name.endsWith(".pdf") && asset.name.startsWith("BarryBook-")
+          );
 
-				// Find the PDF asset
-				const pdfAsset = release.assets.find(asset => asset.name.endsWith('.pdf'));
+          if (!pdfAsset) {
+            // Fallback: find any PDF if pattern doesn't match
+            const fallbackPdf = release.assets.find((asset) =>
+              asset.name.endsWith(".pdf")
+            );
+            if (!fallbackPdf) {
+              throw new Error("No PDF found in latest release");
+            }
+            // Use fallback
+            const link = document.createElement("a");
+            link.href = fallbackPdf.browser_download_url;
+            link.download = fallbackPdf.name;
+            link.click();
+          } else {
+            // Download the timestamped PDF
+            const link = document.createElement("a");
+            link.href = pdfAsset.browser_download_url;
+            link.download = pdfAsset.name;
+            link.click();
+          }
 
-				if (!pdfAsset) {
-					throw new Error('No PDF found in latest release');
-				}
-
-				// Download the PDF
-				const link = document.createElement('a');
-				link.href = pdfAsset.browser_download_url;
-				link.download = pdfAsset.name;
-				link.click();
-
-				btn.textContent = 'Download Latest PDF';
-				btn.disabled = false;
-			} catch (error) {
-				console.error('Download failed:', error);
-				btn.textContent = 'Download Failed - Try Again';
-				btn.disabled = false;
-			}
-		};
-	</script>
-</body>
-
+          btn.textContent = "Download Latest PDF";
+          btn.disabled = false;
+        } catch (error) {
+          console.error("Download failed:", error);
+          btn.textContent = "Download Failed - Try Again";
+          btn.disabled = false;
+        }
+      };
+    </script>
+  </body>
 </html>

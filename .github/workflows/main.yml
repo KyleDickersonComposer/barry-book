@@ -20,7 +20,8 @@ jobs:
 
       - name: Build PDF with Docker
         run: |
-          PDF_NAME="BarryBook"
+          TIMESTAMP=$(date +%Y%m%d)
+          PDF_NAME="BarryBook-${TIMESTAMP}.pdf"
           echo "Building PDF: $PDF_NAME"
 
           docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
@@ -28,18 +29,14 @@ jobs:
             lilypond -dno-point-and-click -dembed-source-code -o /workdir/$PDF_NAME \
             -I /workdir/source/lilyjazz-styles /workdir/source/template/AllOfMe.ly"
 
-      - name: Upload PDF as Artifact (optional)
-        uses: actions/upload-artifact@v4
-        with:
-          name: pdf-artifact
-          path: BarryBook.pdf
+          echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
 
       - name: Publish PDF to Latest Release
         uses: ncipollo/release-action@v1
         with:
           tag: latest
           name: "Latest Barry Book PDF"
-          artifacts: "BarryBook.pdf"
+          artifacts: "${{ env.PDF_NAME }}"
           allowUpdates: true
           removeArtifacts: true
           body: "Latest compiled Barry Book PDF"
