@@ -1,1 +1,133 @@
-% Content to be written
+\clearpage
+\thispagestyle{empty}
+\newgeometry{top=1cm,bottom=0cm,left=0cm,right=0cm}
+\begin{lilypond}[staffsize=18,quote]
+\version "2.24.0"
+#(set-global-staff-size 16)
+\include "../source/lilyjazz-styles/jazzchords.ily"
+\include "../source/lilyjazz-styles/lilyjazz.ily"
+\include "../source/lilyjazz-styles/jazzextras.ily"
+
+\paper {
+	paper-height = 11\in
+	paper-width = 8.5\in
+	indent = 0\mm
+	left-margin = 0\cm
+	right-margin = 0\cm
+	bottom-margin = 0\cm
+	ragged-last-bottom = ##f
+	ragged-bottom = ##f
+}
+
+title = #"Stella by Starlight"
+composer = #"Victor Young"
+meter = #" (Med. Swing)"
+
+realBookTitle = \markup {
+	\score {
+		{
+			\override TextScript.extra-offset = #'(0 . -4.5)
+			s4
+			s^\markup {
+				\fill-line {
+					\fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
+					\fontsize #8
+					\override #'(offset . 7)
+					\override #'(thickness . 6)
+					\underline \larger \larger #title
+					\fontsize #1 \lower #1 \concat { #composer " " }
+				}
+			}
+		}
+
+		\layout {
+			\omit Staff.Clef
+			\omit Staff.TimeSignature
+			\omit Staff.KeySignature
+			ragged-right = ##f
+		}
+	}
+}
+
+\header {
+		title = \realBookTitle
+		tagline = ##f
+}
+
+theNotes = \relative c' {
+	\key bes \major
+	\partial 4
+	bes'4
+	a1~
+	a4 g a bes
+	f1~
+	f2. f4 \break
+	g1~
+	g4 f f g
+	bes,1~
+	bes2. c4 \break
+	es4 d c bes
+	d2. e4
+	g4. f8 f2~
+	f2. g4 \break
+	bes4 a g f
+	g2 a4 bes
+	d4. c8 c2~
+	c2 d  \break
+	ees1~
+	ees4 ees ees d
+	f1~
+	f4 ees \times 2/3 {d4 c bes} \break
+	d2 d2~
+	d4 c bes a
+	c1~
+	c2. bes4 \break
+	a1~
+	a4 g a bes
+	f1~
+	f4 f f ees \break
+	ges1~
+	ges4 ges ges f
+	f1~
+	f
+	\bar "||"
+}
+
+theChords = \chordmode {
+	s4 |
+	bes1:dim s1 c:m7 f:7 |
+	f:m7 bes:7 ees:6 ees:m6 |
+	bes g2:m g2:m6 d1:m7 g1:m7.5- |
+	c:7 s1 a:m7.5- d:7 |
+	g:7.5+ s1 c:m7 s1 |
+	ees:dim  s1 bes:6 s1 |
+	des:dim s1 d:m7.5- g:7 |
+	c:m7.5- f:7 bes:6 s1 |
+}
+
+theWords = \lyricmode {
+	The song a rob -- in sings
+	Through years of end -- less springs
+	The mur -- mur of a brook at eve -- n -- tide
+	That ripp -- les by a nook where two lov -- ers hide
+	A great sym -- phon -- ic theme
+	That's Ste -- lla by star -- light and not a dream
+	She's all of these and more
+	She's eve -- ry -- thing that you'd a -- dore
+}
+
+\score {
+	<<
+		\new ChordNames \theChords
+		\new Voice = soloist \theNotes
+		\new Lyrics \lyricsto soloist \theWords
+	>>
+		\layout {
+			\override Score.Clef.break-visibility = #'#(#f #f #f)
+			\override Score.KeySignature.break-visibility = #'#(#f #f #f)
+			\override Score.SystemStartBar.collapse-height = #1
+		}
+}
+\end{lilypond}
+\restoregeometry
+
