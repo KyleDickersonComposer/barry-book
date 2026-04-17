@@ -97,7 +97,7 @@ theChords = \chordmode {
 	s4 |
 	bes1:dim s1 c1:m7 f2:7 f2:7.5+ |
 	f1:m7 bes1:7 ees1:6 s2 aes:7 |
-	bes1 g2:m g2:m6 e2:dim/d d2:m7 g1:m7.5- |
+	bes1 g2:m g2:m6 e2:dim/d d2:m7 g1:m7.5-/des |
 	c1:7 bes1:dim a1:m7.5- d1:7.9- |
 	g1:7.5+ s1 c1:m7 s1 |
 	ees1:dim  s1 bes1/d s1 |
