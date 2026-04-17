@@ -23,10 +23,10 @@ pdf: force-rebuild
 	@echo "Processing $(MAIN).lytex with lilypond-book..."
 	@$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) $(MAIN).lytex
 	@echo "Building $(MAIN).pdf..."
-	@$(LATEX) $(LATEX_FLAGS) -output-directory=$(OUTPUT_DIR) $(OUTPUT_DIR)/$(MAIN).tex || true
-	@cd $(OUTPUT_DIR) && $(BIBTEX) $(MAIN) || true
-	@$(LATEX) $(LATEX_FLAGS) -output-directory=$(OUTPUT_DIR) $(OUTPUT_DIR)/$(MAIN).tex || true
-	@$(LATEX) $(LATEX_FLAGS) -output-directory=$(OUTPUT_DIR) $(OUTPUT_DIR)/$(MAIN).tex || true
+	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
+	@cd $(OUTPUT_DIR) && $(BIBTEX) $(MAIN)
+	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
+	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
 	@find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null || true
 	@find . -maxdepth 1 -name "*.tmp" -type f -delete 2>/dev/null || true
 	@echo "Build complete! Output: $(OUTPUT_DIR)/$(MAIN).pdf"
@@ -40,4 +40,3 @@ clean:
 	@echo "Clean complete!"
 
 build: clean pdf
-

@@ -39,6 +39,11 @@
 \fancyfoot{}
 
 \newcommand{\betweenLilyPondSystem}[1]{\vspace{6mm}\linebreak}
+\newcommand{\incompleteContentNotice}{%
+\begin{quote}
+\textbf{Draft notice.} This section is incomplete and part of an open source textbook in progress. Contributions, corrections, examples, and source-level improvements are welcome.
+\end{quote}
+}
 
 \usepackage{lilyglyphs}
 
@@ -121,104 +126,111 @@ This method presents a systematic approach to understanding and applying Barry H
 This is an open source textbook. The complete source code (every note, every chord symbol, every layout decision) is publicly accessible. Anyone can view it, learn from it, suggest improvements, or adapt it for their own needs. This stands in stark contrast to proprietary educational materials locked behind paywalls and copyright restrictions. Authentic jazz education should be freely shared, not commodified. Open source makes that possible.
 
 \mainmatter
-
-\part{Foundations}
+\setcounter{chapter}{-1}
 
 \chapter{Project Overview and Barry Harris}
 \section{Project Overview}
-\input{./chapters/01-project-overview.lytex}
+\input{./chapters/project-overview.lytex}
 
 \section{Barry Harris Overview}
-\input{./chapters/01-barry-harris-overview.lytex}
+\input{./chapters/barry-harris-overview.lytex}
 
 \section{Teaching Philosophy}
-\input{./chapters/01-teaching-philosophy.lytex}
+\input{./chapters/teaching-philosophy.lytex}
+
+\part{Foundations}
+
+\chapter{Music Fundamentals}
+\input{./chapters/music-fundamentals.lytex}
 
 \chapter{Identifying the Chords}
-\input{./chapters/02-identifying-chords.lytex}
+\input{./chapters/identifying-chords.lytex}
 
 \chapter{Functional Harmony}
-\input{./chapters/02-functional-harmony.lytex}
+\input{./chapters/functional-harmony.lytex}
 
 \chapter{Common Chord Progressions}
-\input{./chapters/02-common-progressions.lytex}
+\input{./chapters/common-progressions.lytex}
 
 \chapter{Changes and Pedal Harmonies}
-\input{./chapters/02-changes-pedal-harmonies.lytex}
+\input{./chapters/changes-pedal-harmonies.lytex}
 
 \part{Linear Concepts}
 
 \chapter{Scales for Linear Improvization}
-\input{./chapters/04-scale-map-concept.lytex}
+\input{./chapters/scale-map-concept.lytex}
 
 \chapter{Scale Maps}
-\input{./chapters/04-scale-maps.lytex}
+\input{./chapters/scale-maps.lytex}
 
 \chapter{All the Little Things}
 \section{Half Step Rules}
-\input{./chapters/03-half-step-rules.lytex}
+\input{./chapters/half-step-rules.lytex}
 
 \section{Thirds}
-\input{./chapters/03-thirds.lytex}
+\input{./chapters/thirds.lytex}
 
 \section{The Chord}
-\input{./chapters/03-the-chord.lytex}
+\input{./chapters/the-chord.lytex}
 
 \section{Half Step Below the Chord}
-\input{./chapters/03-half-step-below-chord.lytex}
+\input{./chapters/half-step-below-chord.lytex}
 
 \section{The Pivot}
-\input{./chapters/03-pivot.lytex}
+\input{./chapters/pivot.lytex}
 
 \section{Important Arpeggio}
-\input{./chapters/03-important-arpeggio.lytex}
+\input{./chapters/important-arpeggio.lytex}
 
 \section{Surrounding the Notes}
-\input{./chapters/03-surrounding-notes.lytex}
+\input{./chapters/surrounding-notes.lytex}
 
 \section{Barry's Chromatic Scale}
-\input{./chapters/03-barrys-chromatic-scale.lytex}
+\input{./chapters/barrys-chromatic-scale.lytex}
 
 \chapter{A Rhythmic Language}
 \section{Jazz Syncopation}
-\input{./chapters/05-jazz-syncopation.lytex}
+\input{./chapters/jazz-syncopation.lytex}
 
 \section{Swing Feel}
-\input{./chapters/05-swing-feel.lytex}
+\input{./chapters/swing-feel.lytex}
 
 \section{Rhythm Games}
-\input{./chapters/05-rhythm-games.lytex}
+\input{./chapters/rhythm-games.lytex}
 
 \chapter{Spicing Up the Dominant}
 \section{Dominant Chord Variations}
-\input{./chapters/06-dominant-variations.lytex}
+\input{./chapters/dominant-variations.lytex}
 
 \section{Tritone Substitutions}
-\input{./chapters/06-tritone-substitutions.lytex}
+\input{./chapters/tritone-substitutions.lytex}
 
 \section{Advanced Dominant Techniques}
-\input{./chapters/06-advanced-dominant.lytex}
+\input{./chapters/advanced-dominant.lytex}
 
 \chapter{How to Practice Linear Improvization}
-\input{./chapters/04-practice-linear-improvisation.lytex}
+\input{./chapters/practice-linear-improvisation.lytex}
 
 \part{Harmonic Concepts}
 
+\chapter{Classical Harmony}
+\input{./chapters/classical-tradition.lytex}
+
+\chapter{Appoggiatura and Appoggiatura Chords}
+\input{./chapters/appoggiatura-and-appoggiatura-chords.lytex}
+
+\chapter{The Missing Link}
+\input{./chapters/missing-link.lytex}
+
 \chapter{Scales for Comping}
 \section{Comping Scales}
-\input{./chapters/07-comping-scales.lytex}
-
-\section{Voicing Techniques}
-\input{./chapters/07-voicing-techniques.lytex}
-
-\section{Rhythm in Comping}
-\input{./chapters/07-rhythm-comping.lytex}
+\input{./chapters/comping-scales.lytex}
 
 \chapter{Scale of Chords}
 \input{./chapters/scale-of-chords.lytex}
 
-\chapter{Appoggiatura and Appoggiatura Chords}
-\input{./chapters/appoggiatura-and-appoggiatura-chords.lytex}
+\section{Voicing Techniques}
+\input{./chapters/voicing-techniques.lytex}
 
 \chapter{Borrowing}
 \input{./chapters/borrowing.lytex}
@@ -231,6 +243,9 @@ This is an open source textbook. The complete source code (every note, every cho
 
 \chapter{Symmetry in the Diminished Chord}
 \input{./chapters/symmetry-in-diminished-chord.lytex}
+
+\chapter{Rhythm in Comping}
+\input{./chapters/rhythm-comping.lytex}
 
 \chapter{How to Practice Comping}
 \input{./chapters/how-to-practice-comping.lytex}
@@ -448,4 +463,3 @@ This is an open source textbook. The complete source code (every note, every cho
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
 \end{document}
-
