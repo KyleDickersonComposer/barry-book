@@ -78,8 +78,9 @@
 % Inline music after the first line should use vertical-center alignment.
 \newcommand{\beginBookInlineMusic}{%
   \begingroup
-  \def\bookInlineMusicBaseline{baseline}%
-  \ifx\bookInlineMusicAlign\bookInlineMusicBaseline
+  % Compare expanded strings; \ifx fails here because \bookInlineMusicAlign is \long
+  % (from \newcommand) while a \def test macro would be short—same text, false \ifx.
+  \ifnum\pdfstrcmp{\bookInlineMusicAlign}{baseline}=0
   \else
     \def\preLilyPondExample{\setbox\bookInlineMusicBox=\hbox\bgroup}%
     \def\postLilyPondExample{\egroup\raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}}%
