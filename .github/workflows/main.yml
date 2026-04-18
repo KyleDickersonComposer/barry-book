@@ -13,7 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Verify LilyPond book inputs
+        run: |
+          test -f source/book-inline.ily
+          test -f source/book-example.ily
+          test -f source/numeric-time-signature.ily
+          grep -q 'book-inline\|book-example' lilypond/snippets/*.lytex
+          ls -la source/*.ily
 
       - name: Pull Docker image
         run: docker pull kyledickersoncomposer/docker-lilypond:latest
@@ -25,9 +33,11 @@ jobs:
           PDF_NAME="${PDF_BASE}.pdf"
           echo "Building PDF: $PDF_NAME"
 
-          docker run --rm -v $(pwd):/workdir kyledickersoncomposer/docker-lilypond sh -c "\
-            cd /workdir && \
-            make pdf"
+          docker run --rm \
+            -v "${{ github.workspace }}:/workdir" \
+            -w /workdir \
+            kyledickersoncomposer/docker-lilypond:latest \
+            make pdf
 
           # Copy the built PDF to the timestamped filename
           cp bin/main.pdf "$PDF_NAME"
