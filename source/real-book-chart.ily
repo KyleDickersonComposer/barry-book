@@ -4,6 +4,7 @@
 \include "lilyjazz-styles/jazzchords.ily"
 \include "lilyjazz-styles/lilyjazz.ily"
 \include "lilyjazz-styles/jazzextras.ily"
+\include "numeric-time-signature.ily"
 
 \paper {
   paper-height = 12\in

@@ -1,0 +1,14 @@
+\beginBookInlineMusic
+\lilypond[inline]{
+\include "source/book-inline.ily"
+
+\score {
+  \new Staff \with {
+    \remove "Time_signature_engraver"
+  } {
+    \clef treble
+    <d' f' a' c''>4
+  }
+}
+}
+\finishBookInlineMusic

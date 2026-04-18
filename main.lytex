@@ -3,8 +3,8 @@
 \usepackage[
     top=2cm,
     bottom=1cm,
-    left=2cm,
-    right=2cm,
+    left=3.5cm,
+    right=3.5cm,
     paperwidth=8.5in,
     paperheight=11in,
     heightrounded,
@@ -33,6 +33,7 @@
 \addbibresource{references.bib}
 
 \renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LE,RO]{\thepage}
@@ -43,6 +44,58 @@
 \definecolor{barryBlack}{HTML}{151515}
 \definecolor{barryGray}{HTML}{5F5F5F}
 
+\makeatletter
+\newcommand*{\l@bookexample}{\@dottedtocline{1}{0em}{2.3em}}
+\newcommand{\listofmusicalexamples}{%
+  \frontMatterChapter{List of Musical Examples}%
+  \addcontentsline{toc}{chapter}{List of Musical Examples}%
+  \@starttoc{loe}%
+}
+\makeatother
+
+\newcounter{bookExample}
+\newcommand{\bookExampleLoEentry}{}
+\newcommand{\beginBookExample}[1]{%
+  \refstepcounter{bookExample}%
+  \def\bookExampleLoEentry{Example \thebookExample. #1}%
+  \par\addvspace{1em}%
+  \noindent{\bfseries Example~\thebookExample.} #1:\par
+  \nobreak\addvspace{0.35em}%
+}
+\newcommand{\finishBookExample}{%
+  \par\addvspace{1em}%
+  % List-of-examples page must be written after the body is laid out; writing at
+  % \beginBookExample captured \thepage before breaks (e.g. LilyPond height).
+  \phantomsection
+  \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
+}
+
+\newsavebox{\bookInlineMusicBox}
+\newcommand{\bookInlineMusicAlign}{vc}
+\newcommand{\bookInlineMusicUseVerticalCenter}{\renewcommand{\bookInlineMusicAlign}{vc}}
+\newcommand{\bookInlineMusicUseBaseline}{\renewcommand{\bookInlineMusicAlign}{baseline}}
+% Inline music at the top of a paragraph should use baseline alignment so the paragraph start stays clear.
+% Inline music after the first line should use vertical-center alignment.
+\newcommand{\beginBookInlineMusic}{%
+  \begingroup
+  \def\bookInlineMusicBaseline{baseline}%
+  \ifx\bookInlineMusicAlign\bookInlineMusicBaseline
+  \else
+    \def\preLilyPondExample{\setbox\bookInlineMusicBox=\hbox\bgroup}%
+    \def\postLilyPondExample{\egroup\raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}}%
+  \fi
+}
+\newcommand{\finishBookInlineMusic}{\endgroup}
+\newcommand{\beginBookExampleMusic}{%
+  \par
+  \begingroup
+  \let\bookExampleIncludeGraphics\includegraphics
+  \renewcommand{\includegraphics}[2][]{%
+    \par\noindent\makebox[\textwidth][c]{\bookExampleIncludeGraphics[##1]{##2}}%
+  }%
+  \def\betweenLilyPondSystem##1{\par\vspace{6mm}}%
+}
+\newcommand{\finishBookExampleMusic}{\par\endgroup}
 \newcommand{\betweenLilyPondSystem}[1]{\vspace{6mm}\linebreak}
 \newcommand{\realBookChartGeometry}{%
   \clearpage
@@ -93,11 +146,201 @@
 \endgroup\par\vspace{0.5em}
 }
 
+% lilyglyphs redefines \flat, \sharp, \natural (fontspec path). Keep the plain math
+% versions under different names for chord text; use these, not \flat/\sharp, in macros.
+\let\savedflat\flat
+\let\savedsharp\sharp
+\let\savednatural\natural
 \usepackage{lilyglyphs}
+
+% Roman numerals (harmonic function)
+\providecommand{\RomNum}[1]{\ensuremath{\mathrm{#1}}}
+\providecommand{\RomNumS}[2]{\ensuremath{\mathrm{#1}^{#2}}}
+\providecommand{\RomViiO}{\ensuremath{\mathrm{vii}^\circ}}
+
+% ------------------------------------------------------------------
+% Chord symbols in prose: one interface, same rules everywhere.
+%   \MusicChord{root=E, acc=flat, quality=dom, seven=7, alters={9/flat,5/flat}}
+%   \MusicChord{root=C, quality=maj, seven=7, bass=E, bass acc=flat}
+%   quality: maj | min | dom | aug
+%   acc: empty | flat | sharp  (superscript accidental on the letter)
+%   seven: empty | 6 | 7 | ...  (maj/min/aug: superscript; dom: baseline digit(s))
+%   alters: comma-separated degree/kind pairs (input only); kind is flat, sharp, or natural
+%           Sorted descending by degree for output; printed with no comma/space between.
+%           e.g. {5/flat,9/flat} -> superscript (flat9 flat5) in that order
+%   bass: empty | pitch letter (printed after /); bass acc: empty | flat | sharp | natural
+%   Use bass=... not slash=...: pgfkeys treats / as a path separator, which can create
+%   phantom slashes. Legacy slash=/slash acc= are .style aliases for bass/bass acc.
+% ------------------------------------------------------------------
+\makeatletter
+\pgfkeys{/MusicChord/.is family, /MusicChord,
+  root/.estore in=\MusicChord@root,
+  acc/.estore in=\MusicChord@acc,
+  quality/.estore in=\MusicChord@quality,
+  seven/.estore in=\MusicChord@seven,
+  alters/.estore in=\MusicChord@alters,
+  bass/.estore in=\MusicChord@bass,
+  bass acc/.estore in=\MusicChord@bassacc,
+  slash/.style={bass={#1}},
+  slash acc/.style={bass acc={#1}},
+}
+% Defined before \ExplSyntaxOn (expl3 identifier rules differ from plain 2e).
+\newcommand{\MusicChordAlterTok}{}
+\newcommand{\MusicChordSetAlterTok}[2]{%
+  \def\MusicChordAlterDeg{#1}%
+  \def\MusicChordAlterKind{#2}%
+  % Freeze degree into \MusicChordAlterTok (tl accumulation used \MusicChordAlterDeg
+  % by reference, so every printed alter showed the last degree, e.g. ♭5 twice).
+  \ifnum\pdfstrcmp{\MusicChordAlterKind}{flat}=0
+    \begingroup\edef\x{\endgroup\def\noexpand\MusicChordAlterTok{%
+      \noexpand\savedflat\noexpand\mathrm{\MusicChordAlterDeg}}}\x
+  \else\ifnum\pdfstrcmp{\MusicChordAlterKind}{sharp}=0
+    \begingroup\edef\x{\endgroup\def\noexpand\MusicChordAlterTok{%
+      \noexpand\savedsharp\noexpand\mathrm{\MusicChordAlterDeg}}}\x
+  \else\ifnum\pdfstrcmp{\MusicChordAlterKind}{natural}=0
+    \begingroup\edef\x{\endgroup\def\noexpand\MusicChordAlterTok{%
+      \noexpand\savednatural\noexpand\mathrm{\MusicChordAlterDeg}}}\x
+  \else
+    \PackageError{barry-book}{MusicChord alter kind "\MusicChordAlterKind" invalid (use flat, sharp, natural)}{}%
+  \fi\fi\fi
+}
+\newcommand{\MusicChord@accprint}{%
+  \ifnum\pdfstrcmp{\MusicChord@acc}{flat}=0
+    \textsuperscript{\ensuremath{\savedflat}}%
+  \else\ifnum\pdfstrcmp{\MusicChord@acc}{sharp}=0
+    \textsuperscript{\ensuremath{\savedsharp}}%
+  \fi\fi
+}
+\newcommand{\MusicChord@bassaccprint}{%
+  \ifnum\pdfstrcmp{\MusicChord@bassacc}{flat}=0
+    \textsuperscript{\ensuremath{\savedflat}}%
+  \else\ifnum\pdfstrcmp{\MusicChord@bassacc}{sharp}=0
+    \textsuperscript{\ensuremath{\savedsharp}}%
+  \else\ifnum\pdfstrcmp{\MusicChord@bassacc}{natural}=0
+    \textsuperscript{\ensuremath{\savednatural}}%
+  \fi\fi\fi
+}
+\ExplSyntaxOn
+\clist_new:N \l__musicchord_alters_clist
+\seq_new:N \l__musicchord_a_seq
+\seq_new:N \l__musicchord_b_seq
+\tl_new:N \l__musicchord_alters_out_tl
+\cs_new_protected:Npn \musicchord_alters_print:n #1
+  {
+    \clist_clear:N \l__musicchord_alters_clist
+    \clist_set:Nx \l__musicchord_alters_clist { \tl_trim_spaces:n {#1} }
+    \clist_if_empty:NTF \l__musicchord_alters_clist
+      { }
+      {
+        \clist_sort:Nn \l__musicchord_alters_clist
+          {
+            \seq_set_split:Nnx \l__musicchord_a_seq { / } { \tl_trim_spaces:n {##1} }
+            \seq_set_split:Nnx \l__musicchord_b_seq { / } { \tl_trim_spaces:n {##2} }
+            \int_compare:nNnTF
+              { \seq_item:Nn \l__musicchord_a_seq { 1 } }
+              < { \seq_item:Nn \l__musicchord_b_seq { 1 } }
+              { \sort_return_swapped: }
+              { \sort_return_same: }
+          }
+        \tl_clear:N \l__musicchord_alters_out_tl
+        \clist_map_inline:Nn \l__musicchord_alters_clist
+          { \musicchord_alter_one:n {##1} }
+        \textsuperscript { \ensuremath { ( \tl_use:N \l__musicchord_alters_out_tl ) } }
+      }
+  }
+\cs_new_protected:Npn \musicchord_alter_one:n #1
+  {
+    \tl_set:Nn \l_tmpa_tl {#1}
+    \tl_trim_spaces:N \l_tmpa_tl
+    \seq_set_split:NnV \l__musicchord_a_seq { / } \l_tmpa_tl
+    \tl_set:Nx \l_tmpb_tl { \seq_item:Nn \l__musicchord_a_seq { 1 } }
+    \tl_set:Nx \l_tmpc_tl { \seq_item:Nn \l__musicchord_a_seq { 2 } }
+    \MusicChordSetAlterTok { \tl_use:N \l_tmpb_tl } { \tl_use:N \l_tmpc_tl }
+    \tl_put_right:No \l__musicchord_alters_out_tl { \MusicChordAlterTok }
+  }
+\cs_new_protected:Npn \musicchord_bass_maybe_print:n #1
+  {
+    \tl_set:Nn \l_tmpa_tl {#1}
+    \tl_trim_spaces:N \l_tmpa_tl
+    \tl_if_empty:NTF \l_tmpa_tl
+      { }
+      {
+        \tl_clear:N \l_tmpb_tl
+        \tl_put_right:Nn \l_tmpb_tl { / }
+        \tl_put_right:NV \l_tmpb_tl \l_tmpa_tl
+        \tl_use:N \l_tmpb_tl \csname MusicChord@bassaccprint\endcsname
+      }
+  }
+\ExplSyntaxOff
+\newcommand{\MusicChord@bassprint}{%
+  \expandafter\csname musicchord_bass_maybe_print:n\expandafter\endcsname\expandafter{\MusicChord@bass}%
+}
+\newcommand{\MusicChord@altersprint}{%
+  \ifstrempty{\MusicChord@alters}{}{%
+    \expandafter\csname musicchord_alters_print:n\expandafter\endcsname\expandafter{\MusicChord@alters}%
+  }%
+}
+\newcommand{\MusicChord@qdom}{%
+  \ifblank{\MusicChord@seven}{}{%
+    \MusicChord@seven
+  }%
+}
+\newcommand{\MusicChord@qmaj}{%
+  \ifblank{\MusicChord@seven}{}{%
+    maj\textsuperscript{\MusicChord@seven}%
+  }%
+}
+\newcommand{\MusicChord@qmin}{%
+  min%
+  \ifblank{\MusicChord@seven}{}{%
+    \textsuperscript{\MusicChord@seven}%
+  }%
+}
+\newcommand{\MusicChord@qaug}{%
+  aug%
+  \ifblank{\MusicChord@seven}{}{%
+    \textsuperscript{\MusicChord@seven}%
+  }%
+}
+\newcommand{\MusicChord@qualityprint}{%
+  \ifblank{\MusicChord@quality}{%
+    \PackageError{barry-book}{MusicChord needs quality=maj, min, dom, or aug}{}%
+  }{%
+    \ifnum\pdfstrcmp{\MusicChord@quality}{dom}=0
+      \MusicChord@qdom
+    \else\ifnum\pdfstrcmp{\MusicChord@quality}{maj}=0
+      \MusicChord@qmaj
+    \else\ifnum\pdfstrcmp{\MusicChord@quality}{min}=0
+      \MusicChord@qmin
+    \else\ifnum\pdfstrcmp{\MusicChord@quality}{aug}=0
+      \MusicChord@qaug
+    \else
+      \PackageError{barry-book}{MusicChord quality must be maj, min, dom, or aug}{}%
+    \fi\fi\fi\fi
+  }%
+}
+\newcommand{\MusicChord}[1]{%
+  \begingroup
+  \pgfkeys{/MusicChord/.cd,
+    root={}, acc={}, quality={}, seven={}, alters=,
+    bass={}, bass acc={},
+    #1}%
+  \ifblank{\MusicChord@root}{%
+    \PackageError{barry-book}{MusicChord needs root=...}{}%
+  }{%
+    \MusicChord@root
+    \MusicChord@accprint
+    \MusicChord@qualityprint
+    \MusicChord@altersprint
+    \MusicChord@bassprint
+  }%
+  \endgroup
+}
+\makeatother
 
 \onehalfspacing
 
-\setlength{\parskip}{1em}
+\setlength{\parskip}{0.65em}
 \setlength{\parindent}{0pt}
 
 \newcommand{\frontMatterChapter}[1]{%
@@ -112,10 +355,6 @@
 \renewcommand\tableofcontents{%
   \frontMatterChapter{\contentsname}%
   \@starttoc{toc}%
-}
-\renewcommand\listoffigures{%
-  \frontMatterChapter{\listfigurename}%
-  \@starttoc{lof}%
 }
 \renewcommand*\l@part[2]{%
   \ifnum \c@tocdepth >-2\relax
@@ -178,11 +417,7 @@ This is a living document, continuously refined and updated to maintain the high
 \tableofcontents
 \clearpage
 
-\listoffigures
-\clearpage
-
-\frontMatterChapter{List of Musical Examples}
-\addcontentsline{toc}{chapter}{List of Musical Examples}
+\listofmusicalexamples
 \clearpage
 
 \frontMatterChapter{Introduction}
