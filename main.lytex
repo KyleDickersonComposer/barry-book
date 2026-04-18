@@ -163,7 +163,7 @@
 %   \MusicChord{root=E, acc=flat, quality=dom, seven=7, alters={9/flat,5/flat}}
 %   \MusicChord{root=C, quality=maj, seven=7, bass=E, bass acc=flat}
 %   quality: maj | min | dom | aug
-%   acc: empty | flat | sharp  (superscript accidental on the letter)
+%   acc: empty | flat | sharp  (raised accidental on the letter, same size as body text)
 %   seven: empty | 6 | 7 | ...  (maj/min/aug: superscript; dom: baseline digit(s))
 %   alters: comma-separated degree/kind pairs (input only); kind is flat, sharp, or natural
 %           Sorted descending by degree for output; printed with no comma/space between.
@@ -204,20 +204,25 @@
     \PackageError{barry-book}{MusicChord alter kind "\MusicChordAlterKind" invalid (use flat, sharp, natural)}{}%
   \fi\fi\fi
 }
+% Letter accidentals (root / bass): raise like a superscript but keep full size.
+% Alterations in parentheses still use \textsuperscript (smaller) below.
+\newcommand{\MusicChord@letteracc}[1]{%
+  \mbox{\raisebox{0.45ex}{\ensuremath{#1}}}%
+}
 \newcommand{\MusicChord@accprint}{%
   \ifnum\pdfstrcmp{\MusicChord@acc}{flat}=0
-    \textsuperscript{\ensuremath{\savedflat}}%
+    \MusicChord@letteracc{\savedflat}%
   \else\ifnum\pdfstrcmp{\MusicChord@acc}{sharp}=0
-    \textsuperscript{\ensuremath{\savedsharp}}%
+    \MusicChord@letteracc{\savedsharp}%
   \fi\fi
 }
 \newcommand{\MusicChord@bassaccprint}{%
   \ifnum\pdfstrcmp{\MusicChord@bassacc}{flat}=0
-    \textsuperscript{\ensuremath{\savedflat}}%
+    \MusicChord@letteracc{\savedflat}%
   \else\ifnum\pdfstrcmp{\MusicChord@bassacc}{sharp}=0
-    \textsuperscript{\ensuremath{\savedsharp}}%
+    \MusicChord@letteracc{\savedsharp}%
   \else\ifnum\pdfstrcmp{\MusicChord@bassacc}{natural}=0
-    \textsuperscript{\ensuremath{\savednatural}}%
+    \MusicChord@letteracc{\savednatural}%
   \fi\fi\fi
 }
 \ExplSyntaxOn
