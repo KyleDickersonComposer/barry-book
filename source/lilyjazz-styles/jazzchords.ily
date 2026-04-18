@@ -29,16 +29,18 @@
 )
 
 %----- markup commands to make it easier to write chords -----
-%----- this section can be adapted as desired (I don't like "MI" and "MA", for example)
-% for minor chords, use "acMin" to print a small "m"
+% Match book prose (\MusicChord): full words "min" / "maj" on the baseline, extensions superscript.
 #(define-markup-command (acMin layout props extension) (string?)
   (interpret-markup layout props
-    (markup #:small "m" #:super extension)))
+    (if (string-null? extension)
+        (markup "min")
+        (markup "min" #:super extension))))
 
-% for major chords, use "acMaj" to print a small "M"
 #(define-markup-command (acMaj layout props extension) (string?)
   (interpret-markup layout props
-    (markup #:super "M" #:super extension)))
+    (if (string-null? extension)
+        (markup "maj")
+        (markup "maj" #:super extension))))
 
 % for chords with up to three alterations, stacked on top of each other
 #(define-markup-command (acAlt layout props strA strB strC) (string? string? string?)
@@ -67,10 +69,11 @@ JazzChordsList = {
   <c es ges beses>-\markup { \super "7dim" } % :dim7
   <c es gis>-\markup { \acMin #"aug" } % :m5+ (Ab/C)
   <c es g a>-\markup { \acMin #"6" } % :m6
-  <c es ges bes>-\markup { \acMin #"7 >5" } % :m7.5-
+  % 7b5 / 7#5: small accidental + \raise (flat ~0.55; sharp higher ~0.75 — staff-space units).
+  <c es ges bes>-\markup { min \super { \concat { "7" { \raise #0.55 \fontsize #-3 \flat } "5" } } } % :m7.5-
   <c es g bes>-\markup { \acMin #"7" } % :m7
-  <c es gis bes>-\markup { \acMin #"7 <5" } % :m7.5+
-  <c es g b>-\markup { \acMin #"M7" } % :m7+
+  <c es gis bes>-\markup { min \super { \concat { "7" { \raise #0.75 \fontsize #-3 \sharp } "5" } } } % :m7.5+
+  <c es g b>-\markup { \acMin #"maj7" } % :m7+
   <c es g d'>-\markup { \acMin #"add9" } % :m5.9
 
 % minor third chords - 5+ notes
@@ -78,7 +81,7 @@ JazzChordsList = {
   <c es g bes des'>-\markup { \acMin #"7(>9)" } % :m7.9-
   <c es g bes d'>-\markup { \acMin #"9" } % :m9
   <c es ges bes d'>-\markup { \acMin #"9(>5)" } % :m9.5-
-  <c es g b d'>-\markup { \acMin #"9(M7)" } % :m9.7+
+  <c es g b d'>-\markup { \acMin #"9(maj7)" } % :m9.7+
   <c es g bes dis'>-\markup { \acMin #"7(<9)" } % :m7.9+
   <c es g bes f'>-\markup { \acMin #"7(add 11)" } % :m7.11
   <c es g bes a'>-\markup { \acMin #"7(add 13)" } % :m7.13
@@ -99,11 +102,11 @@ JazzChordsList = {
 % special chords
   <c e g bes c'>-\markup { \super "7(Alt)" } % :c:8
   <c e g b>-\markup { \acMaj #"7" } % :maj
-  <c e ges b>-\markup { \acMaj #"7>5" } % :maj.5-
-  <c e gis b>-\markup { \acMaj #"7<5" } % :maj.5+
+  <c e ges b>-\markup { maj \super { \concat { "7" { \raise #0.55 \fontsize #-3 \flat } "5" } } } % :maj.5-
+  <c e gis b>-\markup { maj \super { \concat { "7" { \raise #0.75 \fontsize #-3 \sharp } "5" } } } % :maj.5+
 
-  <c e ges bes>-\markup { \super "7(>5)" } % :7.5-
-  <c e gis bes>-\markup { \super "7(<5)" } % :7.5+
+  <c e ges bes>-\markup { \super { \concat { "7" { \raise #0.55 \fontsize #-3 \flat } "5" } } } % :7.5-
+  <c e gis bes>-\markup { \super { \concat { "7" { \raise #0.75 \fontsize #-3 \sharp } "5" } } } % :7.5+
   <c e g d'>-\markup { \super "add9" } % :5.9
 
 % major third chords - 5+ notes
@@ -140,6 +143,8 @@ JazzChords = #(append (sequential-music-to-chord-exceptions JazzChordsList #t) i
     chordRootNamer = #JazzChordNames	% update the chord names
     chordNameExceptions = #JazzChords	% update the chord exceptions
     \override ChordName.font-name = #"lilyjazz-chord"  % use the custom font for displaying the chords
+    % Omit repeated chord symbols when harmony is unchanged (real-book style).
+    chordChanges = ##t
   }
 }
 

@@ -50,14 +50,14 @@ theNotes = \relative c' {
 
 theChords = \chordmode {
 	s4 |
-	bes1:dim s1 c1:m7 f2:7 f2:7.5+ |
+	bes1:dim bes1:dim c1:m7 f2:7 f2:7.5+ |
 	f1:m7 bes1:7 ees1:6 s2 aes:7 |
 	bes1 g2:m g2:m6 e2:dim/d d2:m7 g1:m7.5-/des |
 	c1:7 bes1:dim a1:m7.5- d1:7.9- |
-	g1:7.5+ s1 c1:m7 s1 |
-	ees1:dim  s1 bes1/d s1 |
-	des1:dim s1 d1:m7.5-/aes g1:7.9- |
-	c1:m7.5- f1:7.9- bes1:6 s1 |
+	g1:7.5+ g1:7.5+ c1:m7 c1:m7 |
+	ees1:dim ees1:dim bes1/d bes1/d |
+	des1:dim des1:dim d1:m7.5-/aes g1:7.9- |
+	c1:m7.5- f1:7.9- bes1:6 bes1:6 |
 }
 
 theWords = \lyricmode {
