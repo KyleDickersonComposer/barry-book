@@ -1,12 +1,12 @@
-\documentclass[a4paper,twoside]{book}
+\documentclass[twoside]{book}
 
 \usepackage[
     top=2cm,
     bottom=1cm,
     left=2cm,
     right=2cm,
-    paperwidth=8.5in,
-    paperheight=11in,
+    paperwidth=9in,
+    paperheight=12in,
     heightrounded,
     includefoot,
     marginparwidth=0pt,
@@ -14,11 +14,13 @@
 ]{geometry}
 
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{microtype}
 \usepackage{titlesec}
+\usepackage{xcolor}
 \usepackage{textcomp}
 \usepackage{glossaries}
 \usepackage{makeidx}
@@ -38,11 +40,57 @@
 \fancyhead[LO]{\rightmark} 
 \fancyfoot{}
 
+\definecolor{barryBlack}{HTML}{151515}
+\definecolor{barryGray}{HTML}{5F5F5F}
+
 \newcommand{\betweenLilyPondSystem}[1]{\vspace{6mm}\linebreak}
+\newcommand{\realBookChartGeometry}{%
+  \clearpage
+  \pagestyle{empty}
+  \thispagestyle{empty}
+  \newgeometry{top=0.5cm,bottom=2cm,inner=1.5cm,outer=1cm}
+  \begingroup
+}
+\newcommand{\beginOnePageRealBookChart}{%
+  \realBookChartGeometry
+  \def\betweenLilyPondSystem##1{%
+    \par
+    \vfill
+    \noindent
+  }%
+}
+\newcommand{\beginTwoPageRealBookChart}[2]{%
+  \realBookChartGeometry
+  \def\betweenLilyPondSystem##1{%
+    \par
+    \ifnum##1=#1
+      \clearpage
+      \vspace*{#2}%
+    \else
+      \vfill
+    \fi
+    \noindent
+  }%
+}
+\newcommand{\finishRealBookChart}{%
+  \endgroup
+  \clearpage
+  \restoregeometry
+  \pagestyle{fancy}
+}
 \newcommand{\incompleteContentNotice}{%
-\begin{quote}
-\textbf{Draft notice.} This section is incomplete and part of an open source textbook in progress. Contributions, corrections, examples, and source-level improvements are welcome.
-\end{quote}
+\par\vspace{0.5em}
+\noindent\begingroup
+\setlength{\fboxsep}{0pt}%
+\color{barryBlack}%
+\begin{minipage}{0.88\textwidth}
+\rule{\linewidth}{0.4pt}\par
+\vspace{0.65em}
+{\bfseries Draft notice.} This section is incomplete and part of an open source textbook in progress. Contributions, corrections, examples, and source-level improvements are welcome.
+\vspace{0.65em}\par
+\rule{\linewidth}{0.4pt}
+\end{minipage}
+\endgroup\par\vspace{0.5em}
 }
 
 \usepackage{lilyglyphs}
@@ -52,46 +100,95 @@
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
 
+\newcommand{\frontMatterLabel}[1]{%
+  {\small\bfseries\scshape\color{barryGray}#1}\par
+}
+
+\newcommand{\frontMatterRule}{%
+  \par\vspace{1em}\noindent\rule{0.36\textwidth}{0.6pt}\par\vspace{1em}
+}
+
+\newcommand{\frontMatterChapter}[1]{%
+  \chapter*{#1}
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
+  \vspace{-1.25em}
+  \noindent\rule{0.72\textwidth}{0.5pt}
+  \vspace{1.5em}
+}
+
+\makeatletter
+\renewcommand\tableofcontents{%
+  \frontMatterChapter{\contentsname}%
+  \@starttoc{toc}%
+}
+\renewcommand\listoffigures{%
+  \frontMatterChapter{\listfigurename}%
+  \@starttoc{lof}%
+}
+\renewcommand*\l@part[2]{%
+  \ifnum \c@tocdepth >-2\relax
+    \addpenalty{-\@highpenalty}%
+    \addvspace{1.5em plus 0.2em}%
+    \begingroup
+      \parindent \z@
+      \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \large\bfseries\scshape
+      #1\nobreak\hfil\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \vskip 0.25em
+      \hrule height 0.4pt
+      \vskip 0.6em
+      \nobreak
+    \endgroup
+  \fi}
+\makeatother
+
 \begin{document}
 
 \frontmatter
 
 \begin{titlepage}
+\thispagestyle{empty}
+\begingroup
+\color{barryBlack}
+\vspace*{\fill}
 \begin{center}
-\vspace*{2cm}
-{\huge\bfseries The Barry Book}\\[2cm]
-
-{\Large A Jazz Textbook}\\[4cm]
-
-\vfill
-
+{\fontsize{18}{22}\selectfont\scshape The\par}
+\vspace{0.1cm}
+{\fontsize{64}{68}\selectfont\bfseries Barry\par}
+\vspace{0.08cm}
+{\fontsize{64}{68}\selectfont\bfseries Book\par}
 \end{center}
+\vspace*{\fill}
+\endgroup
 \end{titlepage}
 
 \thispagestyle{empty}
 \null
 \vspace*{\fill}
-\begin{center}
-This work is freely available, transparent, and collaborative.\\
-The complete source code (every note, every chord symbol,\\
-every layout decision) is publicly accessible.\\[1cm]
+\begin{flushleft}
+\frontMatterLabel{Open Source}
+{\Large\bfseries A living document\par}
+\frontMatterRule
+\begin{minipage}{0.78\textwidth}
+This work is freely available, transparent, and collaborative. The complete source code (every note, every chord symbol, every layout decision) is publicly accessible.
 
-Anyone can view it, learn from it, suggest improvements,\\
-or adapt it for their own needs.\\[1cm]
+Anyone can view it, learn from it, suggest improvements, or adapt it for their own needs.
 
-This is a living document, continuously refined and updated\\
-to maintain the highest standards of accuracy and\\
-pedagogical clarity.
-\end{center}
+This is a living document, continuously refined and updated to maintain the highest standards of accuracy and pedagogical clarity.
+\end{minipage}
+\end{flushleft}
 \vspace*{\fill}
 \clearpage
 
-\chapter*{Preface}
+\frontMatterChapter{Preface}
 \addcontentsline{toc}{chapter}{Preface}
 \input{./preface.lytex}
 
-\chapter*{Acknowledgments}
+\frontMatterChapter{Acknowledgments}
 \addcontentsline{toc}{chapter}{Acknowledgments}
+Acknowledgments will be added in a later draft.
 
 \tableofcontents
 \clearpage
@@ -99,11 +196,11 @@ pedagogical clarity.
 \listoffigures
 \clearpage
 
-\chapter*{List of Musical Examples}
+\frontMatterChapter{List of Musical Examples}
 \addcontentsline{toc}{chapter}{List of Musical Examples}
 \clearpage
 
-\chapter*{Introduction}
+\frontMatterChapter{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
 The Barry Harris tradition represents a distinct and profound approach to understanding jazz harmony and improvisation. While modern jazz institutions don't teach the authentic jazz tradition, this resource preserves the complete, integrated system that Barry Harris developed over seven decades of playing and teaching.
