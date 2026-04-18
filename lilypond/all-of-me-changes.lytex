@@ -1,12 +1,12 @@
-\beginTwoPageRealBookChart{9}{2.05cm}
-\begin{lilypond}[staffsize=20,line-width=20.02\cm]
+\beginTwoPageRealBookChart{9}{1.85cm}
+\begin{lilypond}[staffsize=19,line-width=19.15\cm]
 title = #"All Of Me"
 composer = #"-Simons & Marks"
 meter = #" (Med. Swing)"
 \include "../source/real-book-chart.ily"
 \paper {
-	paper-width = 20.02\cm
-	line-width = 20.02\cm
+	paper-width = 19.15\cm
+	line-width = 19.15\cm
 }
 
 theNotes = \relative c' {

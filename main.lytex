@@ -5,8 +5,8 @@
     bottom=1cm,
     left=2cm,
     right=2cm,
-    paperwidth=9in,
-    paperheight=12in,
+    paperwidth=8.5in,
+    paperheight=11in,
     heightrounded,
     includefoot,
     marginparwidth=0pt,
@@ -48,7 +48,7 @@
   \clearpage
   \pagestyle{empty}
   \thispagestyle{empty}
-  \newgeometry{top=0.5cm,bottom=2cm,inner=1.5cm,outer=1cm}
+  \newgeometry{top=0.45cm,bottom=1.5cm,inner=1.25cm,outer=0.85cm}
   \begingroup
 }
 \newcommand{\beginOnePageRealBookChart}{%
