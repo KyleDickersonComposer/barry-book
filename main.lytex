@@ -100,14 +100,6 @@
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
 
-\newcommand{\frontMatterLabel}[1]{%
-  {\small\bfseries\scshape\color{barryGray}#1}\par
-}
-
-\newcommand{\frontMatterRule}{%
-  \par\vspace{1em}\noindent\rule{0.36\textwidth}{0.6pt}\par\vspace{1em}
-}
-
 \newcommand{\frontMatterChapter}[1]{%
   \chapter*{#1}
   \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
@@ -168,9 +160,6 @@
 \null
 \vspace*{\fill}
 \begin{flushleft}
-\frontMatterLabel{Open Source}
-{\Large\bfseries A living document\par}
-\frontMatterRule
 \begin{minipage}{0.78\textwidth}
 This work is freely available, transparent, and collaborative. The complete source code (every note, every chord symbol, every layout decision) is publicly accessible.
 
@@ -185,10 +174,6 @@ This is a living document, continuously refined and updated to maintain the high
 \frontMatterChapter{Preface}
 \addcontentsline{toc}{chapter}{Preface}
 \input{./preface.lytex}
-
-\frontMatterChapter{Acknowledgments}
-\addcontentsline{toc}{chapter}{Acknowledgments}
-Acknowledgments will be added in a later draft.
 
 \tableofcontents
 \clearpage
