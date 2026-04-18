@@ -5,7 +5,7 @@
 \include "lilyjazz-styles/jazzextras.ily"
 \include "numeric-time-signature.ily"
 
-#(set-global-staff-size 13)
+#(set-global-staff-size 12)
 
 \layout {
   indent = 0\mm

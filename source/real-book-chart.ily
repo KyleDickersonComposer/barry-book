@@ -1,5 +1,6 @@
 \version "2.24.0"
-#(set-global-staff-size 20)
+% One-page real-book charts (only consumers of this file): sizing lives here, not in .lytex.
+#(set-global-staff-size 19)
 
 \include "lilyjazz-styles/jazzchords.ily"
 \include "lilyjazz-styles/lilyjazz.ily"
@@ -8,7 +9,8 @@
 
 \paper {
   paper-height = 12\in
-  paper-width = 9\in
+  paper-width = 19.15\cm
+  line-width = 19.15\cm
   indent = 0\mm
   left-margin = 0\cm
   right-margin = 0\cm

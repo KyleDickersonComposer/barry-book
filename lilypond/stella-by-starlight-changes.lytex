@@ -1,13 +1,9 @@
 \beginOnePageRealBookChart
-\begin{lilypond}[staffsize=19,line-width=19.15\cm]
+\begin{lilypond}
 title = #"Stella by Starlight"
 composer = #"Victor Young"
 meter = #" (Med. Swing)"
 \include "../source/real-book-chart.ily"
-\paper {
-	paper-width = 19.15\cm
-	line-width = 19.15\cm
-}
 
 theNotes = \relative c' {
 	\key bes \major

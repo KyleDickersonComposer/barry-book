@@ -1,13 +1,9 @@
 \beginOnePageRealBookChart
-\begin{lilypond}[staffsize=19,line-width=19.15\cm]
+\begin{lilypond}
 title = #"All Of Me"
 composer = #"-Simons & Marks"
 meter = #" (Med. Swing)"
 \include "../source/real-book-chart.ily"
-\paper {
-	paper-width = 19.15\cm
-	line-width = 19.15\cm
-}
 
 theNotes = \relative c' {
 	\key c \major
@@ -53,7 +49,7 @@ theChords = \chordmode {
 	d:7 d:7 d:m7 g:7 |
 	c1:6 c1:6 e:7 e:7 |
 	a:7 a:7 d:m7 d:m7 |
-	f1 f:m c2:maj e:m7 a1:7 |
+	f1 f:m6 c2:maj e:m7 a1:7 |
 	d:m7 g:7 c1:6 c1:6 |
 }
 
