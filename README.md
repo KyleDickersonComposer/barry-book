@@ -81,9 +81,15 @@ Docker lets you build the book without installing the music and publishing tools
    make pdf
    ```
 
-   This uses Docker. If the build image is missing, Docker downloads it automatically. On macOS, it opens the PDF automatically when the build finishes.
+   This uses Docker. If the build image is missing, Docker downloads it automatically.
 
 The built PDF is also saved at `bin/main.pdf`.
+
+3. Open the PDF:
+
+   ```sh
+   make open
+   ```
 
 The build process:
 
@@ -92,7 +98,6 @@ The build process:
 - Copies `references.bib` into the build directory
 - Runs `pdflatex`, `biber`, `makeglossaries`, and final LaTeX passes
 - Generates `bin/main.pdf`
-- Opens the PDF on macOS if `open` is available
 
 ### Clean Build Artifacts
 

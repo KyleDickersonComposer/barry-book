@@ -17,7 +17,7 @@ BIBTEX = biber
 MAKEGLOSSARIES = makeglossaries
 LATEX_FLAGS = -output-directory=$(OUTPUT_DIR) -interaction=nonstopmode
 
-.PHONY: clean pdf
+.PHONY: clean open pdf
 
 pdf:
 	docker run --rm --platform linux/amd64 --pull missing \
@@ -38,7 +38,8 @@ pdf:
 			find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null; \
 			find . -maxdepth 1 -name "*.tmp" -type f -delete 2>/dev/null; \
 			echo "Build complete! Output: $(OUTPUT_DIR)/$(MAIN).pdf"'
-	@if command -v open > /dev/null 2>&1; then open $(OUTPUT_DIR)/$(MAIN).pdf; fi
+open:
+	open $(OUTPUT_DIR)/$(MAIN).pdf
 
 clean:
 	@echo "Cleaning build artifacts..."
