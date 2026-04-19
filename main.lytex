@@ -1,9 +1,9 @@
 \documentclass[twoside]{book}
 
-\input{./source/latex/packages.tex}
-\input{./source/latex/page-style.tex}
-\input{./source/latex/book-examples.tex}
-\input{./source/latex/music-chords.tex}
+\input{./source/latex/packages.lytex}
+\input{./source/latex/page-style.lytex}
+\input{./source/latex/book-examples.lytex}
+\input{./source/latex/music-chords.lytex}
 
 \begin{document}
 
