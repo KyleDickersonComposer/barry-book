@@ -39,7 +39,7 @@ If you find an error or have a suggestion but don't want to edit files yourself:
 
 You can edit files directly on GitHub without installing anything:
 
-1. Navigate to the file you want to edit (e.g., browse to `chapters/` or `lilypond/`)
+1. Navigate to the file you want to edit (most book content lives in `chapters/`)
 2. Click the pencil icon in the top right that says "Edit this file"
 3. Make your changes in the text editor that appears
 4. Scroll down and click "Propose changes"
@@ -63,72 +63,80 @@ For detailed instructions and resources, see [CONTRIBUTORS.md](CONTRIBUTORS.md).
 - Join the [Discord community](https://discord.gg/9XJukbbtFz) to ask questions and connect with other contributors
 - Check existing issues to see what others are working on
 
-## Building the Book (Advanced)
+## Building the Book
 
-**⚠️ Building the book yourself requires advanced technical skills and is only recommended for developers or contributors who need to modify the source code.**
+If you just want to read the book, download the latest PDF from [www.barrybook.org](https://www.barrybook.org). If you are editing the source, build the PDF locally before submitting larger changes.
 
-Building from source involves:
+### Build With Docker
 
-- Setting up a LaTeX distribution
-- Installing and configuring LilyPond
-- Installing custom LilyJAZZ fonts
-- Managing complex build dependencies
-- Troubleshooting compilation errors
+Docker lets you build the book without installing the music and publishing tools yourself.
 
-If you just want to read the book, **please download it from [www.barrybook.org](https://www.barrybook.org) instead.**
+1. Install Docker Desktop:
 
-### Prerequisites
+   Download and install Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop/), then start it so the `docker` command is available in your terminal.
 
-- LaTeX distribution (TeX Live recommended)
-- LilyPond (for musical notation)
-- LilyJAZZ fonts (for jazz notation styling)
-- Biber (for bibliography processing)
-- Technical familiarity with command-line tools and build systems
-
-### Build Instructions
-
-The build process uses `lilypond-book` to process `.lytex` files, then compiles the resulting LaTeX document with `pdflatex`.
-
-1. **Install LilyJAZZ fonts** (required for jazz notation):
-
-   - Find the fonts directory of your LilyPond installation
-   - Add the necessary LilyJAZZ fonts
-   - Setup the font family in the font config file
-   - Create a `~/.ly` directory in your home directory
-   - Copy the `.ily` style files from LilyJAZZ into `~/.ly`
-
-2. **Build the PDF**:
+2. Pull the build image:
 
    ```sh
-   make pdf
+   make docker-pull-lilypond
    ```
 
-   This will:
+   You only need to do this the first time, after deleting Docker images, or when you want to refresh the build image.
 
-   - Process all `.lytex` files with `lilypond-book`
-   - Compile the LaTeX document (multiple passes for references)
-   - Generate the final PDF in `bin/main.pdf`
-   - Automatically open the PDF on macOS (if `open` command is available)
-
-3. **Clean build artifacts**:
+3. Build the PDF in Docker:
 
    ```sh
-   make clean
+   make pdf-docker
    ```
 
-   This removes temporary files, build artifacts, and the `bin/` directory.
+   On macOS, this opens the PDF automatically when the build finishes.
+
+The built PDF is also saved at `bin/main.pdf`.
+
+### Advanced Local Build
+
+You can build without Docker, but this is only recommended if you already know your way around LilyPond and LaTeX. You need the full toolchain installed locally:
+
+- LaTeX distribution with `pdflatex`
+- LilyPond and `lilypond-book`
+- Biber
+- makeglossaries
+- LilyJAZZ style/font support
+
+Run:
+
+```sh
+make pdf
+```
+
+The build process:
+
+- Processes `main.lytex` and included `.lytex` files with `lilypond-book`
+- Copies `references.bib` into the build directory
+- Runs `pdflatex`, `biber`, `makeglossaries`, and final LaTeX passes
+- Generates `bin/main.pdf`
+- Opens the PDF on macOS if `open` is available
+
+### Clean Build Artifacts
+
+```sh
+make clean
+```
+
+This removes temporary files, build artifacts, and the `bin/` directory.
 
 ### Troubleshooting
 
-- If `lilypond-book` fails, ensure LilyPond is properly installed and in your PATH
+- If `make pdf-docker` says the image is missing, run `make docker-pull-lilypond`
+- If Docker uses stale dependencies, run `make docker-pull-lilypond` again
+- If local `make pdf` fails at `lilypond-book`, ensure LilyPond is installed and in your PATH
 - LaTeX errors often require multiple compilation passes; the Makefile handles this automatically
-- Font issues usually indicate LilyJAZZ fonts are not properly installed or configured
+- Font issues in local builds usually indicate LilyJAZZ support is not properly installed or configured
 - Check `bin/main.log` for detailed LaTeX compilation errors
 
 ## Project Structure
 
 - `main.lytex` - Main LaTeX document
-- `chapters/` - Concept chapters (Foundations, Linear Concepts, Harmonic Concepts)
-- `lilypond/` - Tune analyses (16 tunes, 5 sections each)
+- `chapters/` - Chapter source files, including prose, examples, tune analyses, and chapter-local snippets
 - `source/` - LilyJAZZ styles and templates
 - `bin/` - Build output directory (gitignored)

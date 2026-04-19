@@ -29,3 +29,4 @@
 \makeglossaries
 \makeindex
 \addbibresource{references.bib}
+\input{./source/latex/glossary.lytex}

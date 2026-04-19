@@ -20,6 +20,7 @@ LILY_FLAGS = -I "$(BOOK_ROOT)" -I "$(BOOK_ROOT)/source/lilyjazz-styles"
 # LaTeX compiler
 LATEX = pdflatex
 BIBTEX = biber
+MAKEGLOSSARIES = makeglossaries
 LATEX_FLAGS = -output-directory=$(OUTPUT_DIR) -interaction=nonstopmode
 
 .PHONY: all clean build force-rebuild pdf-docker docker-book-image docker-pull-lilypond
@@ -48,9 +49,11 @@ pdf: force-rebuild
 	@mkdir -p $(OUTPUT_DIR)
 	@echo "Processing $(MAIN).lytex with lilypond-book..."
 	@$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) -I "$(BOOK_ROOT)" -I "$(BOOK_ROOT)/source/lilyjazz-styles" $(MAIN).lytex
+	@cp "$(BOOK_ROOT)/references.bib" "$(OUTPUT_DIR)/references.bib"
 	@echo "Building $(MAIN).pdf..."
 	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
 	@cd $(OUTPUT_DIR) && $(BIBTEX) $(MAIN)
+	@cd $(OUTPUT_DIR) && $(MAKEGLOSSARIES) $(MAIN)
 	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
 	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
 	@find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null || true

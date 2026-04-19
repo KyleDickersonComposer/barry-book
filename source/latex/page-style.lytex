@@ -23,6 +23,56 @@
   \vspace{1.5em}
 }
 
+\newcommand{\backMatterChapter}[1]{%
+  \chapter*{#1}
+  \phantomsection
+  \addcontentsline{toc}{chapter}{#1}
+  \markboth{#1}{#1}
+  \vspace{-1.25em}
+  \noindent\rule{0.72\textwidth}{0.5pt}\par
+  \vspace{1.4em}
+}
+
+\newenvironment{bookBackMatterText}{%
+  \begingroup
+  \small
+  \setstretch{1.12}
+  \setlength{\parskip}{0.75em}
+  \setlength{\parindent}{0pt}
+}{%
+  \endgroup
+}
+
+\newglossarystyle{bookdefinition}{%
+  \setglossarystyle{list}%
+  \renewenvironment{theglossary}{%
+    \begin{bookBackMatterText}%
+  }{%
+    \end{bookBackMatterText}%
+  }%
+  \renewcommand*{\glossaryheader}{}%
+  \renewcommand*{\glsgroupheading}[1]{}%
+  \renewcommand*{\glossentry}[2]{%
+    \noindent\hangindent=1.25em\hangafter=1\relax
+    {\bfseries ##1} - \glossentrydesc{##1}\par
+    \vspace{0.9em}%
+  }%
+  \renewcommand*{\subglossentry}[3]{%
+    \glossentry{##2}{##3}%
+  }%
+}
+
+\defbibheading{bookbibliography}[\bibname]{%
+  \backMatterChapter{#1}%
+}
+
+\renewcommand*{\bibfont}{\small\setstretch{1.12}}
+\setlength{\bibhang}{1.4em}
+\setlength{\bibitemsep}{0.85em}
+\AtEveryBibitem{%
+  \clearfield{isbn}%
+}
+
 \makeatletter
 \renewcommand\tableofcontents{%
   \frontMatterChapter{\contentsname}%
