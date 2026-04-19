@@ -3,7 +3,7 @@
 title = #"All Of Me"
 composer = #"-Simons & Marks"
 meter = #" (Med. Swing)"
-\include "source/real-book-chart.ily"
+\include "real-book-chart.ily"
 
 theNotes = \relative c' {
 	\key c \major

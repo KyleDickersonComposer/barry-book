@@ -1,6 +1,6 @@
 \beginBookInlineMusic
 \lilypond[inline]{
-\include "source/book-inline.ily"
+\include "book-inline.ily"
 
 \score {
   \new Staff \with {

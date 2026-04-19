@@ -1,6 +1,6 @@
 \beginBookExampleMusic
 \begin{lilypond}
-\include "source/book-example.ily"
+\include "book-example.ily"
 
 \score {
   <<

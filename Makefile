@@ -15,7 +15,7 @@ MAIN = main
 OUTPUT_DIR = bin
 LILYPOND_BOOK = lilypond-book
 LILYPOND = lilypond
-LILY_FLAGS = -I "$(BOOK_ROOT)" -I "$(BOOK_ROOT)/source/lilyjazz-styles"
+LILY_FLAGS = -I "$(BOOK_ROOT)" -I "$(BOOK_ROOT)/source" -I "$(BOOK_ROOT)/source/lilyjazz-styles"
 
 # LaTeX compiler
 LATEX = pdflatex
@@ -48,7 +48,7 @@ pdf-docker:
 pdf: force-rebuild
 	@mkdir -p $(OUTPUT_DIR)
 	@echo "Processing $(MAIN).lytex with lilypond-book..."
-	@$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) -I "$(BOOK_ROOT)" -I "$(BOOK_ROOT)/source/lilyjazz-styles" $(MAIN).lytex
+	@$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) -I "$(BOOK_ROOT)" -I "$(BOOK_ROOT)/source" -I "$(BOOK_ROOT)/source/lilyjazz-styles" $(MAIN).lytex
 	@cp "$(BOOK_ROOT)/references.bib" "$(OUTPUT_DIR)/references.bib"
 	@echo "Building $(MAIN).pdf..."
 	@$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex
