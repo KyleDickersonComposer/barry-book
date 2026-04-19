@@ -41,17 +41,14 @@
 \chapter{Music Fundamentals}
 \input{./chapters/foundations/music-fundamentals/intro.lytex}
 
-\chapter{Identifying the Chords}
-\input{./chapters/foundations/identifying-the-chords/intro.lytex}
-
 \chapter{Functional Harmony}
 \input{./chapters/foundations/functional-harmony/intro.lytex}
 
-\chapter{Common Chord Progressions}
-\input{./chapters/foundations/common-chord-progressions/intro.lytex}
+\chapter{Movements}
+\input{./chapters/foundations/movements/intro.lytex}
 
-\chapter{Changes and Pedal Harmonies}
-\input{./chapters/foundations/changes-and-pedal-harmonies/intro.lytex}
+\chapter{Changes}
+\input{./chapters/foundations/changes/intro.lytex}
 
 \part{Linear Concepts}
 
@@ -127,9 +124,6 @@
 
 \chapter{Borrowing}
 \input{./chapters/harmonic-concepts/borrowing/intro.lytex}
-
-\chapter{Movements}
-\input{./chapters/harmonic-concepts/movements/intro.lytex}
 
 \chapter{Musical Genesis}
 \input{./chapters/harmonic-concepts/musical-genesis/intro.lytex}
