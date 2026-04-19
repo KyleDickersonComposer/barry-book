@@ -1,7 +1,8 @@
 # Symmetry in the Diminished Chord
 
-Source files for the Symmetry in the Diminished Chord chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

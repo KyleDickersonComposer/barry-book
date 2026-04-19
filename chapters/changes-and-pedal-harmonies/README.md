@@ -1,7 +1,8 @@
 # Changes and Pedal Harmonies
 
-Source files for the Changes and Pedal Harmonies chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

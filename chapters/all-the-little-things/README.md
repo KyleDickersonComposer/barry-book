@@ -1,8 +1,9 @@
 # All the Little Things
 
-Source files for the All the Little Things chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Half Step Rules: `half-step-rules.lytex`
 - Thirds: `thirds.lytex`

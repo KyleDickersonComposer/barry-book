@@ -1,7 +1,8 @@
 # How to Practice Comping
 
-Source files for the How to Practice Comping chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

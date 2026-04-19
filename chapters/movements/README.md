@@ -1,7 +1,8 @@
 # Movements
 
-Source files for the Movements chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

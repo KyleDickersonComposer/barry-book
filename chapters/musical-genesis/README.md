@@ -1,7 +1,8 @@
 # Musical Genesis
 
-Source files for the Musical Genesis chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

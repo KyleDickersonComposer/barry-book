@@ -1,7 +1,8 @@
 # Borrowing
 
-Source files for the Borrowing chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

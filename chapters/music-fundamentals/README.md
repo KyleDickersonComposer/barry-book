@@ -1,7 +1,9 @@
 # Music Fundamentals
 
-Source files for the Music Fundamentals chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`
+- Inline music snippets: `snippets/`

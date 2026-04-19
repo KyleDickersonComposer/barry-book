@@ -1,7 +1,8 @@
 # Rhythm in Comping
 
-Source files for the Rhythm in Comping chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

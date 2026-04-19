@@ -1,8 +1,9 @@
 # Spicing Up the Dominant
 
-Source files for the Spicing Up the Dominant chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Dominant Chord Variations: `dominant-chord-variations.lytex`
 - Tritone Substitutions: `tritone-substitutions.lytex`

@@ -114,8 +114,8 @@
 \chapter{Classical Harmony}
 \input{./chapters/classical-harmony/intro.lytex}
 
-\chapter{Appoggiatura and Appoggiatura Chords}
-\input{./chapters/appoggiatura-and-appoggiatura-chords/intro.lytex}
+\section{Appoggiatura and Appoggiatura Chords}
+\input{./chapters/classical-harmony/appoggiatura-and-appoggiatura-chords.lytex}
 
 \chapter{The Missing Link}
 \input{./chapters/the-missing-link/intro.lytex}
@@ -152,211 +152,211 @@
 
 \chapter{Blues}
 \section{Tune with Changes}
-\input{./chapters/blues/changes.lytex}
+\input{./chapters/applications/blues/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/blues/scale-map.lytex}
+\input{./chapters/applications/blues/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/blues/solo.lytex}
+\input{./chapters/applications/blues/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/blues/comping.lytex}
+\input{./chapters/applications/blues/comping.lytex}
 
 \chapter{Rhythm}
 \section{Tune with Changes}
-\input{./chapters/rhythm/changes.lytex}
+\input{./chapters/applications/rhythm/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/rhythm/scale-map.lytex}
+\input{./chapters/applications/rhythm/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/rhythm/solo.lytex}
+\input{./chapters/applications/rhythm/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/rhythm/comping.lytex}
+\input{./chapters/applications/rhythm/comping.lytex}
 
 \chapter{Autumn Leaves}
 \section{Tune with Changes}
-\input{./chapters/autumn-leaves/changes.lytex}
+\input{./chapters/applications/autumn-leaves/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/autumn-leaves/scale-map.lytex}
+\input{./chapters/applications/autumn-leaves/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/autumn-leaves/solo.lytex}
+\input{./chapters/applications/autumn-leaves/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/autumn-leaves/comping.lytex}
+\input{./chapters/applications/autumn-leaves/comping.lytex}
 
 \chapter{All of Me}
 \section{Tune with Changes}
-\input{./chapters/all-of-me/changes.lytex}
+\input{./chapters/applications/all-of-me/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/all-of-me/scale-map.lytex}
+\input{./chapters/applications/all-of-me/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/all-of-me/solo.lytex}
+\input{./chapters/applications/all-of-me/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/all-of-me/comping.lytex}
+\input{./chapters/applications/all-of-me/comping.lytex}
 
 \chapter{How High the Moon}
 \section{Tune with Changes}
-\input{./chapters/how-high-the-moon/changes.lytex}
+\input{./chapters/applications/how-high-the-moon/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/how-high-the-moon/scale-map.lytex}
+\input{./chapters/applications/how-high-the-moon/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/how-high-the-moon/solo.lytex}
+\input{./chapters/applications/how-high-the-moon/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/how-high-the-moon/comping.lytex}
+\input{./chapters/applications/how-high-the-moon/comping.lytex}
 
 \chapter{But Not For Me}
 \section{Tune with Changes}
-\input{./chapters/but-not-for-me/changes.lytex}
+\input{./chapters/applications/but-not-for-me/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/but-not-for-me/scale-map.lytex}
+\input{./chapters/applications/but-not-for-me/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/but-not-for-me/solo.lytex}
+\input{./chapters/applications/but-not-for-me/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/but-not-for-me/comping.lytex}
+\input{./chapters/applications/but-not-for-me/comping.lytex}
 
 \chapter{What Is This Thing Called Love?}
 \section{Tune with Changes}
-\input{./chapters/what-is-this-thing/changes.lytex}
+\input{./chapters/applications/what-is-this-thing/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/what-is-this-thing/scale-map.lytex}
+\input{./chapters/applications/what-is-this-thing/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/what-is-this-thing/solo.lytex}
+\input{./chapters/applications/what-is-this-thing/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/what-is-this-thing/comping.lytex}
+\input{./chapters/applications/what-is-this-thing/comping.lytex}
 
 \chapter{Love For Sale}
 \section{Tune with Changes}
-\input{./chapters/love-for-sale/changes.lytex}
+\input{./chapters/applications/love-for-sale/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/love-for-sale/scale-map.lytex}
+\input{./chapters/applications/love-for-sale/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/love-for-sale/solo.lytex}
+\input{./chapters/applications/love-for-sale/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/love-for-sale/comping.lytex}
+\input{./chapters/applications/love-for-sale/comping.lytex}
 
 \chapter{Softly, As in a Morning Sunrise}
 \section{Tune with Changes}
-\input{./chapters/softly-as-in-a-morning-sunrise/changes.lytex}
+\input{./chapters/applications/softly-as-in-a-morning-sunrise/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/softly-as-in-a-morning-sunrise/scale-map.lytex}
+\input{./chapters/applications/softly-as-in-a-morning-sunrise/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/softly-as-in-a-morning-sunrise/solo.lytex}
+\input{./chapters/applications/softly-as-in-a-morning-sunrise/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/softly-as-in-a-morning-sunrise/comping.lytex}
+\input{./chapters/applications/softly-as-in-a-morning-sunrise/comping.lytex}
 
 \chapter{I Can't Give You Anything But Love}
 \section{Tune with Changes}
-\input{./chapters/i-cant-give-you/changes.lytex}
+\input{./chapters/applications/i-cant-give-you/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/i-cant-give-you/scale-map.lytex}
+\input{./chapters/applications/i-cant-give-you/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/i-cant-give-you/solo.lytex}
+\input{./chapters/applications/i-cant-give-you/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/i-cant-give-you/comping.lytex}
+\input{./chapters/applications/i-cant-give-you/comping.lytex}
 
 \chapter{A Night In Tunisia}
 \section{Tune with Changes}
-\input{./chapters/a-night-in-tunisia/changes.lytex}
+\input{./chapters/applications/a-night-in-tunisia/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/a-night-in-tunisia/scale-map.lytex}
+\input{./chapters/applications/a-night-in-tunisia/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/a-night-in-tunisia/solo.lytex}
+\input{./chapters/applications/a-night-in-tunisia/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/a-night-in-tunisia/comping.lytex}
+\input{./chapters/applications/a-night-in-tunisia/comping.lytex}
 
 \chapter{On Green Dolphin Street}
 \section{Tune with Changes}
-\input{./chapters/on-green-dolphin-street/changes.lytex}
+\input{./chapters/applications/on-green-dolphin-street/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/on-green-dolphin-street/scale-map.lytex}
+\input{./chapters/applications/on-green-dolphin-street/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/on-green-dolphin-street/solo.lytex}
+\input{./chapters/applications/on-green-dolphin-street/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/on-green-dolphin-street/comping.lytex}
+\input{./chapters/applications/on-green-dolphin-street/comping.lytex}
 
 \chapter{Stella By Starlight}
 \section{Tune with Changes}
-\input{./chapters/stella-by-starlight/changes.lytex}
+\input{./chapters/applications/stella-by-starlight/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/stella-by-starlight/scale-map.lytex}
+\input{./chapters/applications/stella-by-starlight/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/stella-by-starlight/solo.lytex}
+\input{./chapters/applications/stella-by-starlight/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/stella-by-starlight/comping.lytex}
+\input{./chapters/applications/stella-by-starlight/comping.lytex}
 
 \chapter{All the Things You Are}
 \section{Tune with Changes}
-\input{./chapters/all-the-things/changes.lytex}
+\input{./chapters/applications/all-the-things/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/all-the-things/scale-map.lytex}
+\input{./chapters/applications/all-the-things/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/all-the-things/solo.lytex}
+\input{./chapters/applications/all-the-things/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/all-the-things/comping.lytex}
+\input{./chapters/applications/all-the-things/comping.lytex}
 
 \chapter{Cherokee}
 \section{Tune with Changes}
-\input{./chapters/cherokee/changes.lytex}
+\input{./chapters/applications/cherokee/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/cherokee/scale-map.lytex}
+\input{./chapters/applications/cherokee/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/cherokee/solo.lytex}
+\input{./chapters/applications/cherokee/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/cherokee/comping.lytex}
+\input{./chapters/applications/cherokee/comping.lytex}
 
 \chapter{'Round Midnight}
 \section{Tune with Changes}
-\input{./chapters/round-midnight/changes.lytex}
+\input{./chapters/applications/round-midnight/changes.lytex}
 
 \section{Scale Map}
-\input{./chapters/round-midnight/scale-map.lytex}
+\input{./chapters/applications/round-midnight/scale-map.lytex}
 
 \section{Exemplar Solo}
-\input{./chapters/round-midnight/solo.lytex}
+\input{./chapters/applications/round-midnight/solo.lytex}
 
 \section{Exemplar Comping}
-\input{./chapters/round-midnight/comping.lytex}
+\input{./chapters/applications/round-midnight/comping.lytex}
 
 \backMatterChapter{Glossary}
 \begingroup

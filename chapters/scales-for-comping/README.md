@@ -1,7 +1,8 @@
 # Scales for Comping
 
-Source files for the Scales for Comping chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Comping Scales: `comping-scales.lytex`

@@ -1,7 +1,8 @@
 # How to Practice Linear Improvization
 
-Source files for the How to Practice Linear Improvization chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

@@ -1,7 +1,8 @@
 # Teaching Philosophy
 
-Source files for the Teaching Philosophy chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

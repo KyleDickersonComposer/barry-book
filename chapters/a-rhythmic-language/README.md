@@ -1,8 +1,9 @@
 # A Rhythmic Language
 
-Source files for the A Rhythmic Language chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Jazz Syncopation: `jazz-syncopation.lytex`
 - Swing Feel: `swing-feel.lytex`

@@ -1,8 +1,9 @@
 # Introduction
 
-Source files for the Introduction front matter chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Project Overview: `project-overview.lytex`
 - Barry Harris: `barry-harris.lytex`

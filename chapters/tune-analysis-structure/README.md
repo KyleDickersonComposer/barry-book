@@ -1,7 +1,8 @@
 # Tune Analysis Structure
 
-Source files for the Tune Analysis Structure chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

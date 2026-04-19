@@ -2,3 +2,13 @@
   name={monotonality},
   description={the concept that modulations in a piece of music do not bear formal or semantic weight. This concept spurred on Schoenberg's discussion of tonal regions, where he describes far-flung chromatic modulations in terms of a modulation matrix that he calls a ``chart of the regions.'' This concept was inspired by Schenker's theories, which disregard modulations for being ad hoc.}
 }
+
+\newglossaryentry{musical-practice}{%
+  name={musical practice},
+  description={what musical practitioners do, including their \emph{descriptions} of what they do, what music is, how music works, and how to make it. These descriptions are not musical theories because they are not attempts to explain how music is experienced.}
+}
+
+\newglossaryentry{musical-theory}{%
+  name={musical theory},
+  description={an attempt to describe how music is experienced.}
+}

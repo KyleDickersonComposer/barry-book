@@ -1,7 +1,8 @@
 # Scales for Linear Improvization
 
-Source files for the Scales for Linear Improvization chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

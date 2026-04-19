@@ -1,7 +1,8 @@
 # Common Chord Progressions
 
-Source files for the Common Chord Progressions chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`

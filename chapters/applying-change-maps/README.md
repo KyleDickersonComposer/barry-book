@@ -1,7 +1,8 @@
 # Applying Change Maps
 
-Source files for the Applying Change Maps chapter.
+### Rough Outline
+Outline to be written.
 
-## Outline
+## Source Files
 
 - Chapter body: `intro.lytex`
