@@ -1,0 +1,25 @@
+\incompleteContentNotice
+
+% Outline placeholder: establish the basic musical vocabulary and notation concepts needed before the Barry Harris material.
+
+Chord symbols in prose all use \texttt{\textbackslash MusicChord\{\ldots\}}: set \texttt{quality} to \texttt{maj}, \texttt{min}, \texttt{dom}, or \texttt{aug}; set \texttt{seven} to \texttt{7}, \texttt{6}, or leave it empty; optional \texttt{acc=flat} or \texttt{sharp}; optional \texttt{alters=\{9/flat,5/flat\}} (comma-separated \emph{pairs}: degree then \texttt{/flat}, \texttt{/sharp}, or \texttt{/natural}, wrapped in braces so commas stay inside the key); optional bass after a single slash, \texttt{bass=E} with \texttt{bass acc=flat}, \texttt{sharp}, or \texttt{natural} (trimmed; omitted if \texttt{bass} is empty). Dominant \texttt{seven} is a normal-size digit on the baseline; \texttt{maj}/\texttt{min}/\texttt{aug} use a superscript degree. Examples: \MusicChord{root=D, quality=min, seven=7}, \MusicChord{root=G, quality=dom, seven=7}, \MusicChord{root=E, acc=flat, quality=dom, seven=7, alters={9/flat,5/flat}}, \MusicChord{root=C, quality=maj, seven=7, bass=E, bass acc=flat}. Roman numerals stay separate: \RomNum{I}, \RomNum{IV}, \RomNumS{V}{7}, \RomNumS{I}{6}, \RomViiO, \mbox{ii\textsuperscript{ø7}}. The same altered dominant in LilyPond is \texttt{ees1:9-.5-}.
+
+This is a dummy block with a first-line C7,%
+{\bookInlineMusicUseBaseline\input{./chapters/foundations/music-fundamentals/snippets/c7-inline.lytex}}%
+, followed by justified prose with more inline music examples. A dominant sound can then be compared with the same dominant quality on F7,%
+\input{./chapters/foundations/music-fundamentals/snippets/f7-inline.lytex}%
+, or G7,%
+\input{./chapters/foundations/music-fundamentals/snippets/g7-inline.lytex}%
+. The point of writing the examples inside the sentence is that the notation behaves like a word-sized musical object rather than a separate display. A basic tonic color such as C6,%
+\input{./chapters/foundations/music-fundamentals/snippets/c6-inline.lytex}%
+, can sit in the same paragraph as a minor seventh sonority such as \MusicChord{root=D, quality=min, seven=7},%
+\input{./chapters/foundations/music-fundamentals/snippets/dm7-inline.lytex}%
+, so the prose can explain the relationship without stopping the reader for a full staff system. The guide tones of C7,%
+\input{./chapters/foundations/music-fundamentals/snippets/guide-tone-inline.lytex}%
+, are small enough to live directly inside the line of text while still using the same LilyJAZZ styling as the larger examples in the book.
+
+This is a second dummy block of justified prose without inline music examples. It exists only to show the text measure, paragraph spacing, and line spacing under the current book margins. A paragraph like this should feel compact enough to read as continuous prose, while still having enough room between lines for the page to breathe. The margins should make each line shorter than the music examples, but not so narrow that the text becomes choppy or overly formal. This block gives a clean comparison against the previous paragraph, where the inline music examples change the line height and can make the surrounding text feel more open.
+
+\beginBookExample{Eight-bar treble staff with chord symbols}
+\input{./chapters/foundations/music-fundamentals/snippets/eight-bar-example.lytex}
+\finishBookExample

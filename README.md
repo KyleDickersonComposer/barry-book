@@ -137,6 +137,11 @@ This removes temporary files, build artifacts, and the `bin/` directory.
 ## Project Structure
 
 - `main.lytex` - Main LaTeX document
-- `chapters/` - Chapter source files, including prose, examples, tune analyses, and chapter-local snippets
+- `chapters/` - Chapter source files grouped by book part
+- `chapters/frontmatter/` - Introduction source
+- `chapters/foundations/` - Foundations chapters
+- `chapters/linear-concepts/` - Linear Concepts chapters
+- `chapters/harmonic-concepts/` - Harmonic Concepts chapters
+- `chapters/applications/` - Tune-study application chapters
 - `source/` - LilyJAZZ styles and templates
 - `bin/` - Build output directory (gitignored)

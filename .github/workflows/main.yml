@@ -20,7 +20,7 @@ jobs:
 
       - name: Build PDF with Docker
         run: |
-          TIMESTAMP=$(date -u +%Y%m%d-%H%M%S-UTC)
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
           PDF_BASE="BarryBook-${TIMESTAMP}"
           PDF_NAME="${PDF_BASE}.pdf"
           echo "Building PDF: $PDF_NAME"

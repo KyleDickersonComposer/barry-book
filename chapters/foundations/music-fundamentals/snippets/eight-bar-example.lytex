@@ -1,0 +1,26 @@
+\beginBookExampleMusic
+\begin{lilypond}
+\include "source/book-example.ily"
+
+\score {
+  <<
+    \new ChordNames \chordmode {
+      c1:7 | f1:7 | c1:7 | c1:7 |
+      f1:7 | f1:7 | c1:7 | g1:7 |
+    }
+    \new StaffGroup <<
+      \new Staff {
+        \clef treble
+        \time 4/4
+        \relative c' {
+          c4-. e-> g-. bes-> | a4-- g-. f-> e-. |
+          c4-. e-> g-. bes-> | c2-> r2 \break |
+          f,4-. a-> c-. ees-> | d4-- c-. a-> f-. |
+          e4-. g-> bes-. c-> | b4-- a-. g-> f-. \bar "|."
+        }
+      }
+    >>
+  >>
+}
+\end{lilypond}
+\finishBookExampleMusic

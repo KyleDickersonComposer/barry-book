@@ -26,127 +26,122 @@
 \addcontentsline{toc}{chapter}{Introduction}
 
 \section{Project Overview}
-\input{./chapters/introduction/project-overview.lytex}
+\input{./chapters/frontmatter/introduction/project-overview.lytex}
 
 \section{Barry Harris}
-\input{./chapters/introduction/barry-harris.lytex}
+\input{./chapters/frontmatter/introduction/barry-harris.lytex}
 
 \section{Practice or Theory?}
-\input{./chapters/introduction/practice-or-theory.lytex}
+\input{./chapters/frontmatter/introduction/practice-or-theory.lytex}
 
 \mainmatter
 
 \part{Foundations}
 
 \chapter{Music Fundamentals}
-\input{./chapters/music-fundamentals/intro.lytex}
+\input{./chapters/foundations/music-fundamentals/intro.lytex}
 
 \chapter{Identifying the Chords}
-\input{./chapters/identifying-the-chords/intro.lytex}
+\input{./chapters/foundations/identifying-the-chords/intro.lytex}
 
 \chapter{Functional Harmony}
-\input{./chapters/functional-harmony/intro.lytex}
+\input{./chapters/foundations/functional-harmony/intro.lytex}
 
 \chapter{Common Chord Progressions}
-\input{./chapters/common-chord-progressions/intro.lytex}
+\input{./chapters/foundations/common-chord-progressions/intro.lytex}
 
 \chapter{Changes and Pedal Harmonies}
-\input{./chapters/changes-and-pedal-harmonies/intro.lytex}
+\input{./chapters/foundations/changes-and-pedal-harmonies/intro.lytex}
 
 \part{Linear Concepts}
 
 \chapter{Scales for Linear Improvization}
-\input{./chapters/scales-for-linear-improvization/intro.lytex}
+\input{./chapters/linear-concepts/scales-for-linear-improvization/intro.lytex}
 
 \chapter{Scale Maps}
-\input{./chapters/scale-maps/intro.lytex}
+\input{./chapters/linear-concepts/scale-maps/intro.lytex}
 
 \chapter{All the Little Things}
 \section{Half Step Rules}
-\input{./chapters/all-the-little-things/half-step-rules.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/half-step-rules.lytex}
 
 \section{Thirds}
-\input{./chapters/all-the-little-things/thirds.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/thirds.lytex}
 
 \section{The Chord}
-\input{./chapters/all-the-little-things/the-chord.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/the-chord.lytex}
 
 \section{Half Step Below the Chord}
-\input{./chapters/all-the-little-things/half-step-below-chord.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/half-step-below-chord.lytex}
 
 \section{The Pivot}
-\input{./chapters/all-the-little-things/pivot.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/pivot.lytex}
 
 \section{Important Arpeggio}
-\input{./chapters/all-the-little-things/important-arpeggio.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/important-arpeggio.lytex}
 
 \section{Surrounding the Notes}
-\input{./chapters/all-the-little-things/surrounding-notes.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/surrounding-notes.lytex}
 
 \section{Barry's Chromatic Scale}
-\input{./chapters/all-the-little-things/barrys-chromatic-scale.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/barrys-chromatic-scale.lytex}
 
 \chapter{A Rhythmic Language}
 \section{Jazz Syncopation}
-\input{./chapters/a-rhythmic-language/jazz-syncopation.lytex}
+\input{./chapters/linear-concepts/a-rhythmic-language/jazz-syncopation.lytex}
 
 \section{Swing Feel}
-\input{./chapters/a-rhythmic-language/swing-feel.lytex}
+\input{./chapters/linear-concepts/a-rhythmic-language/swing-feel.lytex}
 
 \section{Rhythm Games}
-\input{./chapters/a-rhythmic-language/rhythm-games.lytex}
+\input{./chapters/linear-concepts/a-rhythmic-language/rhythm-games.lytex}
 
 \chapter{Spicing Up the Dominant}
-\section{Dominant Chord Variations}
-\input{./chapters/spicing-up-the-dominant/dominant-chord-variations.lytex}
+\input{./chapters/linear-concepts/spicing-up-the-dominant/dominant-chord-variations.lytex}
 
 \section{Tritone Substitutions}
-\input{./chapters/spicing-up-the-dominant/tritone-substitutions.lytex}
+\input{./chapters/linear-concepts/spicing-up-the-dominant/tritone-substitutions.lytex}
 
 \section{Advanced Dominant Techniques}
-\input{./chapters/spicing-up-the-dominant/advanced-dominant-techniques.lytex}
+\input{./chapters/linear-concepts/spicing-up-the-dominant/advanced-dominant-techniques.lytex}
 
 \chapter{How to Practice Linear Improvization}
-\input{./chapters/how-to-practice-linear-improvization/intro.lytex}
+\input{./chapters/linear-concepts/how-to-practice-linear-improvization/intro.lytex}
 
 \part{Harmonic Concepts}
 
 \chapter{Classical Harmony}
-\input{./chapters/classical-harmony/intro.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/intro.lytex}
 
 \section{Appoggiatura and Appoggiatura Chords}
-\input{./chapters/classical-harmony/appoggiatura-and-appoggiatura-chords.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/appoggiatura-and-appoggiatura-chords.lytex}
 
 \chapter{The Missing Link}
-\input{./chapters/the-missing-link/intro.lytex}
-
-\chapter{Scales for Comping}
-\section{Comping Scales}
-\input{./chapters/scales-for-comping/comping-scales.lytex}
+\input{./chapters/harmonic-concepts/the-missing-link/intro.lytex}
 
 \chapter{Scale of Chords}
-\input{./chapters/scale-of-chords/intro.lytex}
+\input{./chapters/harmonic-concepts/scale-of-chords/intro.lytex}
 
 \section{Voicing Techniques}
-\input{./chapters/scale-of-chords/voicing-techniques.lytex}
+\input{./chapters/harmonic-concepts/scale-of-chords/voicing-techniques.lytex}
 
 \chapter{Borrowing}
-\input{./chapters/borrowing/intro.lytex}
+\input{./chapters/harmonic-concepts/borrowing/intro.lytex}
 
 \chapter{Movements}
-\input{./chapters/movements/intro.lytex}
+\input{./chapters/harmonic-concepts/movements/intro.lytex}
 
 \chapter{Musical Genesis}
-\input{./chapters/musical-genesis/intro.lytex}
+\input{./chapters/harmonic-concepts/musical-genesis/intro.lytex}
 
 \chapter{Symmetry in the Diminished Chord}
-\input{./chapters/symmetry-in-diminished-chord/intro.lytex}
+\input{./chapters/harmonic-concepts/symmetry-in-diminished-chord/intro.lytex}
 
 \chapter{Rhythm in Comping}
-\input{./chapters/rhythm-in-comping/intro.lytex}
+\input{./chapters/harmonic-concepts/rhythm-in-comping/intro.lytex}
 
 \chapter{How to Practice Comping}
-\input{./chapters/how-to-practice-comping/intro.lytex}
+\input{./chapters/harmonic-concepts/how-to-practice-comping/intro.lytex}
 
 \part{Applications}
 
