@@ -1,0 +1,48 @@
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\fancyfoot{}
+
+\definecolor{barryBlack}{HTML}{151515}
+\definecolor{barryGray}{HTML}{5F5F5F}
+
+\onehalfspacing
+
+\setlength{\parskip}{0.65em}
+\setlength{\parindent}{0pt}
+
+\newcommand{\frontMatterChapter}[1]{%
+  \chapter*{#1}
+  \markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
+  \vspace{-1.25em}
+  \noindent\rule{0.72\textwidth}{0.5pt}
+  \vspace{1.5em}
+}
+
+\makeatletter
+\renewcommand\tableofcontents{%
+  \frontMatterChapter{\contentsname}%
+  \@starttoc{toc}%
+}
+\renewcommand*\l@part[2]{%
+  \ifnum \c@tocdepth >-2\relax
+    \addpenalty{-\@highpenalty}%
+    \addvspace{1.5em plus 0.2em}%
+    \begingroup
+      \parindent \z@
+      \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \large\bfseries\scshape
+      #1\nobreak\hfil\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \vskip 0.25em
+      \hrule height 0.4pt
+      \vskip 0.6em
+      \nobreak
+    \endgroup
+  \fi}
+\makeatother

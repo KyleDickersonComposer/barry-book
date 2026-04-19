@@ -1,0 +1,15 @@
+\begin{titlepage}
+\thispagestyle{empty}
+\begingroup
+\color{barryBlack}
+\vspace*{\fill}
+\begin{center}
+{\fontsize{18}{22}\selectfont\scshape The\par}
+\vspace{0.1cm}
+{\fontsize{64}{68}\selectfont\bfseries Barry\par}
+\vspace{0.08cm}
+{\fontsize{64}{68}\selectfont\bfseries Book\par}
+\end{center}
+\vspace*{\fill}
+\endgroup
+\end{titlepage}

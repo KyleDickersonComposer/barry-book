@@ -1,0 +1,14 @@
+\thispagestyle{empty}
+\null
+\vspace*{\fill}
+\begin{flushleft}
+\begin{minipage}{0.78\textwidth}
+This work is freely available, transparent, and collaborative. The complete source code (every note, every chord symbol, every layout decision) is publicly accessible.
+
+Anyone can view it, learn from it, suggest improvements, or adapt it for their own needs.
+
+This is a living document, continuously refined and updated to maintain the highest standards of accuracy and pedagogical clarity.
+\end{minipage}
+\end{flushleft}
+\vspace*{\fill}
+\clearpage

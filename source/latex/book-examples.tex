@@ -1,0 +1,102 @@
+\makeatletter
+\newcommand*{\l@bookexample}{\@dottedtocline{1}{0em}{2.3em}}
+\newcommand{\listofmusicalexamples}{%
+  \frontMatterChapter{List of Musical Examples}%
+  \addcontentsline{toc}{chapter}{List of Musical Examples}%
+  \@starttoc{loe}%
+}
+\makeatother
+
+\newcounter{bookExample}
+\newcommand{\bookExampleLoEentry}{}
+\newcommand{\beginBookExample}[1]{%
+  \refstepcounter{bookExample}%
+  \def\bookExampleLoEentry{Example \thebookExample. #1}%
+  \par\addvspace{1em}%
+  \noindent{\bfseries Example~\thebookExample.} #1:\par
+  \nobreak\addvspace{0.35em}%
+}
+\newcommand{\finishBookExample}{%
+  \par\addvspace{1em}%
+  % List-of-examples page must be written after the body is laid out; writing at
+  % \beginBookExample captured \thepage before breaks (e.g. LilyPond height).
+  \phantomsection
+  \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
+}
+
+\newsavebox{\bookInlineMusicBox}
+\newcommand{\bookInlineMusicAlign}{vc}
+\newcommand{\bookInlineMusicUseVerticalCenter}{\renewcommand{\bookInlineMusicAlign}{vc}}
+\newcommand{\bookInlineMusicUseBaseline}{\renewcommand{\bookInlineMusicAlign}{baseline}}
+% Inline music at the top of a paragraph should use baseline alignment so the paragraph start stays clear.
+% Inline music after the first line should use vertical-center alignment.
+\newcommand{\beginBookInlineMusic}{%
+  \begingroup
+  % Compare expanded strings; \ifx fails here because \bookInlineMusicAlign is \long
+  % (from \newcommand) while a \def test macro would be short-same text, false \ifx.
+  \ifnum\pdfstrcmp{\bookInlineMusicAlign}{baseline}=0
+  \else
+    \def\preLilyPondExample{\setbox\bookInlineMusicBox=\hbox\bgroup}%
+    \def\postLilyPondExample{\egroup\raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}}%
+  \fi
+}
+\newcommand{\finishBookInlineMusic}{\endgroup}
+\newcommand{\beginBookExampleMusic}{%
+  \par
+  \begingroup
+  \let\bookExampleIncludeGraphics\includegraphics
+  \renewcommand{\includegraphics}[2][]{%
+    \par\noindent\makebox[\textwidth][c]{\bookExampleIncludeGraphics[##1]{##2}}%
+  }%
+  \def\betweenLilyPondSystem##1{\par\vspace{6mm}}%
+}
+\newcommand{\finishBookExampleMusic}{\par\endgroup}
+\newcommand{\betweenLilyPondSystem}[1]{\vspace{6mm}\linebreak}
+\newcommand{\realBookChartGeometry}{%
+  \clearpage
+  \pagestyle{empty}
+  \thispagestyle{empty}
+  \newgeometry{top=0.45cm,bottom=1.5cm,inner=1.25cm,outer=0.85cm}
+  \begingroup
+}
+\newcommand{\beginOnePageRealBookChart}{%
+  \realBookChartGeometry
+  \def\betweenLilyPondSystem##1{%
+    \par
+    \vfill
+    \noindent
+  }%
+}
+\newcommand{\beginTwoPageRealBookChart}[2]{%
+  \realBookChartGeometry
+  \def\betweenLilyPondSystem##1{%
+    \par
+    \ifnum##1=#1
+      \clearpage
+      \vspace*{#2}%
+    \else
+      \vfill
+    \fi
+    \noindent
+  }%
+}
+\newcommand{\finishRealBookChart}{%
+  \endgroup
+  \clearpage
+  \restoregeometry
+  \pagestyle{fancy}
+}
+\newcommand{\incompleteContentNotice}{%
+\par\vspace{0.5em}
+\noindent\begingroup
+\setlength{\fboxsep}{0pt}%
+\color{barryBlack}%
+\begin{minipage}{0.88\textwidth}
+\rule{\linewidth}{0.4pt}\par
+\vspace{0.65em}
+{\bfseries Draft notice.} This section is incomplete and part of an open source textbook in progress. Contributions, corrections, examples, and source-level improvements are welcome.
+\vspace{0.65em}\par
+\rule{\linewidth}{0.4pt}
+\end{minipage}
+\endgroup\par\vspace{0.5em}
+}
