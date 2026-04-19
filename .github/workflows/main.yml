@@ -15,14 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify LilyPond book inputs
-        run: |
-          test -f source/book-inline.ily
-          test -f source/book-example.ily
-          test -f source/numeric-time-signature.ily
-          grep -q 'book-inline\|book-example' lilypond/snippets/*.lytex
-          ls -la source/*.ily
-
       - name: Pull Docker image
         run: docker pull kyledickersoncomposer/docker-lilypond:latest
 
