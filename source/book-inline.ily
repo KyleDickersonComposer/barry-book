@@ -10,5 +10,6 @@
 \layout {
   indent = 0\mm
   ragged-right = ##t
-  \override Score.SystemStartBar.collapse-height = #1
+  % No barline before inline music examples.
+  \override Score.SystemStartBar.stencil = ##f
 }

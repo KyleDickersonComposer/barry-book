@@ -49,7 +49,7 @@ theChords = \chordmode {
 	d:7 d:7 d:m7 g:7 |
 	c1:6 c1:6 e:7 e:7 |
 	a:7 a:7 d:m7 d:m7 |
-	f1 f:m6 c1:maj a1:7 |
+	f1:6 f:m6 c1:maj a1:7 |
 	d:m7 g:7 c1:6 c1:6 |
 }
 
