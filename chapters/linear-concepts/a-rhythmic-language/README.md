@@ -7,4 +7,9 @@ This will talk about how to get the swing feel down. Also, shows how it comes fr
 
 - Jazz Syncopation: `jazz-syncopation.lytex`
 - Swing Feel: `swing-feel.lytex`
+- Unaccented Appoggiatura: `unaccented-appoggiatura.lytex`
+- Not a Triplet Feel: `not-a-triplet-feel.lytex`
+- Horn Articulation: `horn-articulation.lytex`
+- Articulations: `articulations.lytex`
+- Classical and Jazz Interpretations: `classical-and-jazz-interpretations.lytex`
 - Rhythm Games: `rhythm-games.lytex`

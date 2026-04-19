@@ -15,9 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Pull Docker image
-        run: docker pull kyledickersoncomposer/docker-lilypond:latest
-
       - name: Build PDF with Docker
         run: |
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
@@ -25,11 +22,7 @@ jobs:
           PDF_NAME="${PDF_BASE}.pdf"
           echo "Building PDF: $PDF_NAME"
 
-          docker run --rm \
-            -v "${{ github.workspace }}:/workdir" \
-            -w /workdir \
-            kyledickersoncomposer/docker-lilypond:latest \
-            make pdf
+          make pdf
 
           # Copy the built PDF to the timestamped filename
           cp bin/main.pdf "$PDF_NAME"

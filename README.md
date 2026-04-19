@@ -75,42 +75,19 @@ Docker lets you build the book without installing the music and publishing tools
 
    Download and install Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop/), then start it so the `docker` command is available in your terminal.
 
-2. Pull the build image:
+2. Build the PDF:
 
    ```sh
-   make docker-pull-lilypond
+   make pdf
    ```
 
-   You only need to do this the first time, after deleting Docker images, or when you want to refresh the build image.
-
-3. Build the PDF in Docker:
-
-   ```sh
-   make pdf-docker
-   ```
-
-   On macOS, this opens the PDF automatically when the build finishes.
+   This uses Docker. If the build image is missing, Docker downloads it automatically. On macOS, it opens the PDF automatically when the build finishes.
 
 The built PDF is also saved at `bin/main.pdf`.
 
-### Advanced Local Build
-
-You can build without Docker, but this is only recommended if you already know your way around LilyPond and LaTeX. You need the full toolchain installed locally:
-
-- LaTeX distribution with `pdflatex`
-- LilyPond and `lilypond-book`
-- Biber
-- makeglossaries
-- LilyJAZZ style/font support
-
-Run:
-
-```sh
-make pdf
-```
-
 The build process:
 
+- Starts the Docker build image
 - Processes `main.lytex` and included `.lytex` files with `lilypond-book`
 - Copies `references.bib` into the build directory
 - Runs `pdflatex`, `biber`, `makeglossaries`, and final LaTeX passes
@@ -127,11 +104,8 @@ This removes temporary files, build artifacts, and the `bin/` directory.
 
 ### Troubleshooting
 
-- If `make pdf-docker` says the image is missing, run `make docker-pull-lilypond`
-- If Docker uses stale dependencies, run `make docker-pull-lilypond` again
-- If local `make pdf` fails at `lilypond-book`, ensure LilyPond is installed and in your PATH
+- If `make pdf` fails before the build starts, make sure Docker Desktop is installed and running
 - LaTeX errors often require multiple compilation passes; the Makefile handles this automatically
-- Font issues in local builds usually indicate LilyJAZZ support is not properly installed or configured
 - Check `bin/main.log` for detailed LaTeX compilation errors
 
 ## Project Structure

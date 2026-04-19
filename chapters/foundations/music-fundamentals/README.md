@@ -6,4 +6,5 @@ This chapter is the grab bag for everything you need to know for the rest of the
 ## Source Files
 
 - Chapter body: `intro.lytex`
+- Example material: `examples.lytex`
 - Inline music snippets: `snippets/`

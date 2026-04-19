@@ -52,13 +52,12 @@
 
 \part{Linear Concepts}
 
-\chapter{Scales for Linear Improvization}
-\input{./chapters/linear-concepts/scales-for-linear-improvization/intro.lytex}
-
 \chapter{Scale Maps}
 \input{./chapters/linear-concepts/scale-maps/intro.lytex}
 
 \chapter{All the Little Things}
+\input{./chapters/linear-concepts/all-the-little-things/intro.lytex}
+
 \section{Half Step Rules}
 \input{./chapters/linear-concepts/all-the-little-things/half-step-rules.lytex}
 
@@ -90,10 +89,26 @@
 \section{Swing Feel}
 \input{./chapters/linear-concepts/a-rhythmic-language/swing-feel.lytex}
 
+\section{Unaccented Appoggiatura}
+\input{./chapters/linear-concepts/a-rhythmic-language/unaccented-appoggiatura.lytex}
+
+\section{Not a Triplet Feel}
+\input{./chapters/linear-concepts/a-rhythmic-language/not-a-triplet-feel.lytex}
+
+\section{Horn Articulation}
+\input{./chapters/linear-concepts/a-rhythmic-language/horn-articulation.lytex}
+
+\section{Articulations}
+\input{./chapters/linear-concepts/a-rhythmic-language/articulations.lytex}
+
+\section{Classical and Jazz Interpretations}
+\input{./chapters/linear-concepts/a-rhythmic-language/classical-and-jazz-interpretations.lytex}
+
 \section{Rhythm Games}
 \input{./chapters/linear-concepts/a-rhythmic-language/rhythm-games.lytex}
 
 \chapter{Spicing Up the Dominant}
+\section{Dominant Chord Variations}
 \input{./chapters/linear-concepts/spicing-up-the-dominant/dominant-chord-variations.lytex}
 
 \section{Tritone Substitutions}
@@ -116,23 +131,11 @@
 \chapter{The Missing Link}
 \input{./chapters/harmonic-concepts/the-missing-link/intro.lytex}
 
-\chapter{Scale of Chords}
-\input{./chapters/harmonic-concepts/scale-of-chords/intro.lytex}
-
-\section{Voicing Techniques}
-\input{./chapters/harmonic-concepts/scale-of-chords/voicing-techniques.lytex}
-
 \chapter{Borrowing}
 \input{./chapters/harmonic-concepts/borrowing/intro.lytex}
 
 \chapter{Musical Genesis}
 \input{./chapters/harmonic-concepts/musical-genesis/intro.lytex}
-
-\chapter{Symmetry in the Diminished Chord}
-\input{./chapters/harmonic-concepts/symmetry-in-diminished-chord/intro.lytex}
-
-\chapter{Rhythm in Comping}
-\input{./chapters/harmonic-concepts/rhythm-in-comping/intro.lytex}
 
 \chapter{How to Practice Comping}
 \input{./chapters/harmonic-concepts/how-to-practice-comping/intro.lytex}

@@ -9,6 +9,7 @@ We will talk about how its easier to focus on one thing at a time while learning
 
 ## Source Files
 
+- Chapter body: `intro.lytex`
 - Half Step Rules: `half-step-rules.lytex`
 - Thirds: `thirds.lytex`
 - The Chord: `the-chord.lytex`
