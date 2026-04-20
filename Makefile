@@ -17,7 +17,7 @@ BIBTEX = biber
 MAKEGLOSSARIES = makeglossaries
 LATEX_FLAGS = -output-directory=$(OUTPUT_DIR) -interaction=nonstopmode
 
-.PHONY: clean open pdf
+.PHONY: clean docx open pdf require-pandoc
 
 pdf:
 	docker run --rm --platform linux/amd64 --pull missing \
@@ -38,6 +38,26 @@ pdf:
 			find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null; \
 			find . -maxdepth 1 -name "*.tmp" -type f -delete 2>/dev/null; \
 			echo "Build complete! Output: $(OUTPUT_DIR)/$(MAIN).pdf"'
+
+require-pandoc:
+	@command -v pandoc >/dev/null 2>&1 || { \
+		echo "pandoc is required for DOCX export."; \
+		echo "Install it with: brew install pandoc"; \
+		exit 1; \
+	}
+
+docx: pdf require-pandoc
+	@echo "Exporting $(OUTPUT_DIR)/$(MAIN).docx for Google Docs spell checking..."
+	cd $(OUTPUT_DIR) && pandoc \
+		--standalone \
+		--from=latex \
+		--to=docx \
+		--resource-path=.:.. \
+		--metadata=title:"The Barry Book" \
+		--output=$(MAIN).docx \
+		$(MAIN).tex
+	@echo "DOCX export complete! Output: $(OUTPUT_DIR)/$(MAIN).docx"
+
 open:
 	open $(OUTPUT_DIR)/$(MAIN).pdf
 
