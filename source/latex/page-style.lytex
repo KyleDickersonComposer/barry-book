@@ -43,6 +43,26 @@
   \endgroup
 }
 
+\newcounter{bookStyledListItem}
+\newenvironment{bookStyledList}[1]{%
+  \par\addvspace{0.25em}%
+  \begingroup
+  \noindent{\color{barryBlack}\bfseries #1}\par\nobreak
+  \begin{list}{{\color{barryBlack}\bfseries\arabic{bookStyledListItem}.}}{%
+    \usecounter{bookStyledListItem}%
+    \setlength{\leftmargin}{1.85em}%
+    \setlength{\labelwidth}{1.1em}%
+    \setlength{\labelsep}{0.45em}%
+    \setlength{\itemsep}{0.35em}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{0.25em}%
+  }%
+}{%
+  \end{list}%
+  \addvspace{0.25em}%
+  \endgroup
+}
+
 \newglossarystyle{bookdefinition}{%
   \setglossarystyle{list}%
   \renewenvironment{theglossary}{%
