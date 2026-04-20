@@ -45,22 +45,25 @@
 
 \newcounter{bookStyledListItem}
 \newenvironment{bookStyledList}[1]{%
-  \par\addvspace{0.25em}%
+  \par\addvspace{1.1em}%
   \begingroup
+  \setlength{\parskip}{0pt}%
   \noindent{\color{barryBlack}\bfseries #1}\par\nobreak
+  \vspace{0.825em}%
   \begin{list}{{\color{barryBlack}\bfseries\arabic{bookStyledListItem}.}}{%
     \usecounter{bookStyledListItem}%
     \setlength{\leftmargin}{1.85em}%
     \setlength{\labelwidth}{1.1em}%
     \setlength{\labelsep}{0.45em}%
-    \setlength{\itemsep}{0.35em}%
+    \setlength{\itemsep}{0.55em}%
     \setlength{\parsep}{0pt}%
-    \setlength{\topsep}{0.25em}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
   }%
 }{%
   \end{list}%
-  \addvspace{0.25em}%
   \endgroup
+  \addvspace{1.1em}%
 }
 
 \newglossarystyle{bookdefinition}{%
