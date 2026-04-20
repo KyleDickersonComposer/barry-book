@@ -29,7 +29,7 @@
 \section{Project Overview}
 \input{./chapters/frontmatter/introduction/project-overview.lytex}
 
-\section{Barry Harris}
+\section{\BarryFull}
 \input{./chapters/frontmatter/introduction/barry-harris.lytex}
 
 \section{Practice or Theory?}
@@ -86,7 +86,7 @@
 \section{Surrounding the Notes}
 \input{./chapters/linear-concepts/all-the-little-things/surrounding-notes.lytex}
 
-\section{Barry's Chromatic Scale}
+\section{\Barry's Chromatic Scale}
 \input{./chapters/linear-concepts/all-the-little-things/barrys-chromatic-scale.lytex}
 
 \chapter{A Rhythmic Language}

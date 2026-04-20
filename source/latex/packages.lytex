@@ -19,6 +19,7 @@
 \usepackage{microtype}
 \usepackage{titlesec}
 \usepackage{xcolor}
+\usepackage{xspace}
 \usepackage{textcomp}
 \usepackage{glossaries}
 \usepackage{makeidx}
@@ -30,3 +31,4 @@
 \makeindex
 \addbibresource{references.bib}
 \input{./source/latex/glossary.lytex}
+\input{./source/latex/names.lytex}
