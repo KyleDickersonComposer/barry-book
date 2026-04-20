@@ -35,7 +35,8 @@ jobs:
           rm -f *.log *.ly~ *.pdf~ 2>/dev/null || true
           # List what we're publishing
           echo "Files to publish:"
-          ls -lh "${{ env.PDF_NAME }}" || echo "ERROR: PDF not found!"
+          test -f "${{ env.PDF_NAME }}"
+          ls -lh "${{ env.PDF_NAME }}"
 
       - name: Publish PDF to Latest Release
         uses: ncipollo/release-action@v1

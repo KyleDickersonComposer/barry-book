@@ -24,19 +24,24 @@ pdf:
 		-v "$(BOOK_ROOT):/workdir" -w /workdir \
 		$(DOCKER_LILYPOND_IMAGE) \
 		sh -lc '\
-			set -e; \
-			mkdir -p $(OUTPUT_DIR) && \
-			echo "Processing $(MAIN).lytex with lilypond-book..." && \
-			$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) -I /workdir -I /workdir/source -I /workdir/source/lilyjazz-styles $(MAIN).lytex && \
-			cp references.bib $(OUTPUT_DIR)/references.bib && \
-			echo "Building $(MAIN).pdf..." && \
-			$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex && \
-			cd $(OUTPUT_DIR) && $(BIBTEX) $(MAIN) && \
-			$(MAKEGLOSSARIES) $(MAIN) && \
-			cd /workdir && $(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex && \
-			$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex && \
-			find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null; \
-			find . -maxdepth 1 -name "*.tmp" -type f -delete 2>/dev/null; \
+			set -eu; \
+			cleanup() { \
+				find . -maxdepth 1 -name "tmp*" -type f -delete 2>/dev/null || true; \
+				find . -maxdepth 1 -name "*.tmp" -type f -delete 2>/dev/null || true; \
+			}; \
+			trap cleanup EXIT; \
+			mkdir -p $(OUTPUT_DIR); \
+			echo "Processing $(MAIN).lytex with lilypond-book..."; \
+			$(LILYPOND_BOOK) --pdf --output=$(OUTPUT_DIR) -I /workdir -I /workdir/source -I /workdir/source/lilyjazz-styles $(MAIN).lytex; \
+			cp references.bib $(OUTPUT_DIR)/references.bib; \
+			echo "Building $(MAIN).pdf..."; \
+			$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex; \
+			cd $(OUTPUT_DIR); \
+			$(BIBTEX) $(MAIN); \
+			$(MAKEGLOSSARIES) $(MAIN); \
+			cd /workdir; \
+			$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex; \
+			$(LATEX) $(LATEX_FLAGS) $(OUTPUT_DIR)/$(MAIN).tex; \
 			echo "Build complete! Output: $(OUTPUT_DIR)/$(MAIN).pdf"'
 
 require-pandoc:
