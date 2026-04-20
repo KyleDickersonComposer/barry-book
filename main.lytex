@@ -25,7 +25,6 @@
 
 \frontMatterChapter{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
-\incompleteContentNotice
 
 \section{Project Overview}
 \input{./chapters/frontmatter/introduction/project-overview.lytex}

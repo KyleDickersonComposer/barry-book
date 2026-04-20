@@ -1,1 +1,10 @@
-% Project Overview content to be written
+The Barry Book Project is a practical jazz textbook that intends to codify the Barry Harris system for the purposes of institutional adoption. Our aim is to set the new standard for music education resources, not only in terms of quality of the educational content, but also in terms of making educational resources affordable for everyone. 
+
+The core principles of the project:
+\begin{enumerate}
+\item This work will always be available free of charge, and will always be permissively licensed.
+\item This work is collaborative by nature. Members of the Barry Book community make contributions to the project on GitHub.
+\item This work uses \emph{best in class} document preparation and musical engraving software.
+\end{enumerate}
+
+The content of this textbook is designed serve music students at any level of ability. The \emph{fundamentals} chapters will be especially useful for students at the beginning of their musical journey. For best results, work through this text with a knowledgable teacher in private lessons.
