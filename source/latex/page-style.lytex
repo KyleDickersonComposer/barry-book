@@ -77,7 +77,7 @@
   \renewcommand*{\glsgroupheading}[1]{}%
   \renewcommand*{\glossentry}[2]{%
     \noindent\hangindent=1.25em\hangafter=1\relax
-    {\bfseries ##1} - \glossentrydesc{##1}\par
+    {\bfseries \glsentryname{##1}} - \glossentrydesc{##1}\par
     \vspace{0.9em}%
   }%
   \renewcommand*{\subglossentry}[3]{%
