@@ -1,6 +1,6 @@
 \version "2.24.0"
 % One-page real-book charts (only consumers of this file): sizing lives here, not in .lytex.
-#(set-global-staff-size 19)
+#(set-global-staff-size 21)
 
 \include "lilyjazz-styles/jazzchords.ily"
 \include "lilyjazz-styles/lilyjazz.ily"
@@ -161,5 +161,6 @@ realBookTitle = \markup {
   \context {
     \ChordNames
     chordNameExceptions = #realBookChordNames
+    \override ChordName.font-size = #-1
   }
 }
