@@ -14,7 +14,7 @@
 
 \frontMatterChapter{Preface}
 \addcontentsline{toc}{chapter}{Preface}
-\incompleteContentNotice
+
 \input{./preface.lytex}
 
 \tableofcontents
@@ -25,14 +25,8 @@
 
 \frontMatterChapter{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
-
-\section{Project Overview}
 \input{./chapters/frontmatter/introduction/project-overview.lytex}
-
-\section{\BarryFull}
 \input{./chapters/frontmatter/introduction/barry-harris.lytex}
-
-\section{Practice or Theory?}
 \input{./chapters/frontmatter/introduction/practice-or-theory.lytex}
 
 \mainmatter
@@ -41,89 +35,78 @@
 
 \chapter{Music Fundamentals}
 \incompleteContentNotice
-\input{./chapters/foundations/music-fundamentals/intro.lytex}
+\input{./chapters/foundations/music-fundamentals/notation.lytex}
+\input{./chapters/foundations/music-fundamentals/intervals.lytex}
+\input{./chapters/foundations/music-fundamentals/rhythm-and-meter.lytex}
+\input{./chapters/foundations/music-fundamentals/tempo.lytex}
+\input{./chapters/foundations/music-fundamentals/chords.lytex}
+\input{./chapters/foundations/music-fundamentals/chord-symbols.lytex}
+\input{./chapters/foundations/music-fundamentals/melody-and-tunes.lytex}
+\input{./chapters/foundations/music-fundamentals/the-american-songbook.lytex}
+\input{./chapters/foundations/music-fundamentals/jazz-procedures.lytex}
+\input{./chapters/foundations/music-fundamentals/common-jazz-instruments.lytex}
+\input{./chapters/foundations/music-fundamentals/key-signatures-and-transposition.lytex}
+\input{./chapters/foundations/music-fundamentals/modulation-and-tonicization.lytex}
 
 \chapter{Functional Harmony}
 \incompleteContentNotice
-\input{./chapters/foundations/functional-harmony/intro.lytex}
+\input{./chapters/foundations/functional-harmony/functions-as-tendency.lytex}
+\input{./chapters/foundations/functional-harmony/tendency-toward-tonic-chords.lytex}
+\input{./chapters/foundations/functional-harmony/tendency-toward-dominant-chords.lytex}
+\input{./chapters/foundations/functional-harmony/the-tritone.lytex}
+\input{./chapters/foundations/functional-harmony/what-is-a-diminished-chord.lytex}
 
 \chapter{Movements}
 \incompleteContentNotice
-\input{./chapters/foundations/movements/intro.lytex}
+\input{./chapters/foundations/movements/common-movements.lytex}
+\input{./chapters/foundations/movements/movement-instead-of-progression.lytex}
 
 \chapter{Changes}
 \incompleteContentNotice
-\input{./chapters/foundations/changes/intro.lytex}
+\input{./chapters/foundations/changes/tunes-and-their-changes.lytex}
+\input{./chapters/foundations/changes/hank-jones.lytex}
+\input{./chapters/foundations/changes/simple-tunes-and-elaborate-changes.lytex}
+\input{./chapters/foundations/changes/tritone-and-diminished-paths.lytex}
+\input{./chapters/foundations/changes/melody-and-tonicization.lytex}
 
 \part{Linear Concepts}
 
 \chapter{Scale Maps}
 \incompleteContentNotice
-\input{./chapters/linear-concepts/scale-maps/intro.lytex}
+\input{./chapters/linear-concepts/scale-maps/motivating-scale-maps.lytex}
+\input{./chapters/linear-concepts/scale-maps/common-harmonic-structures.lytex}
+\input{./chapters/linear-concepts/scale-maps/tonicization.lytex}
+\input{./chapters/linear-concepts/scale-maps/examples.lytex}
 
 \chapter{All the Little Things}
 \incompleteContentNotice
-\input{./chapters/linear-concepts/all-the-little-things/intro.lytex}
-
-\section{Half Step Rules}
+\input{./chapters/linear-concepts/all-the-little-things/little-things.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/on-the-beat.lytex}
+\input{./chapters/linear-concepts/all-the-little-things/one-thing-at-a-time.lytex}
 \input{./chapters/linear-concepts/all-the-little-things/half-step-rules.lytex}
-
-\section{Thirds}
 \input{./chapters/linear-concepts/all-the-little-things/thirds.lytex}
-
-\section{The Chord}
 \input{./chapters/linear-concepts/all-the-little-things/the-chord.lytex}
-
-\section{Half Step Below the Chord}
 \input{./chapters/linear-concepts/all-the-little-things/half-step-below-chord.lytex}
-
-\section{The Pivot}
 \input{./chapters/linear-concepts/all-the-little-things/pivot.lytex}
-
-\section{Important Arpeggio}
 \input{./chapters/linear-concepts/all-the-little-things/important-arpeggio.lytex}
-
-\section{Surrounding the Notes}
 \input{./chapters/linear-concepts/all-the-little-things/surrounding-notes.lytex}
-
-\section{\Barry's Chromatic Scale}
 \input{./chapters/linear-concepts/all-the-little-things/barrys-chromatic-scale.lytex}
 
 \chapter{A Rhythmic Language}
 \incompleteContentNotice
-\section{Jazz Syncopation}
 \input{./chapters/linear-concepts/a-rhythmic-language/jazz-syncopation.lytex}
-
-\section{Swing Feel}
 \input{./chapters/linear-concepts/a-rhythmic-language/swing-feel.lytex}
-
-\section{Unaccented Appoggiatura}
 \input{./chapters/linear-concepts/a-rhythmic-language/unaccented-appoggiatura.lytex}
-
-\section{Not a Triplet Feel}
 \input{./chapters/linear-concepts/a-rhythmic-language/not-a-triplet-feel.lytex}
-
-\section{Horn Articulation}
 \input{./chapters/linear-concepts/a-rhythmic-language/horn-articulation.lytex}
-
-\section{Articulations}
 \input{./chapters/linear-concepts/a-rhythmic-language/articulations.lytex}
-
-\section{Classical and Jazz Interpretations}
 \input{./chapters/linear-concepts/a-rhythmic-language/classical-and-jazz-interpretations.lytex}
-
-\section{Rhythm Games}
 \input{./chapters/linear-concepts/a-rhythmic-language/rhythm-games.lytex}
 
 \chapter{Spicing Up the Dominant}
 \incompleteContentNotice
-\section{Dominant Chord Variations}
 \input{./chapters/linear-concepts/spicing-up-the-dominant/dominant-chord-variations.lytex}
-
-\section{Tritone Substitutions}
 \input{./chapters/linear-concepts/spicing-up-the-dominant/tritone-substitutions.lytex}
-
-\section{Advanced Dominant Techniques}
 \input{./chapters/linear-concepts/spicing-up-the-dominant/advanced-dominant-techniques.lytex}
 
 \chapter{How to Practice Linear Improvization}
@@ -134,251 +117,152 @@
 
 \chapter{Classical Harmony}
 \incompleteContentNotice
-\input{./chapters/harmonic-concepts/classical-harmony/intro.lytex}
-
-\section{Appoggiatura and Appoggiatura Chords}
+\input{./chapters/harmonic-concepts/classical-harmony/what-does-classical-mean.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/thoroughbass.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/note-names-and-intervals.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/dissonance.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/figures-and-figured-bass.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/cadences.lytex}
+\input{./chapters/harmonic-concepts/classical-harmony/tonicization.lytex}
 \input{./chapters/harmonic-concepts/classical-harmony/appoggiatura-and-appoggiatura-chords.lytex}
 
 \chapter{The Missing Link}
 \incompleteContentNotice
-\input{./chapters/harmonic-concepts/the-missing-link/intro.lytex}
+\input{./chapters/harmonic-concepts/the-missing-link/hugo-wolf.lytex}
+\input{./chapters/harmonic-concepts/the-missing-link/the-american-songbook.lytex}
+\input{./chapters/harmonic-concepts/the-missing-link/connective-tissue.lytex}
 
 \chapter{Borrowing}
 \incompleteContentNotice
-\input{./chapters/harmonic-concepts/borrowing/intro.lytex}
+\input{./chapters/harmonic-concepts/borrowing/borrowing-as-elaboration.lytex}
+\input{./chapters/harmonic-concepts/borrowing/borrowing-and-appoggiatura.lytex}
+\input{./chapters/harmonic-concepts/borrowing/the-off-chord.lytex}
 
 \chapter{Musical Genesis}
 \incompleteContentNotice
-\input{./chapters/harmonic-concepts/musical-genesis/intro.lytex}
+\input{./chapters/harmonic-concepts/musical-genesis/genesis-as-frame.lytex}
+\input{./chapters/harmonic-concepts/musical-genesis/diminished-genealogy.lytex}
 
 \chapter{How to Practice Comping}
 \incompleteContentNotice
-\input{./chapters/harmonic-concepts/how-to-practice-comping/intro.lytex}
+\input{./chapters/harmonic-concepts/how-to-practice-comping/one-concept-at-a-time.lytex}
+\input{./chapters/harmonic-concepts/how-to-practice-comping/typical-comping-rhythms.lytex}
+\input{./chapters/harmonic-concepts/how-to-practice-comping/connecting-the-changes.lytex}
+\input{./chapters/harmonic-concepts/how-to-practice-comping/composing-a-comping-solo.lytex}
+\input{./chapters/harmonic-concepts/how-to-practice-comping/models-before-tunes.lytex}
 
 \part{Applications}
 
 \chapter{Blues}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/blues/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/blues/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/blues/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/blues/comping.lytex}
 
 \chapter{Rhythm}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/rhythm/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/rhythm/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/rhythm/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/rhythm/comping.lytex}
 
 \chapter{Autumn Leaves}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/autumn-leaves/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/autumn-leaves/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/autumn-leaves/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/autumn-leaves/comping.lytex}
 
 \chapter{All of Me}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/all-of-me/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/all-of-me/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/all-of-me/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/all-of-me/comping.lytex}
 
 \chapter{How High the Moon}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/how-high-the-moon/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/how-high-the-moon/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/how-high-the-moon/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/how-high-the-moon/comping.lytex}
 
 \chapter{But Not For Me}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/but-not-for-me/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/but-not-for-me/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/but-not-for-me/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/but-not-for-me/comping.lytex}
 
 \chapter{What Is This Thing Called Love?}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/what-is-this-thing/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/what-is-this-thing/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/what-is-this-thing/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/what-is-this-thing/comping.lytex}
 
 \chapter{Love For Sale}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/love-for-sale/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/love-for-sale/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/love-for-sale/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/love-for-sale/comping.lytex}
 
 \chapter{Softly, As in a Morning Sunrise}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/softly-as-in-a-morning-sunrise/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/softly-as-in-a-morning-sunrise/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/softly-as-in-a-morning-sunrise/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/softly-as-in-a-morning-sunrise/comping.lytex}
 
 \chapter{I Can't Give You Anything But Love}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/i-cant-give-you/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/i-cant-give-you/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/i-cant-give-you/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/i-cant-give-you/comping.lytex}
 
 \chapter{A Night In Tunisia}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/a-night-in-tunisia/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/a-night-in-tunisia/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/a-night-in-tunisia/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/a-night-in-tunisia/comping.lytex}
 
 \chapter{On Green Dolphin Street}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/on-green-dolphin-street/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/on-green-dolphin-street/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/on-green-dolphin-street/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/on-green-dolphin-street/comping.lytex}
 
 \chapter{Stella By Starlight}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/stella-by-starlight/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/stella-by-starlight/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/stella-by-starlight/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/stella-by-starlight/comping.lytex}
 
 \chapter{All the Things You Are}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/all-the-things/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/all-the-things/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/all-the-things/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/all-the-things/comping.lytex}
 
 \chapter{Cherokee}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/cherokee/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/cherokee/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/cherokee/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/cherokee/comping.lytex}
 
 \chapter{'Round Midnight}
 \incompleteContentNotice
-\section{Tune with Changes}
 \input{./chapters/applications/round-midnight/changes.lytex}
-
-\section{Scale Map}
 \input{./chapters/applications/round-midnight/scale-map.lytex}
-
-\section{Exemplar Solo}
 \input{./chapters/applications/round-midnight/solo.lytex}
-
-\section{Exemplar Comping}
 \input{./chapters/applications/round-midnight/comping.lytex}
 
 \backMatterChapter{Glossary}

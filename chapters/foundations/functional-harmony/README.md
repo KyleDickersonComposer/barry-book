@@ -5,4 +5,8 @@ This introduction to functional harmony will be quite different because it has n
 
 ## Source Files
 
-- Chapter body: `intro.lytex`
+- Functions as Tendency: `functions-as-tendency.lytex`
+- Tendency Toward Tonic Chords: `tendency-toward-tonic-chords.lytex`
+- Tendency Toward Dominant Chords: `tendency-toward-dominant-chords.lytex`
+- The Tritone: `the-tritone.lytex`
+- What Is a Diminished Chord?: `what-is-a-diminished-chord.lytex`

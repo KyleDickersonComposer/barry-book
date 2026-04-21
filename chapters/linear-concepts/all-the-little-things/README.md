@@ -9,7 +9,9 @@ We will talk about how its easier to focus on one thing at a time while learning
 
 ## Source Files
 
-- Chapter body: `intro.lytex`
+- Little Things: `little-things.lytex`
+- On the Beat: `on-the-beat.lytex`
+- One Thing at a Time: `one-thing-at-a-time.lytex`
 - Half Step Rules: `half-step-rules.lytex`
 - Thirds: `thirds.lytex`
 - The Chord: `the-chord.lytex`

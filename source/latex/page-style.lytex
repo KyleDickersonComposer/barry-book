@@ -66,6 +66,27 @@
   \addvspace{1.1em}%
 }
 
+\newenvironment{bookStyledBulletList}[1]{%
+  \par\addvspace{1.1em}%
+  \begingroup
+  \setlength{\parskip}{0pt}%
+  \noindent{\color{barryBlack}\bfseries #1}\par\nobreak
+  \vspace{0.825em}%
+  \begin{list}{{\color{barryBlack}\raisebox{0.15ex}{\footnotesize$\bullet$}}}{%
+    \setlength{\leftmargin}{1.85em}%
+    \setlength{\labelwidth}{1.1em}%
+    \setlength{\labelsep}{0.45em}%
+    \setlength{\itemsep}{0.55em}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+  }%
+}{%
+  \end{list}%
+  \endgroup
+  \addvspace{1.1em}%
+}
+
 \newglossarystyle{bookdefinition}{%
   \setglossarystyle{list}%
   \renewenvironment{theglossary}{%

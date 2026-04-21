@@ -27,5 +27,11 @@ The rest of the presentation will be something like...
 
 ### Source Files
 
-- Chapter body: `intro.lytex`
+- What Does Classical Mean?: `what-does-classical-mean.lytex`
+- Thoroughbass: `thoroughbass.lytex`
+- Note Names and Intervals: `note-names-and-intervals.lytex`
+- Dissonance: `dissonance.lytex`
+- Figures and Figured Bass: `figures-and-figured-bass.lytex`
+- Cadences: `cadences.lytex`
+- Tonicization: `tonicization.lytex`
 - Appoggiatura and Appoggiatura Chords: `appoggiatura-and-appoggiatura-chords.lytex`

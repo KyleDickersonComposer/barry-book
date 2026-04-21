@@ -5,4 +5,5 @@ My plan for this chapter is quite fun. It will like take on the pretense that it
 
 ## Source Files
 
-- Chapter body: `intro.lytex`
+- Genesis as Frame: `genesis-as-frame.lytex`
+- Diminished Genealogy: `diminished-genealogy.lytex`

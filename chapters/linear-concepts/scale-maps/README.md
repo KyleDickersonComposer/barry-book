@@ -10,4 +10,7 @@ This chapter will surely be example heavy and less dense.
 
 ## Source Files
 
-- Chapter body: `intro.lytex`
+- Motivating Scale Maps: `motivating-scale-maps.lytex`
+- Common Harmonic Structures: `common-harmonic-structures.lytex`
+- Tonicization: `tonicization.lytex`
+- Examples: `examples.lytex`
