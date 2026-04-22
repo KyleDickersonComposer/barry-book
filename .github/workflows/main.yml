@@ -29,7 +29,12 @@ jobs:
           # Copy the built PDF to the timestamped filename
           cp bin/main.pdf "$PDF_NAME"
 
+          # Source bundle: exact tracked tree for this commit (zip, not the working tree — avoids stale bin/)
+          SOURCE_ZIP="${PDF_BASE}-source.zip"
+          git archive --format=zip -o "$SOURCE_ZIP" HEAD
+
           echo "PDF_NAME=$PDF_NAME" >> $GITHUB_ENV
+          echo "SOURCE_ZIP_NAME=$SOURCE_ZIP" >> $GITHUB_ENV
 
       - name: Clean up build artifacts
         run: |
@@ -38,19 +43,20 @@ jobs:
           # List what we're publishing
           echo "Files to publish:"
           test -f "${{ env.PDF_NAME }}"
-          ls -lh "${{ env.PDF_NAME }}"
+          test -f "${{ env.SOURCE_ZIP_NAME }}"
+          ls -lh "${{ env.PDF_NAME }}" "${{ env.SOURCE_ZIP_NAME }}"
 
       - name: Publish PDF to Latest Release
         uses: ncipollo/release-action@v1
         with:
           tag: latest
           name: "Latest Barry Book PDF"
-          artifacts: "${{ env.PDF_NAME }}"
+          artifacts: "${{ env.PDF_NAME }},${{ env.SOURCE_ZIP_NAME }}"
           allowUpdates: true
           removeArtifacts: true
           replacesArtifacts: true
           draft: false
           prerelease: false
           makeLatest: true
-          body: "Latest compiled Barry Book PDF"
+          body: "Latest compiled Barry Book PDF plus a zip of tracked source at the same commit (from git archive)."
           token: ${{ secrets.GITHUB_TOKEN }}

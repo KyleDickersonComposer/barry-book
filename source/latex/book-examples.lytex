@@ -13,6 +13,8 @@
 \newlength{\bookExampleInnerSep}
 % Heading-to-music spacing = base gap plus full outer block separation.
 \setlength{\bookExampleInnerSep}{1.35em}
+\newlength{\bookExampleBottomSep}
+\setlength{\bookExampleBottomSep}{2\bookExampleOuterSep}
 \newcounter{bookExample}
 \newcommand{\bookExampleLoEentry}{}
 \newcommand{\bookExampleLoEHref}{}
@@ -26,7 +28,7 @@
   \nobreak\addvspace{\bookExampleInnerSep}%
 }
 \newcommand{\finishBookExample}{%
-  \par\addvspace{\bookExampleOuterSep}%
+  \par\addvspace{\bookExampleBottomSep}%
   % Write LoE entry after the body so the page number is correct, but keep the
   % hyperlink target at the heading captured in \beginBookExample.
   \begingroup
