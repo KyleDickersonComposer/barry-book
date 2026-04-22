@@ -11,6 +11,8 @@
 \definecolor{barryGray}{HTML}{5F5F5F}
 
 \onehalfspacing
+% Avoid \flushbottom stretching short chapter-opening pages (twoside book).
+\raggedbottom
 
 \setlength{\parskip}{0.65em}
 \setlength{\parindent}{0pt}

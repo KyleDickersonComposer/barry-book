@@ -1,8 +1,8 @@
 \usepackage[
     top=2cm,
     bottom=1cm,
-    left=3.5cm,
-    right=3.5cm,
+    inner=3.5cm,
+    outer=3.5cm,
     paperwidth=8.5in,
     paperheight=11in,
     heightrounded,
