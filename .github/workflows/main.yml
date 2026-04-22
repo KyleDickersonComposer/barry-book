@@ -59,19 +59,14 @@ jobs:
           git tag -f "$TAG" "$TARGET"
           git push --force origin "refs/tags/$TAG"
 
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release edit "$TAG" --target "$TARGET" --title "$TITLE" --notes "$NOTES"
-            asset_ids=()
-            mapfile -t asset_ids < <(gh api "repos/${GH_REPO}/releases/tags/${TAG}" --jq '.assets[].id')
-            for id in "${asset_ids[@]}"; do
-              [[ -n "$id" ]] || continue
-              gh api --method DELETE "repos/${GH_REPO}/releases/assets/${id}"
-            done
-            gh release upload "$TAG" "$PDF_NAME"
-          else
-            gh release create "$TAG" "$PDF_NAME" \
-              --target "$TARGET" \
-              --title "$TITLE" \
-              --notes "$NOTES" \
-              --latest
-          fi
+          # GitHub keeps the original release `published_at` when editing in place, so
+          # the UI shows "released … ago" from the first create even after new PDFs.
+          # Delete the release object only (keep the git tag), then recreate so the
+          # timestamp matches the new build.
+          gh release delete "$TAG" --yes 2>/dev/null || true
+
+          gh release create "$TAG" "$PDF_NAME" \
+            --target "$TARGET" \
+            --title "$TITLE" \
+            --notes "$NOTES" \
+            --latest
