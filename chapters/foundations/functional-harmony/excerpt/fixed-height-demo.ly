@@ -1,4 +1,3 @@
-\begin{lilypond}
 \include "book-example.ily"
 
 music = \relative c' {
@@ -24,4 +23,3 @@ music = \relative c' {
     >>
   >>
 }
-\end{lilypond}

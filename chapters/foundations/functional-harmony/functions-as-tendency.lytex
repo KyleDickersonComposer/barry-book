@@ -2,6 +2,6 @@
 
 \beginBookExample{Fixed-height excerpt primitive}
 \beginFixedHeightMusicExample{0.16\textheight}
-\input{./chapters/foundations/functional-harmony/excerpt/fixed-height-demo.lytex}
+\lilypondfile{./chapters/foundations/functional-harmony/excerpt/fixed-height-demo.ly}
 \finishFixedHeightMusicExample
 \finishBookExample
