@@ -1,1 +1,7 @@
 \section{Functions as Tendency}
+
+\beginBookExample{Fixed-height excerpt primitive}
+\beginFixedHeightMusicExample{0.16\textheight}
+\input{./chapters/foundations/functional-harmony/excerpt/fixed-height-demo.lytex}
+\finishFixedHeightMusicExample
+\finishBookExample

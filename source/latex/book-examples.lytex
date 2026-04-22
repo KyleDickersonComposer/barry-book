@@ -7,22 +7,34 @@
 }
 \makeatother
 
+\makeatletter
+\newlength{\bookExampleOuterSep}
+\setlength{\bookExampleOuterSep}{1em}
+\newlength{\bookExampleInnerSep}
+% Heading-to-music spacing = base gap plus full outer block separation.
+\setlength{\bookExampleInnerSep}{1.35em}
 \newcounter{bookExample}
 \newcommand{\bookExampleLoEentry}{}
+\newcommand{\bookExampleLoEHref}{}
 \newcommand{\beginBookExample}[1]{%
   \refstepcounter{bookExample}%
+  \phantomsection
+  \xdef\bookExampleLoEHref{\@currentHref}%
   \def\bookExampleLoEentry{Example \thebookExample. #1}%
-  \par\addvspace{1em}%
+  \par\addvspace{\bookExampleOuterSep}%
   \noindent{\bfseries Example~\thebookExample:} #1\par
-  \nobreak\addvspace{0.35em}%
+  \nobreak\addvspace{\bookExampleInnerSep}%
 }
 \newcommand{\finishBookExample}{%
-  \par\addvspace{1em}%
-  % List-of-examples page must be written after the body is laid out; writing at
-  % \beginBookExample captured \thepage before breaks (e.g. LilyPond height).
-  \phantomsection
-  \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
+  \par\addvspace{\bookExampleOuterSep}%
+  % Write LoE entry after the body so the page number is correct, but keep the
+  % hyperlink target at the heading captured in \beginBookExample.
+  \begingroup
+    \edef\@currentHref{\bookExampleLoEHref}%
+    \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
+  \endgroup
 }
+\makeatother
 
 \newsavebox{\bookInlineMusicBox}
 \newcommand{\bookInlineMusicAlign}{vc}
@@ -41,17 +53,56 @@
   \fi
 }
 \newcommand{\finishBookInlineMusic}{\endgroup}
+\newcommand{\bookMusicExampleCenterGraphics}{%
+  \let\bookExampleIncludeGraphics\includegraphics
+  \renewcommand{\includegraphics}[2][]{%
+    \par\noindent\makebox[\linewidth][c]{\bookExampleIncludeGraphics[##1]{##2}}%
+  }%
+}
 \newcommand{\beginBookExampleMusic}{%
   \par
   \begingroup
-  \let\bookExampleIncludeGraphics\includegraphics
-  \renewcommand{\includegraphics}[2][]{%
-    \par\noindent\makebox[\textwidth][c]{\bookExampleIncludeGraphics[##1]{##2}}%
-  }%
+  \bookMusicExampleCenterGraphics
   \def\betweenLilyPondSystem##1{\par\vspace{6mm}}%
 }
 \newcommand{\finishBookExampleMusic}{\par\endgroup}
 \newcommand{\betweenLilyPondSystem}[1]{\vspace{6mm}\linebreak}
+% Tall in-flow music: fixed-height wrapper plus stretchy glue between systems.
+% Usage: \beginStretchHeightMusicExample{0.42\textheight} ... \finishStretchHeightMusicExample
+\newcommand{\beginStretchHeightMusicExample}[1]{%
+  \par
+  \begingroup
+  \bookMusicExampleCenterGraphics
+  \setlength{\parskip}{0pt}%
+  \begin{minipage}[t][#1][s]{\linewidth}%
+  \def\betweenLilyPondSystem##1{\par\vfill}%
+}
+\newcommand{\finishStretchHeightMusicExample}{%
+  \par\vfill
+  \end{minipage}%
+  \endgroup
+  \par
+}
+\newcommand{\beginFixedHeightMusicExample}[1]{\beginStretchHeightMusicExample{#1}}
+\newcommand{\finishFixedHeightMusicExample}{\finishStretchHeightMusicExample}
+\newcommand{\beginMultiPageStretchMusicExample}[2]{%
+  \begingroup
+  \bookMusicExampleCenterGraphics
+  \def\betweenLilyPondSystem##1{%
+    \par
+    \ifnum##1=#1
+      \clearpage
+      \vspace*{#2}%
+      \noindent
+    \else
+      \vfill
+    \fi
+  }%
+}
+\newcommand{\finishMultiPageStretchMusicExample}{%
+  \par
+  \endgroup
+}
 \newcommand{\realBookChartGeometry}{%
   \clearpage
   \pagestyle{empty}

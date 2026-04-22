@@ -1,0 +1,27 @@
+\begin{lilypond}
+\include "book-example.ily"
+
+music = \relative c' {
+  \key c \major
+  \time 4/4
+  c4 d e8 f g a |
+  g8 r8 e2 f4 | 
+  d4 e f g |
+  a2 f2 \break |
+  e4 f g a |
+  b2 g |
+  a4 g f e |
+  d1 \break \bar "||" |
+}
+
+\score {
+  <<
+    \new StaffGroup <<
+      \new ChordNames \transpose c f \chordmode {
+        c1:maj7 d1:m7 g1:7 c1:maj7
+      }
+      \new Staff \transpose c f \music
+    >>
+  >>
+}
+\end{lilypond}
