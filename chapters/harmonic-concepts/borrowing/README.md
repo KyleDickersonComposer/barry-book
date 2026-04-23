@@ -5,6 +5,6 @@ This is a tool for elaborating harmonies. It is analogous to the appoggiatura an
 
 ## Source Files
 
-- Borrowing as Elaboration: `borrowing-as-elaboration.lytex`
-- Borrowing and Appoggiatura: `borrowing-and-appoggiatura.lytex`
-- The Off Chord: `the-off-chord.lytex`
+- Borrowing as Elaboration: `borrowing-as-elaboration.tex`
+- Borrowing and Appoggiatura: `borrowing-and-appoggiatura.tex`
+- The Off Chord: `the-off-chord.tex`

@@ -5,8 +5,8 @@ Comping, like anything, is best learned one concept at a time. There are many wa
 
 ## Source Files
 
-- One Concept at a Time: `one-concept-at-a-time.lytex`
-- Typical Comping Rhythms: `typical-comping-rhythms.lytex`
-- Connecting the Changes: `connecting-the-changes.lytex`
-- Composing a Comping Solo: `composing-a-comping-solo.lytex`
-- Models Before Tunes: `models-before-tunes.lytex`
+- One Concept at a Time: `one-concept-at-a-time.tex`
+- Typical Comping Rhythms: `typical-comping-rhythms.tex`
+- Connecting the Changes: `connecting-the-changes.tex`
+- Composing a Comping Solo: `composing-a-comping-solo.tex`
+- Models Before Tunes: `models-before-tunes.tex`

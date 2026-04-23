@@ -43,7 +43,7 @@ echo "================ lilypond-book (all snippets, loglevel=${LILYBOOK_LOGLEVEL
 	--process="lilypond ${LILYPOND_FLAGS}" \
 	--output="${OUTPUT_DIR}" \
 	-I /workdir -I /workdir/source -I /workdir/source/lilyjazz-styles \
-	"${MAIN}.lytex" 2>&1 | tee "${LOG_DIR}/lilypond-book.log"
+	"${MAIN}.tex" 2>&1 | tee "${LOG_DIR}/lilypond-book.log"
 
 if [[ "${LILY_SNIPPET_STRICT}" == "1" ]]; then
 	echo ""

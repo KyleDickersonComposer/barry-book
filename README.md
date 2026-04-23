@@ -20,7 +20,7 @@ The Barry Book is built collaboratively. Whether you're fixing a typo, correctin
 
 **Text Writing**: Add exercises, explanations, or educational content based on your understanding of Barry Harris's methods. This could include new exercises, scale maps, harmonic analysis, or pedagogical content.
 
-**LilyPond Contributions**: Work with the music notation files (`.lytex` files) to add or correct musical notation, fix chord symbols, adjust formatting, or add new tunes.
+**LilyPond Contributions**: Work with the music notation files (`.tex` files) to add or correct musical notation, fix chord symbols, adjust formatting, or add new tunes.
 
 **Note**: Some chapters or sections may currently be placeholders or incomplete. We're actively seeking contributions to fill these empty spots. If you see a chapter marked as "Content to be written" or notice an incomplete section, consider contributing content based on your understanding of Barry Harris's methods.
 
@@ -94,7 +94,7 @@ The built PDF is also saved at `bin/main.pdf`.
 The build process:
 
 - Starts the Docker build image
-- Processes `main.lytex` and included `.lytex` files with `lilypond-book`
+- Processes `main.tex` and included `.tex` files with `lilypond-book`
 - Copies `references.bib` into the build directory
 - Runs `pdflatex`, `biber`, `makeglossaries`, and final LaTeX passes
 - Generates `bin/main.pdf`
@@ -115,7 +115,7 @@ This removes temporary files, build artifacts, and the `bin/` directory.
 
 ## Project Structure
 
-- `main.lytex` - Main LaTeX document
+- `main.tex` - Main LaTeX document
 - `chapters/` - Chapter source files grouped by book part
 - `chapters/frontmatter/` - Introduction source
 - `chapters/foundations/` - Foundations chapters

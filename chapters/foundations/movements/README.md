@@ -7,5 +7,5 @@ We are using the term movement instead of chord progression or chord succession 
 
 ## Source Files
 
-- Common Movements: `common-movements.lytex`
-- Movement Instead of Progression: `movement-instead-of-progression.lytex`
+- Common Movements: `common-movements.tex`
+- Movement Instead of Progression: `movement-instead-of-progression.tex`

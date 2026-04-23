@@ -5,8 +5,8 @@ This will discuss changes as the fundamental chords that go with the tune. And w
 
 ## Source Files
 
-- Tunes and Their Changes: `tunes-and-their-changes.lytex`
-- Hank Jones: `hank-jones.lytex`
-- Simple Tunes and Elaborate Changes: `simple-tunes-and-elaborate-changes.lytex`
-- Tritone and Diminished Paths: `tritone-and-diminished-paths.lytex`
-- Melody and Tonicization: `melody-and-tonicization.lytex`
+- Tunes and Their Changes: `tunes-and-their-changes.tex`
+- Hank Jones: `hank-jones.tex`
+- Simple Tunes and Elaborate Changes: `simple-tunes-and-elaborate-changes.tex`
+- Tritone and Diminished Paths: `tritone-and-diminished-paths.tex`
+- Melody and Tonicization: `melody-and-tonicization.tex`

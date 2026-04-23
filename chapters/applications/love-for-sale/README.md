@@ -5,7 +5,7 @@ Outline to be written.
 
 ## Source Files
 
-- Tune with Changes: `changes.lytex`
-- Scale Map: `scale-map.lytex`
-- Exemplar Solo: `solo.lytex`
-- Exemplar Comping: `comping.lytex`
+- Tune with Changes: `changes.tex`
+- Scale Map: `scale-map.tex`
+- Exemplar Solo: `solo.tex`
+- Exemplar Comping: `comping.tex`

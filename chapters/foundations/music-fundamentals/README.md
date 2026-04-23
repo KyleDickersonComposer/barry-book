@@ -5,17 +5,17 @@ This chapter is the grab bag for everything you need to know for the rest of the
 
 ## Source Files
 
-- Example material: `examples.lytex`
+- Example material: `examples.tex`
 - Inline music snippets: `snippets/`
-- Notation: `notation.lytex`
-- Intervals: `intervals.lytex`
-- Rhythm and Meter: `rhythm-and-meter.lytex`
-- Tempo: `tempo.lytex`
-- Chords: `chords.lytex`
-- Chord Symbols: `chord-symbols.lytex`
-- Melody and Tunes: `melody-and-tunes.lytex`
-- The American Songbook: `the-american-songbook.lytex`
-- Jazz Procedures: `jazz-procedures.lytex`
-- Common Jazz Instruments: `common-jazz-instruments.lytex`
-- Key Signatures and Transposition: `key-signatures-and-transposition.lytex`
-- Modulation and Tonicization: `modulation-and-tonicization.lytex`
+- Notation: `notation.tex`
+- Intervals: `intervals.tex`
+- Rhythm and Meter: `rhythm-and-meter.tex`
+- Tempo: `tempo.tex`
+- Chords: `chords.tex`
+- Chord Symbols: `chord-symbols.tex`
+- Melody and Tunes: `melody-and-tunes.tex`
+- The American Songbook: `the-american-songbook.tex`
+- Jazz Procedures: `jazz-procedures.tex`
+- Common Jazz Instruments: `common-jazz-instruments.tex`
+- Key Signatures and Transposition: `key-signatures-and-transposition.tex`
+- Modulation and Tonicization: `modulation-and-tonicization.tex`

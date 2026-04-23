@@ -5,6 +5,6 @@ This will cover the various approaches for adding chromatic color to chords who 
 
 ## Source Files
 
-- Dominant Chord Variations: `dominant-chord-variations.lytex`
-- Tritone Substitutions: `tritone-substitutions.lytex`
-- Advanced Dominant Techniques: `advanced-dominant-techniques.lytex`
+- Dominant Chord Variations: `dominant-chord-variations.tex`
+- Tritone Substitutions: `tritone-substitutions.tex`
+- Advanced Dominant Techniques: `advanced-dominant-techniques.tex`

@@ -71,14 +71,20 @@ ctx>0 { print NR ":" $0; ctx--; }' "$file"
 						*) sg="$ot" ;;
 					esac
 					case "$sg" in
-						*.tex) source_guess="${sg%.tex}.lytex" ;;
+						"${MAIN}.tex")
+							# Expanded manuscript under ${OUTPUT_DIR}/ has the same basename as the
+							# lilypond-book *input* at the repository root.
+							source_guess="${MAIN}.tex (repo root input; ${OUTPUT_DIR}/${MAIN}.tex is expanded)" ;;
+						*.tex) source_guess="$sg" ;;
 						*) source_guess="$sg" ;;
 					esac
 					echo "Likely source file: $source_guess"
 				else
-					echo "Likely source file: (no ${ly_base}-systems.tex in ${OUTPUT_DIR}; see .lytex lines below)"
-					echo "Recent .lytex paths in lilypond-book.log:"
-					grep -E -o '[A-Za-z0-9_./-]+\.lytex' "$file" 2>/dev/null | tail -n 12 | while read -r p; do echo "  $p"; done || true
+					echo "Likely source file: (no ${ly_base}-systems.tex in ${OUTPUT_DIR}; see .tex lines below)"
+					echo "Recent chapter/source .tex paths in lilypond-book.log:"
+					grep -E -o '[A-Za-z0-9_./-]+\.tex' "$file" 2>/dev/null |
+						grep -E '(^|/)(chapters/|frontmatter/|source/|main\.tex|preface\.tex)' |
+						tail -n 12 | while read -r p; do echo "  $p"; done || true
 					note_line="$(
 						awk '
 							hit && !seen {
@@ -92,7 +98,7 @@ ctx>0 { print NR ":" $0; ctx--; }' "$file"
 					)"
 					if [[ -n "$note_line" ]]; then
 						source_hits="$(
-							grep -R -n -F "$note_line" chapters frontmatter source main.lytex preface.lytex 2>/dev/null | head -n 5
+							grep -R -n -F "$note_line" chapters frontmatter source main.tex preface.tex 2>/dev/null | head -n 5
 						)"
 						if [[ -n "$source_hits" ]]; then
 							echo "Source text matches:"

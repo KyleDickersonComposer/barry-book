@@ -5,4 +5,4 @@ Outline to be written.
 
 ## Source Files
 
-- Chapter body: `intro.lytex`
+- Chapter body: `intro.tex`

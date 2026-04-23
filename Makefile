@@ -59,7 +59,7 @@ check-ly:
 lily-check:
 	@$(MAKE) _lily_snippets LILYBOOK_LOGLEVEL=PROGRESS LILY_SNIPPET_STRICT=1
 
-# Verbose snippet run (maps generated files to .lytex in the log).
+# Verbose snippet run (maps generated files to .tex in the log).
 lily:
 	@$(MAKE) _lily_snippets LILYBOOK_LOGLEVEL=DEBUG
 

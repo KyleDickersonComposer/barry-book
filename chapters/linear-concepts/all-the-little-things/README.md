@@ -9,14 +9,14 @@ We will talk about how its easier to focus on one thing at a time while learning
 
 ## Source Files
 
-- Little Things: `little-things.lytex`
-- On the Beat: `on-the-beat.lytex`
-- One Thing at a Time: `one-thing-at-a-time.lytex`
-- Half Step Rules: `half-step-rules.lytex`
-- Thirds: `thirds.lytex`
-- The Chord: `the-chord.lytex`
-- Half Step Below the Chord: `half-step-below-chord.lytex`
-- The Pivot: `pivot.lytex`
-- Important Arpeggio: `important-arpeggio.lytex`
-- Surrounding the Notes: `surrounding-notes.lytex`
-- Barry's Chromatic Scale: `barrys-chromatic-scale.lytex`
+- Little Things: `little-things.tex`
+- On the Beat: `on-the-beat.tex`
+- One Thing at a Time: `one-thing-at-a-time.tex`
+- Half Step Rules: `half-step-rules.tex`
+- Thirds: `thirds.tex`
+- The Chord: `the-chord.tex`
+- Half Step Below the Chord: `half-step-below-chord.tex`
+- The Pivot: `pivot.tex`
+- Important Arpeggio: `important-arpeggio.tex`
+- Surrounding the Notes: `surrounding-notes.tex`
+- Barry's Chromatic Scale: `barrys-chromatic-scale.tex`

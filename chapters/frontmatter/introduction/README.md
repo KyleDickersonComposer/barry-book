@@ -2,6 +2,6 @@
 
 ## Source Files
 
-- Project Overview: `project-overview.lytex`
-- Barry Harris: `barry-harris.lytex`
-- Practice or Theory?: `practice-or-theory.lytex`
+- Project Overview: `project-overview.tex`
+- Barry Harris: `barry-harris.tex`
+- Practice or Theory?: `practice-or-theory.tex`

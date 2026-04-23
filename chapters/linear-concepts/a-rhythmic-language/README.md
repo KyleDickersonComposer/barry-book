@@ -5,11 +5,11 @@ This will talk about how to get the swing feel down. Also, shows how it comes fr
 
 ## Source Files
 
-- Jazz Syncopation: `jazz-syncopation.lytex`
-- Swing Feel: `swing-feel.lytex`
-- Unaccented Appoggiatura: `unaccented-appoggiatura.lytex`
-- Not a Triplet Feel: `not-a-triplet-feel.lytex`
-- Horn Articulation: `horn-articulation.lytex`
-- Articulations: `articulations.lytex`
-- Classical and Jazz Interpretations: `classical-and-jazz-interpretations.lytex`
-- Rhythm Games: `rhythm-games.lytex`
+- Jazz Syncopation: `jazz-syncopation.tex`
+- Swing Feel: `swing-feel.tex`
+- Unaccented Appoggiatura: `unaccented-appoggiatura.tex`
+- Not a Triplet Feel: `not-a-triplet-feel.tex`
+- Horn Articulation: `horn-articulation.tex`
+- Articulations: `articulations.tex`
+- Classical and Jazz Interpretations: `classical-and-jazz-interpretations.tex`
+- Rhythm Games: `rhythm-games.tex`

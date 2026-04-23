@@ -5,6 +5,6 @@ The idea with this chapter is that we will draw a connection between a composer 
 
 ## Source Files
 
-- Hugo Wolf: `hugo-wolf.lytex`
-- The American Songbook: `the-american-songbook.lytex`
-- Connective Tissue: `connective-tissue.lytex`
+- Hugo Wolf: `hugo-wolf.tex`
+- The American Songbook: `the-american-songbook.tex`
+- Connective Tissue: `connective-tissue.tex`

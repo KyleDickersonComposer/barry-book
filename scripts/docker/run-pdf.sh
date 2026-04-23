@@ -38,7 +38,7 @@ echo "================ lilypond-book (snippets) ================"
 	--process="lilypond ${LILYPOND_FLAGS}" \
 	--output="${OUTPUT_DIR}" \
 	-I /workdir -I /workdir/source -I /workdir/source/lilyjazz-styles \
-	"${MAIN}.lytex" 2>&1 | tee "${LOG_DIR}/lilypond-book.log"
+	"${MAIN}.tex" 2>&1 | tee "${LOG_DIR}/lilypond-book.log"
 
 echo "================ LaTeX / BibTeX / glossaries ================="
 cp references.bib "${OUTPUT_DIR}/references.bib"
