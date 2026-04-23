@@ -43,14 +43,11 @@ echo "================ lilypond-book (snippets) ================"
 echo "================ LaTeX / BibTeX / glossaries ================="
 cp references.bib "${OUTPUT_DIR}/references.bib"
 echo "Building ${MAIN}.pdf (pdflatex pass 1)..."
-# shellcheck disable=SC2086
-"${LATEX}" ${LATEX_FLAGS} "${OUTPUT_DIR}/${MAIN}.tex" >"${LOG_DIR}/pdflatex-pass1.log" 2>&1
+run_pdflatex_pass 1
 ( cd "${OUTPUT_DIR}" && "${BIBTEX}" "${MAIN}" ) >"/workdir/${LOG_DIR}/biber.log" 2>&1
 ( cd "${OUTPUT_DIR}" && "${MAKEGLOSSARIES}" "${MAIN}" ) >"/workdir/${LOG_DIR}/makeglossaries.log" 2>&1
 cd /workdir
-# shellcheck disable=SC2086
-"${LATEX}" ${LATEX_FLAGS} "${OUTPUT_DIR}/${MAIN}.tex" >"${LOG_DIR}/pdflatex-pass2.log" 2>&1
-# shellcheck disable=SC2086
-"${LATEX}" ${LATEX_FLAGS} "${OUTPUT_DIR}/${MAIN}.tex" >"${LOG_DIR}/pdflatex-pass3.log" 2>&1
+run_pdflatex_pass 2
+run_pdflatex_pass 3
 
 echo "Build complete! Output: ${OUTPUT_DIR}/${MAIN}.pdf"

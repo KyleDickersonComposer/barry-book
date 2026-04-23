@@ -36,7 +36,7 @@ summarize_failure() {
 		[[ -f "$file" ]] || continue
 		matches="$(
 			awk 'BEGIN{IGNORECASE=1; ctx=0}
-/warning:|^! |fatal error|error:|undefined control sequence|emergency stop|ERROR -|unrecognized option|non-zero exit status|syntax error|programming error|cannot find file|unexpected end|failed at:|returned non-zero|parse error|runaway argument/ {
+/warning:|^! |fatal error|error:|undefined control sequence|emergency stop|ERROR -|unrecognized option|non-zero exit status|syntax error|programming error|cannot find file|unexpected end|failed at:|returned non-zero|parse error|runaway argument|musicchord:|accepts only a fixed set of choices/ {
   print NR ":" $0; ctx=2; next
 }
 ctx>0 { print NR ":" $0; ctx--; }' "$file"

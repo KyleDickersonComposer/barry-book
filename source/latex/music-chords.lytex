@@ -1,296 +1,295 @@
-% =============================================================================
-% music-chords.lytex — chord symbols and harmonic-analysis helpers for prose.
-%
-%   [1] Accidentals before lilyglyphs clobbers \flat / \sharp / \natural
-%   [2] Roman numerals (\RomNum*, \RomViiO)
-%   [3] \MusicChord user API (comment block only)
-%   [4] pgfkeys: /MusicChord key family → macros \MusicChord@...
-%   [5] 2e: build one alteration token (must freeze degree; see comment)
-%   [6] 2e: root/bass letter accidentals (raised, full-size)
-%   [7] expl3: sort alters, print superscript (...); optional slash bass
-%   [8] 2e: thin wrappers calling expl3 by \csname...\endcsname
-%   [9] 2e: quality typesetting (maj/min/dom/aug + seven)
-%  [10] \MusicChord{ key=value, ... } entry point
-% =============================================================================
+% music-chords.lytex — chord symbols (\MusicChord) and Roman numerals.
+% \MusicChord uses l3keys + expl3 + l3msg (short summary + fix hints in the log).
+% Keys in \keys_define:nn must be comma-separated (LaTeX3 keyval_parse).
+% Inside \__musicchord_keys_define:, use ##1 (not #1) in .meta:n and .choices:nn bodies.
 
-% -----------------------------------------------------------------------------
-% [1] lilyglyphs redefines \flat, \sharp, \natural (often toward text glyphs).
-% Keep the math-mode accidentals under other names for chord typography.
-% -----------------------------------------------------------------------------
 \let\savedflat\flat
 \let\savedsharp\sharp
 \let\savednatural\natural
-
 \usepackage{lilyglyphs}
 
-
-% -----------------------------------------------------------------------------
-% [2] Roman numerals (harmonic function in math mode).
-% -----------------------------------------------------------------------------
 \providecommand{\RomNum}[1]{\ensuremath{\mathrm{#1}}}
 \providecommand{\RomNumS}[2]{\ensuremath{\mathrm{#1}^{#2}}}
 \providecommand{\RomViiO}{\ensuremath{\mathrm{vii}^\circ}}
 
+% \MusicChord keys (l3keys module musicchord):
+%   root, acc (choice: flat|sharp), quality (choice: maj|min|dom|aug), seven, alts, bass, bassacc
+%   slash, slashacc — meta aliases for bass / bassacc (slash bass in lead-sheet spelling)
+% Example:
+%   \MusicChord{ root=C, quality=maj, seven=7, alts={9/flat,5/flat}, bass=E, bassacc=flat }
+% Each alts item is degree/kind with kind one of: flat, sharp, natural (e.g. 11/natural).
 
-% -----------------------------------------------------------------------------
-% [3] \MusicChord user API (keys parsed in [4], rendered in [5]–[10]).
-%
-%   \MusicChord{root=E, acc=flat, quality=dom, seven=7, alters={9/flat,5/flat}}
-%   \MusicChord{root=C, quality=maj, seven=7, bass=E, bass acc=flat}
-%
-%   quality: maj | min | dom | aug
-%   acc:     empty | flat | sharp   (on the letter; full size, slightly raised)
-%   seven:   empty | 6 | 7 | ...    (maj/min/aug: superscript; dom: baseline)
-%   alters:  comma list of degree/kind; kind = flat | sharp | natural
-%            sorted descending by degree; printed tight inside superscript (...)
-%   bass / bass acc: slash bass; use bass=... not a raw / in pgfkeys (path sep).
-%   slash= / slash acc= remain as .style aliases (see [4]).
-% -----------------------------------------------------------------------------
-
-
-% -----------------------------------------------------------------------------
-% [4] pgfkeys: one key family stores chord fields in \MusicChord@* macros.
-% .estore in = expanded store (values are simple literals from chapter source).
-% -----------------------------------------------------------------------------
-\makeatletter
-
-\pgfkeys{
-  /MusicChord/.is family,
-  /MusicChord,
-    root/.estore in      = \MusicChord@root,
-    acc/.estore in       = \MusicChord@acc,
-    quality/.estore in   = \MusicChord@quality,
-    seven/.estore in     = \MusicChord@seven,
-    alters/.estore in    = \MusicChord@alters,
-    bass/.estore in      = \MusicChord@bass,
-    bass acc/.estore in  = \MusicChord@bassacc,
-    slash/.style         = { bass = {#1} },
-    slash acc/.style     = { bass acc = {#1} },
-}
-
-
-% -----------------------------------------------------------------------------
-% [5] One alteration token: \MusicChordSetAlterTok{degree}{flat|sharp|natural}
-% Builds \MusicChordAlterTok. Uses \edef so the degree is copied now; otherwise
-% appending \MusicChordAlterTok to a list would all show the last degree.
-% (Must stay plain 2e: defined before \ExplSyntaxOn.)
-% -----------------------------------------------------------------------------
-\newcommand{\MusicChordAlterTok}{}
-
-\newcommand{\MusicChordSetAlterTok}[2]{%
-  \def\MusicChordAlterDeg{#1}%
-  \def\MusicChordAlterKind{#2}%
-  \ifnum\pdfstrcmp{\MusicChordAlterKind}{flat}=0
-    \begingroup
-      \edef\x{%
-        \endgroup
-        \def\noexpand\MusicChordAlterTok{%
-          \noexpand\savedflat\noexpand\mathrm{\MusicChordAlterDeg}%
-        }%
-      }%
-    \x
-  \else\ifnum\pdfstrcmp{\MusicChordAlterKind}{sharp}=0
-    \begingroup
-      \edef\x{%
-        \endgroup
-        \def\noexpand\MusicChordAlterTok{%
-          \noexpand\savedsharp\noexpand\mathrm{\MusicChordAlterDeg}%
-        }%
-      }%
-    \x
-  \else\ifnum\pdfstrcmp{\MusicChordAlterKind}{natural}=0
-    \begingroup
-      \edef\x{%
-        \endgroup
-        \def\noexpand\MusicChordAlterTok{%
-          \noexpand\savednatural\noexpand\mathrm{\MusicChordAlterDeg}%
-        }%
-      }%
-    \x
-  \else
-    \PackageError{barry-book}{MusicChord alter kind "\MusicChordAlterKind" invalid (use flat, sharp, natural)}{}%
-  \fi\fi\fi
-}
-
-
-% -----------------------------------------------------------------------------
-% [6] Letter accidentals (root / bass): raised like superscript, body-sized.
-% Parenthetical alters use \textsuperscript in [7] instead.
-% -----------------------------------------------------------------------------
-\newcommand{\MusicChord@letteracc}[1]{%
-  \mbox{\raisebox{0.45ex}{\ensuremath{#1}}}%
-}
-
-\newcommand{\MusicChord@accprint}{%
-  \ifnum\pdfstrcmp{\MusicChord@acc}{flat}=0
-    \MusicChord@letteracc{\savedflat}%
-  \else\ifnum\pdfstrcmp{\MusicChord@acc}{sharp}=0
-    \MusicChord@letteracc{\savedsharp}%
-  \fi\fi
-}
-
-\newcommand{\MusicChord@bassaccprint}{%
-  \ifnum\pdfstrcmp{\MusicChord@bassacc}{flat}=0
-    \MusicChord@letteracc{\savedflat}%
-  \else\ifnum\pdfstrcmp{\MusicChord@bassacc}{sharp}=0
-    \MusicChord@letteracc{\savedsharp}%
-  \else\ifnum\pdfstrcmp{\MusicChord@bassacc}{natural}=0
-    \MusicChord@letteracc{\savednatural}%
-  \fi\fi\fi
-}
-
-
-% -----------------------------------------------------------------------------
-% [7] expl3: parse alters={9/flat,5/flat,...}, sort by degree descending,
-%     concatenate tokens, wrap in \textsuperscript{\ensuremath{(...)}}.
-%     Also: optional /bass + bass accidental (calls 2e \MusicChord@bassaccprint).
-% -----------------------------------------------------------------------------
 \ExplSyntaxOn
 
-\clist_new:N \l__musicchord_alters_clist
+% --- l3msg: one-line summary + help text (type H in the log for the second block)
+\msg_new:nnnn { musicchord } { missing-root }
+  { musicchord:~missing~root. }
+  {
+    Set~root=<single~letter~A--G>.^^J
+    Example~keyval:~root=C,~quality=dom,~seven=7.^^J
+    Optional:~acc=flat|sharp.
+  }
+\msg_new:nnnn { musicchord } { missing-quality }
+  { musicchord:~missing~quality. }
+  {
+    Set~quality=maj|min|dom|aug~(all~lowercase).^^J
+    Extensions:~seven=7,~six=6,~etc.
+  }
+\msg_new:nnnn { musicchord } { unknown-alt-kind }
+  { musicchord:~unknown~alts~kind~'#1'. }
+  {
+    Each~alts~list~item~must~be~degree/kind.^^J
+    kind~must~be~flat,~sharp,~or~natural~(lowercase).^^J
+    Example:~alts=\{9/flat,~11/natural\}.
+  }
+\msg_new:nnnn { musicchord } { malformed-alt }
+  { musicchord:~malformed~alts~item~'#1'. }
+  {
+    Expected~exactly~one~'/'~separating~degree~and~kind,~e.g.~9/flat~or~13/sharp.
+  }
+\msg_new:nnnn { musicchord } { unknown-bass-acc }
+  { musicchord:~unknown~bass~accidental~'#1'. }
+  { Allowed:~bassacc=flat|sharp|natural,~or~omit~bassacc. }
+
+\tl_new:N \l__musicchord_root_tl
+\tl_new:N \l__musicchord_acc_tl
+\tl_new:N \l__musicchord_quality_tl
+\tl_new:N \l__musicchord_seven_tl
+\tl_new:N \l__musicchord_alts_tl
+\tl_new:N \l__musicchord_bass_tl
+\tl_new:N \l__musicchord_bassacc_tl
+
+\clist_new:N \l__musicchord_alts_clist
 \seq_new:N \l__musicchord_a_seq
 \seq_new:N \l__musicchord_b_seq
-\tl_new:N \l__musicchord_alters_out_tl
+\tl_new:N \l__musicchord_alts_out_tl
 
-% Input: comma-list of "degree/kind". Empty → print nothing.
-\cs_new_protected:Npn \musicchord_alters_print:n #1
+\cs_generate_variant:Nn \keys_set:nn { nx }
+
+% ##1 in .meta:n: outer macro doubles # so l3keys still sees #1 for the meta value.
+\cs_new_protected:Npn \__musicchord_keys_define:
   {
-    \clist_clear:N \l__musicchord_alters_clist
-    \clist_set:Nx \l__musicchord_alters_clist { \tl_trim_spaces:n {#1} }
-    \clist_if_empty:NTF \l__musicchord_alters_clist
-      { }
+    \keys_define:nn { musicchord }
       {
-        % Sort so larger extension degree appears first (jazz chart convention here).
-        \clist_sort:Nn \l__musicchord_alters_clist
+        root .tl_set:N = \l__musicchord_root_tl,
+        acc .choices:nn =
+          { flat , sharp }
+          { \tl_set:Nn \l__musicchord_acc_tl {##1} },
+        quality .choices:nn =
+          { maj , min , dom , aug }
+          { \tl_set:Nn \l__musicchord_quality_tl {##1} },
+        seven .tl_set:N = \l__musicchord_seven_tl,
+        alts .tl_set:N = \l__musicchord_alts_tl,
+        bass .tl_set:N = \l__musicchord_bass_tl,
+        bassacc .tl_set:N = \l__musicchord_bassacc_tl,
+        slash .meta:n = { bass = {##1} },
+        slashacc .meta:n = { bassacc = {##1} },
+      }
+  }
+\__musicchord_keys_define:
+
+\cs_new_protected:Npn \musicchord_reset:
+  {
+    \tl_clear:N \l__musicchord_root_tl
+    \tl_clear:N \l__musicchord_acc_tl
+    \tl_clear:N \l__musicchord_quality_tl
+    \tl_clear:N \l__musicchord_seven_tl
+    \tl_clear:N \l__musicchord_alts_tl
+    \tl_clear:N \l__musicchord_bass_tl
+    \tl_clear:N \l__musicchord_bassacc_tl
+  }
+
+\cs_new_protected:Npn \musicchord_letteracc:n #1
+  { \mbox { \raisebox { 0.45ex } { \ensuremath {#1} } } }
+
+\cs_new_protected:Npn \musicchord_acc_print:
+  {
+    \tl_if_empty:NF \l__musicchord_acc_tl
+      {
+        \exp_args:No \str_case:nn { \tl_use:N \l__musicchord_acc_tl }
           {
-            \seq_set_split:Nnx \l__musicchord_a_seq { / } { \tl_trim_spaces:n {##1} }
-            \seq_set_split:Nnx \l__musicchord_b_seq { / } { \tl_trim_spaces:n {##2} }
-            \int_compare:nNnTF
-              { \seq_item:Nn \l__musicchord_a_seq { 1 } }
-              < { \seq_item:Nn \l__musicchord_b_seq { 1 } }
-              { \sort_return_swapped: }
-              { \sort_return_same: }
+            { flat } { \musicchord_letteracc:n { \savedflat } }
+            { sharp } { \musicchord_letteracc:n { \savedsharp } }
           }
-        \tl_clear:N \l__musicchord_alters_out_tl
-        \clist_map_inline:Nn \l__musicchord_alters_clist
-          { \musicchord_alter_one:n {##1} }
-        \textsuperscript { \ensuremath { ( \tl_use:N \l__musicchord_alters_out_tl ) } }
       }
   }
 
-% One "9/flat" item → append frozen \MusicChordAlterTok to output tl.
-\cs_new_protected:Npn \musicchord_alter_one:n #1
+\cs_new_protected:Npn \musicchord_bassacc_print:
+  {
+    \tl_if_empty:NTF \l__musicchord_bassacc_tl
+      { }
+      {
+        \exp_args:No \str_case:nnF { \tl_use:N \l__musicchord_bassacc_tl }
+          {
+            { flat } { \musicchord_letteracc:n { \savedflat } }
+            { sharp } { \musicchord_letteracc:n { \savedsharp } }
+            { natural } { \musicchord_letteracc:n { \savednatural } }
+          }
+          {
+            \msg_error:nne { musicchord } { unknown-bass-acc }
+              { \tl_use:N \l__musicchord_bassacc_tl }
+          }
+      }
+  }
+
+\cs_new_protected:Npn \musicchord_alt_piece:nn #1#2
+  {
+    \str_case:nnF {#2}
+      {
+        { flat }
+          {
+            \tl_put_right:Nx \l__musicchord_alts_out_tl
+              { \exp_not:n { \savedflat \mathrm { #1 } } }
+          }
+        { sharp }
+          {
+            \tl_put_right:Nx \l__musicchord_alts_out_tl
+              { \exp_not:n { \savedsharp \mathrm { #1 } } }
+          }
+        { natural }
+          {
+            \tl_put_right:Nx \l__musicchord_alts_out_tl
+              { \exp_not:n { \savednatural \mathrm { #1 } } }
+          }
+      }
+      {
+        \msg_error:nnn { musicchord } { unknown-alt-kind } {#2}
+      }
+  }
+
+% Sort alts by numeric degree descending (larger extension number first).
+\cs_new_protected:Npn \__musicchord_alts_sort:nn #1#2
+  {
+    \seq_set_split:Nnx \l__musicchord_a_seq { / } { \tl_trim_spaces:n {#1} }
+    \seq_set_split:Nnx \l__musicchord_b_seq { / } { \tl_trim_spaces:n {#2} }
+    \int_compare:nNnTF
+      { \seq_item:Nn \l__musicchord_a_seq { 1 } }
+      < { \seq_item:Nn \l__musicchord_b_seq { 1 } }
+      { \sort_return_swapped: }
+      { \sort_return_same: }
+  }
+
+\cs_new_protected:Npn \musicchord_alts_print:n #1
+  {
+    \clist_clear:N \l__musicchord_alts_clist
+    \clist_set:Nx \l__musicchord_alts_clist { \tl_trim_spaces:n {#1} }
+    \clist_if_empty:NTF \l__musicchord_alts_clist
+      { }
+      {
+        \clist_sort:Nn \l__musicchord_alts_clist { \__musicchord_alts_sort:nn {##1} {##2} }
+        \tl_clear:N \l__musicchord_alts_out_tl
+        \clist_map_inline:Nn \l__musicchord_alts_clist
+          { \musicchord_alt_one:n {##1} }
+        \textsuperscript { \ensuremath { ( \tl_use:N \l__musicchord_alts_out_tl ) } }
+      }
+  }
+
+\cs_new_protected:Npn \musicchord_alt_one:n #1
   {
     \tl_set:Nn \l_tmpa_tl {#1}
     \tl_trim_spaces:N \l_tmpa_tl
     \seq_set_split:NnV \l__musicchord_a_seq { / } \l_tmpa_tl
-    \tl_set:Nx \l_tmpb_tl { \seq_item:Nn \l__musicchord_a_seq { 1 } }
-    \tl_set:Nx \l_tmpc_tl { \seq_item:Nn \l__musicchord_a_seq { 2 } }
-    \MusicChordSetAlterTok { \tl_use:N \l_tmpb_tl } { \tl_use:N \l_tmpc_tl }
-    \tl_put_right:No \l__musicchord_alters_out_tl { \MusicChordAlterTok }
-  }
-
-% Non-empty bass → "/" + letter + [6] bass accidental printer (2e macro).
-\cs_new_protected:Npn \musicchord_bass_maybe_print:n #1
-  {
-    \tl_set:Nn \l_tmpa_tl {#1}
-    \tl_trim_spaces:N \l_tmpa_tl
-    \tl_if_empty:NTF \l_tmpa_tl
-      { }
+    \int_compare:nNnTF { \seq_count:N \l__musicchord_a_seq } = { 2 }
       {
-        \tl_clear:N \l_tmpb_tl
-        \tl_put_right:Nn \l_tmpb_tl { / }
-        \tl_put_right:NV \l_tmpb_tl \l_tmpa_tl
-        \tl_use:N \l_tmpb_tl \csname MusicChord@bassaccprint\endcsname
+        \tl_set:Nx \l_tmpb_tl
+          { \tl_trim_spaces:n { \seq_item:Nn \l__musicchord_a_seq { 1 } } }
+        \tl_set:Nx \l_tmpc_tl
+          { \tl_trim_spaces:n { \seq_item:Nn \l__musicchord_a_seq { 2 } } }
+        \tl_if_empty:NTF \l_tmpb_tl
+          {
+            \msg_error:nne { musicchord } { malformed-alt }
+              { \tl_use:N \l_tmpa_tl }
+          }
+          {
+            \tl_if_empty:NTF \l_tmpc_tl
+              {
+                \msg_error:nne { musicchord } { malformed-alt }
+                  { \tl_use:N \l_tmpa_tl }
+              }
+              {
+                \musicchord_alt_piece:nn
+                  { \tl_use:N \l_tmpb_tl }
+                  { \tl_use:N \l_tmpc_tl }
+              }
+          }
+      }
+      {
+        \msg_error:nne { musicchord } { malformed-alt }
+          { \tl_use:N \l_tmpa_tl }
       }
   }
 
+\cs_new_protected:Npn \musicchord_bass_maybe_print:
+  {
+    \tl_if_empty:NTF \l__musicchord_bass_tl
+      { }
+      {
+        /
+        \tl_use:N \l__musicchord_bass_tl
+        \musicchord_bassacc_print:
+      }
+  }
+
+\cs_new_protected:Npn \musicchord_quality_print:
+  {
+    \tl_if_empty:NTF \l__musicchord_quality_tl
+      { \msg_error:nn { musicchord } { missing-quality } }
+      {
+        \exp_args:No \str_case:nn { \tl_use:N \l__musicchord_quality_tl }
+          {
+            { dom }
+              {
+                \tl_if_empty:NF \l__musicchord_seven_tl
+                  { \tl_use:N \l__musicchord_seven_tl }
+              }
+            { maj }
+              {
+                \tl_if_empty:NF \l__musicchord_seven_tl
+                  {
+                    maj \textsuperscript { \tl_use:N \l__musicchord_seven_tl }
+                  }
+              }
+            { min }
+              {
+                min
+                \tl_if_empty:NF \l__musicchord_seven_tl
+                  { \textsuperscript { \tl_use:N \l__musicchord_seven_tl } }
+              }
+            { aug }
+              {
+                aug
+                \tl_if_empty:NF \l__musicchord_seven_tl
+                  { \textsuperscript { \tl_use:N \l__musicchord_seven_tl } }
+              }
+          }
+      }
+  }
+
+\cs_new_protected:Npn \musicchord_print:
+  {
+    \tl_if_empty:NTF \l__musicchord_root_tl
+      { \msg_error:nn { musicchord } { missing-root } }
+      {
+        \tl_use:N \l__musicchord_root_tl
+        \musicchord_acc_print:
+        \musicchord_quality_print:
+        \exp_args:NV \musicchord_alts_print:n \l__musicchord_alts_tl
+        \musicchord_bass_maybe_print:
+      }
+  }
+
+\cs_new_protected:Npn \musicchord_chord:n #1
+  {
+    \musicchord_reset:
+    \keys_set:nx { musicchord } { \tl_trim_spaces:n {#1} }
+    \musicchord_print:
+  }
+
+\NewDocumentCommand \MusicChord { m }
+  {
+    \group_begin:
+      \musicchord_chord:n {#1}
+    \group_end:
+  }
+
 \ExplSyntaxOff
-
-
-% -----------------------------------------------------------------------------
-% [8] 2e bridges: pass expanded pgf-stored strings into expl3 functions by name.
-% -----------------------------------------------------------------------------
-\newcommand{\MusicChord@bassprint}{%
-  \expandafter\csname musicchord_bass_maybe_print:n\expandafter\endcsname\expandafter{\MusicChord@bass}%
-}
-
-\newcommand{\MusicChord@altersprint}{%
-  \ifstrempty{\MusicChord@alters}{}{%
-    \expandafter\csname musicchord_alters_print:n\expandafter\endcsname\expandafter{\MusicChord@alters}%
-  }%
-}
-
-
-% -----------------------------------------------------------------------------
-% [9] Quality + extension: four families, different placement of "7", "maj7", etc.
-% -----------------------------------------------------------------------------
-\newcommand{\MusicChord@qdom}{%
-  \ifblank{\MusicChord@seven}{}{%
-    \MusicChord@seven
-  }%
-}
-
-\newcommand{\MusicChord@qmaj}{%
-  \ifblank{\MusicChord@seven}{}{%
-    maj\textsuperscript{\MusicChord@seven}%
-  }%
-}
-
-\newcommand{\MusicChord@qmin}{%
-  min%
-  \ifblank{\MusicChord@seven}{}{%
-    \textsuperscript{\MusicChord@seven}%
-  }%
-}
-
-\newcommand{\MusicChord@qaug}{%
-  aug%
-  \ifblank{\MusicChord@seven}{}{%
-    \textsuperscript{\MusicChord@seven}%
-  }%
-}
-
-\newcommand{\MusicChord@qualityprint}{%
-  \ifblank{\MusicChord@quality}{%
-    \PackageError{barry-book}{MusicChord needs quality=maj, min, dom, or aug}{}%
-  }{%
-    \ifnum\pdfstrcmp{\MusicChord@quality}{dom}=0
-      \MusicChord@qdom
-    \else\ifnum\pdfstrcmp{\MusicChord@quality}{maj}=0
-      \MusicChord@qmaj
-    \else\ifnum\pdfstrcmp{\MusicChord@quality}{min}=0
-      \MusicChord@qmin
-    \else\ifnum\pdfstrcmp{\MusicChord@quality}{aug}=0
-      \MusicChord@qaug
-    \else
-      \PackageError{barry-book}{MusicChord quality must be maj, min, dom, or aug}{}%
-    \fi\fi\fi\fi
-  }%
-}
-
-
-% -----------------------------------------------------------------------------
-% [10] Public command: local pgfkeys group, default empties, then print pipeline.
-% -----------------------------------------------------------------------------
-\newcommand{\MusicChord}[1]{%
-  \begingroup
-    \pgfkeys{%
-      /MusicChord/.cd,
-      root={}, acc={}, quality={}, seven={}, alters=,
-      bass={}, bass acc={},
-      #1%
-    }%
-    \ifblank{\MusicChord@root}{%
-      \PackageError{barry-book}{MusicChord needs root=...}{}%
-    }{%
-      \MusicChord@root
-      \MusicChord@accprint
-      \MusicChord@qualityprint
-      \MusicChord@altersprint
-      \MusicChord@bassprint
-    }%
-  \endgroup
-}
-
-\makeatother
