@@ -18,7 +18,68 @@
 %   Draft chapter banner ............. \incompleteContentNotice
 % =============================================================================
 
-\makeatletter
+\ExplSyntaxOn
+\bool_new:N \g__bookexamples_example_active_bool
+\bool_new:N \g__bookexamples_inline_active_bool
+
+\msg_new:nnnn { bookexamples } { begin-example-while-active }
+  { bookexamples:~beginBookExample~called~while~an~example~is~already~active. }
+  {
+    Call~\token_to_str:N \finishBookExample~before~starting~another~example.^^J
+    Nested~example~wrappers~are~not~supported.
+  }
+\msg_new:nnnn { bookexamples } { finish-example-without-begin }
+  { bookexamples:~finishBookExample~called~without~a~matching~beginBookExample. }
+  {
+    Start~an~example~with~\token_to_str:N \beginBookExample~before~calling~
+    \token_to_str:N \finishBookExample.
+  }
+\msg_new:nnnn { bookexamples } { begin-inline-while-active }
+  { bookexamples:~beginBookInlineMusic~called~while~inline~music~is~already~active. }
+  {
+    Call~\token_to_str:N \finishBookInlineMusic~before~opening~another~
+    inline~music~wrapper.
+  }
+\msg_new:nnnn { bookexamples } { finish-inline-without-begin }
+  { bookexamples:~finishBookInlineMusic~called~without~a~matching~beginBookInlineMusic. }
+  {
+    Start~inline~music~with~\token_to_str:N \beginBookInlineMusic~before~
+    calling~\token_to_str:N \finishBookInlineMusic.
+  }
+\msg_new:nnnn { bookexamples } { finish-chart-without-begin }
+  { bookexamples:~finishRealBookChart~called~without~an~active~chart~geometry~block. }
+  {
+    Use~\token_to_str:N \beginOnePageRealBookChart~or~
+    \token_to_str:N \beginTwoPageRealBookChart~before~
+    \token_to_str:N \finishRealBookChart.
+  }
+\msg_new:nnnn { bookexamples } { bad-break-index }
+  { bookexamples:~invalid~page-break~index~'#1'. }
+  {
+    The~system-break~index~must~be~a~positive~integer~(1,~2,~3,~...).^^J
+    Example:~\token_to_str:N \beginMultiPageStretchMusicExample\{2\}\{2em\}.
+  }
+
+\newcommand{\bookexamplesBreakIndexValue}{1}
+\cs_new_protected:Npn \__bookexamples_store_break_index:n #1
+  { \gdef\bookexamplesBreakIndexValue{#1} }
+\cs_new_protected:Npn \__bookexamples_set_break_index:n #1
+  {
+    \regex_match:nnTF { \A \s* [1-9] \d* \s* \Z } {#1}
+      {
+        \tl_set:Nn \l_tmpa_tl {#1}
+        \tl_trim_spaces:N \l_tmpa_tl
+        \exp_args:NV \__bookexamples_store_break_index:n \l_tmpa_tl
+      }
+      {
+        \msg_error:nnn { bookexamples } { bad-break-index } {#1}
+        \__bookexamples_store_break_index:n {1}
+      }
+  }
+\cs_new_protected:Npn \bookexamplesSetBreakIndex #1
+  { \__bookexamples_set_break_index:n {#1} }
+\cs_new_protected:Npn \bookexamplesChartFinishError
+  { \msg_error:nn { bookexamples } { finish-chart-without-begin } }
 
 % -----------------------------------------------------------------------------
 % List of Musical Examples (LoE): parallel to \tableofcontents but uses .loe file.
@@ -26,12 +87,13 @@
 % \addcontentsline{loe}{bookexample}{...} from \finishBookExample.
 % \l@bookexample defines how each LoE line is formatted (dotted leader, indent).
 % -----------------------------------------------------------------------------
-\newcommand*{\l@bookexample}{\@dottedtocline{1}{0em}{2.3em}}
+\cs_new_protected:cpn { l@bookexample } #1#2
+  { \use:c { @dottedtocline } { 1 } { 0em } { 2.3em } {#1} {#2} }
 
 \newcommand{\listofmusicalexamples}{%
-  \frontMatterChapter{List of Musical Examples}%
-  \addcontentsline{toc}{chapter}{List of Musical Examples}%
-  \@starttoc{loe}%
+  \frontMatterChapter{List~of~Musical~Examples}%
+  \addcontentsline{toc}{chapter}{List~of~Musical~Examples}%
+  \use:c { @starttoc } { loe }%
 }
 
 
@@ -63,24 +125,31 @@
 \newcommand{\bookExampleLoEHref}{}
 
 \newcommand{\beginBookExample}[1]{%
+  \bool_if:NT \g__bookexamples_example_active_bool
+    { \msg_error:nn { bookexamples } { begin-example-while-active } }%
+  \bool_gset_true:N \g__bookexamples_example_active_bool
   \refstepcounter{bookExample}%
   \phantomsection
-  \xdef\bookExampleLoEHref{\@currentHref}%
-  \def\bookExampleLoEentry{Example \thebookExample. #1}%
+  \xdef\bookExampleLoEHref{\cs:w @currentHref \cs_end:}%
+  \gdef\bookExampleLoEentry{Example\space\arabic{bookExample}.\space#1}%
   \par\addvspace{\bookExampleOuterSep}%
-  \noindent{\bfseries Example~\thebookExample:} #1\par
+  \noindent{\bfseries Example\space\arabic{bookExample}:\space}#1\par
   \nobreak\addvspace{\bookExampleInnerSep}%
 }
 
 \newcommand{\finishBookExample}{%
-  \par\addvspace{\bookExampleBottomSep}%
-  \begingroup
-    \edef\@currentHref{\bookExampleLoEHref}%
-    \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
-  \endgroup
+  \bool_if:NTF \g__bookexamples_example_active_bool
+    {
+      \par\addvspace{\bookExampleBottomSep}%
+      \begingroup
+        \expandafter\edef\csname @currentHref\endcsname{\bookExampleLoEHref}%
+        \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
+      \endgroup
+      \bool_gset_false:N \g__bookexamples_example_active_bool
+    }
+    { \msg_error:nn { bookexamples } { finish-example-without-begin } }
 }
-
-\makeatother
+\ExplSyntaxOff
 
 
 % -----------------------------------------------------------------------------
@@ -97,6 +166,31 @@
 \newsavebox{\bookInlineMusicBox}
 
 \newcommand{\bookInlineMusicAlign}{vc}
+\newif\ifbookexampleschartactive
+
+\ExplSyntaxOn
+\msg_new:nnnn { bookexamples } { bad-inline-align }
+  { bookexamples:~invalid~inline~music~alignment~'#1'. }
+  {
+    Allowed~values~are~'vc'~(vertical~center)~and~'baseline'.^^J
+    Use~\token_to_str:N \bookInlineMusicUseVerticalCenter~or~
+    \token_to_str:N \bookInlineMusicUseBaseline.
+  }
+\cs_new_protected:Npn \bookexamplesInlineAlignError #1
+  { \msg_error:nnn { bookexamples } { bad-inline-align } {#1} }
+\cs_new_protected:Npn \bookexamplesInlineBeginCheck
+  {
+    \bool_if:NT \g__bookexamples_inline_active_bool
+      { \msg_error:nn { bookexamples } { begin-inline-while-active } }
+    \bool_gset_true:N \g__bookexamples_inline_active_bool
+  }
+\cs_new_protected:Npn \bookexamplesInlineFinishCheck
+  {
+    \bool_if:NTF \g__bookexamples_inline_active_bool
+      { \bool_gset_false:N \g__bookexamples_inline_active_bool \group_end: }
+      { \msg_error:nn { bookexamples } { finish-inline-without-begin } }
+  }
+\ExplSyntaxOff
 
 \newcommand{\bookInlineMusicUseVerticalCenter}{%
   \renewcommand{\bookInlineMusicAlign}{vc}%
@@ -107,18 +201,22 @@
 }
 
 \newcommand{\beginBookInlineMusic}{%
+  \bookexamplesInlineBeginCheck
   \begingroup
   \ifnum\pdfstrcmp{\bookInlineMusicAlign}{baseline}=0
-  \else
-    \def\preLilyPondExample{\setbox\bookInlineMusicBox=\hbox\bgroup}%
-    \def\postLilyPondExample{%
-      \egroup
-      \raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}%
-    }%
+  \else\ifnum\pdfstrcmp{\bookInlineMusicAlign}{vc}=0
+      \def\preLilyPondExample{\setbox\bookInlineMusicBox=\hbox\bgroup}%
+      \def\postLilyPondExample{%
+        \egroup
+        \raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}%
+      }%
+    \else
+      \bookexamplesInlineAlignError{\bookInlineMusicAlign}%
+    \fi
   \fi
 }
 
-\newcommand{\finishBookInlineMusic}{\endgroup}
+\newcommand{\finishBookInlineMusic}{\bookexamplesInlineFinishCheck}
 
 
 % -----------------------------------------------------------------------------
@@ -188,9 +286,10 @@
 \newcommand{\beginMultiPageStretchMusicExample}[2]{%
   \begingroup
   \bookMusicExampleCenterGraphics
+  \bookexamplesSetBreakIndex{#1}%
   \def\betweenLilyPondSystem##1{%
     \par
-    \ifnum##1=#1
+    \ifnum##1=\bookexamplesBreakIndexValue\relax
       \clearpage
       \vspace*{#2}%
       \noindent
@@ -211,6 +310,7 @@
 % \realBookChartGeometry begins a group (must pair with \finishRealBookChart).
 % -----------------------------------------------------------------------------
 \newcommand{\realBookChartGeometry}{%
+  \bookexampleschartactivetrue
   \clearpage
   \pagestyle{empty}%
   \thispagestyle{empty}%
@@ -229,9 +329,10 @@
 
 \newcommand{\beginTwoPageRealBookChart}[2]{%
   \realBookChartGeometry
+  \bookexamplesSetBreakIndex{#1}%
   \def\betweenLilyPondSystem##1{%
     \par
-    \ifnum##1=#1
+    \ifnum##1=\bookexamplesBreakIndexValue\relax
       \clearpage
       \vspace*{#2}%
     \else
@@ -242,10 +343,15 @@
 }
 
 \newcommand{\finishRealBookChart}{%
-  \endgroup
-  \clearpage
-  \restoregeometry
-  \pagestyle{fancy}%
+  \ifbookexampleschartactive
+    \bookexampleschartactivefalse
+    \endgroup
+    \clearpage
+    \restoregeometry
+    \pagestyle{fancy}%
+  \else
+    \bookexamplesChartFinishError
+  \fi
 }
 
 

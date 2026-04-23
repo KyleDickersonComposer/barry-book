@@ -119,26 +119,30 @@
   \clearfield{isbn}%
 }
 
-\makeatletter
+\ExplSyntaxOn
 \renewcommand\tableofcontents{%
   \frontMatterChapter{\contentsname}%
-  \@starttoc{toc}%
+  \use:c { @starttoc } { toc }%
 }
-\renewcommand*\l@part[2]{%
-  \ifnum \c@tocdepth >-2\relax
-    \addpenalty{-\@highpenalty}%
-    \addvspace{1.5em plus 0.2em}%
-    \begingroup
-      \parindent \z@
-      \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode
-      \large\bfseries\scshape
-      #1\nobreak\hfil\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-      \vskip 0.25em
-      \hrule height 0.4pt
-      \vskip 0.6em
-      \nobreak
-    \endgroup
-  \fi}
-\makeatother
+\cs_set_protected:cpn { l@part } #1#2
+  {
+    \int_compare:nNnT { \value{tocdepth} } > { -2 }
+      {
+        \addpenalty { \int_eval:n { -\use:c { @highpenalty } } }%
+        \addvspace{1.5em plus 0.2em}%
+        \begingroup
+          \parindent \c_zero_dim
+          \rightskip \cs:w @pnumwidth \cs_end:
+          \parfillskip -\cs:w @pnumwidth \cs_end:
+          \leavevmode
+          \large\bfseries\scshape
+          #1\nobreak\hfil\nobreak
+          \use:c { hb@xt@ } \cs:w @pnumwidth \cs_end: { \hss #2 }\par
+          \vskip 0.25em
+          \hrule height 0.4pt
+          \vskip 0.6em
+          \nobreak
+        \endgroup
+      }
+  }
+\ExplSyntaxOff
