@@ -1,66 +1,126 @@
-% lilyglyphs redefines \flat, \sharp, \natural (fontspec path). Keep the plain math
-% versions under different names for chord text; use these, not \flat/\sharp, in macros.
+% =============================================================================
+% music-chords.lytex — chord symbols and harmonic-analysis helpers for prose.
+%
+%   [1] Accidentals before lilyglyphs clobbers \flat / \sharp / \natural
+%   [2] Roman numerals (\RomNum*, \RomViiO)
+%   [3] \MusicChord user API (comment block only)
+%   [4] pgfkeys: /MusicChord key family → macros \MusicChord@...
+%   [5] 2e: build one alteration token (must freeze degree; see comment)
+%   [6] 2e: root/bass letter accidentals (raised, full-size)
+%   [7] expl3: sort alters, print superscript (...); optional slash bass
+%   [8] 2e: thin wrappers calling expl3 by \csname...\endcsname
+%   [9] 2e: quality typesetting (maj/min/dom/aug + seven)
+%  [10] \MusicChord{ key=value, ... } entry point
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+% [1] lilyglyphs redefines \flat, \sharp, \natural (often toward text glyphs).
+% Keep the math-mode accidentals under other names for chord typography.
+% -----------------------------------------------------------------------------
 \let\savedflat\flat
 \let\savedsharp\sharp
 \let\savednatural\natural
+
 \usepackage{lilyglyphs}
 
-% Roman numerals (harmonic function)
+
+% -----------------------------------------------------------------------------
+% [2] Roman numerals (harmonic function in math mode).
+% -----------------------------------------------------------------------------
 \providecommand{\RomNum}[1]{\ensuremath{\mathrm{#1}}}
 \providecommand{\RomNumS}[2]{\ensuremath{\mathrm{#1}^{#2}}}
 \providecommand{\RomViiO}{\ensuremath{\mathrm{vii}^\circ}}
 
-% ------------------------------------------------------------------
-% Chord symbols in prose: one interface, same rules everywhere.
+
+% -----------------------------------------------------------------------------
+% [3] \MusicChord user API (keys parsed in [4], rendered in [5]–[10]).
+%
 %   \MusicChord{root=E, acc=flat, quality=dom, seven=7, alters={9/flat,5/flat}}
 %   \MusicChord{root=C, quality=maj, seven=7, bass=E, bass acc=flat}
+%
 %   quality: maj | min | dom | aug
-%   acc: empty | flat | sharp  (raised accidental on the letter, same size as body text)
-%   seven: empty | 6 | 7 | ...  (maj/min/aug: superscript; dom: baseline digit(s))
-%   alters: comma-separated degree/kind pairs (input only); kind is flat, sharp, or natural
-%           Sorted descending by degree for output; printed with no comma/space between.
-%           e.g. {5/flat,9/flat} -> superscript (flat9 flat5) in that order
-%   bass: empty | pitch letter (printed after /); bass acc: empty | flat | sharp | natural
-%   Use bass=... not slash=...: pgfkeys treats / as a path separator, which can create
-%   phantom slashes. Legacy slash=/slash acc= are .style aliases for bass/bass acc.
-% ------------------------------------------------------------------
+%   acc:     empty | flat | sharp   (on the letter; full size, slightly raised)
+%   seven:   empty | 6 | 7 | ...    (maj/min/aug: superscript; dom: baseline)
+%   alters:  comma list of degree/kind; kind = flat | sharp | natural
+%            sorted descending by degree; printed tight inside superscript (...)
+%   bass / bass acc: slash bass; use bass=... not a raw / in pgfkeys (path sep).
+%   slash= / slash acc= remain as .style aliases (see [4]).
+% -----------------------------------------------------------------------------
+
+
+% -----------------------------------------------------------------------------
+% [4] pgfkeys: one key family stores chord fields in \MusicChord@* macros.
+% .estore in = expanded store (values are simple literals from chapter source).
+% -----------------------------------------------------------------------------
 \makeatletter
-\pgfkeys{/MusicChord/.is family, /MusicChord,
-  root/.estore in=\MusicChord@root,
-  acc/.estore in=\MusicChord@acc,
-  quality/.estore in=\MusicChord@quality,
-  seven/.estore in=\MusicChord@seven,
-  alters/.estore in=\MusicChord@alters,
-  bass/.estore in=\MusicChord@bass,
-  bass acc/.estore in=\MusicChord@bassacc,
-  slash/.style={bass={#1}},
-  slash acc/.style={bass acc={#1}},
+
+\pgfkeys{
+  /MusicChord/.is family,
+  /MusicChord,
+    root/.estore in      = \MusicChord@root,
+    acc/.estore in       = \MusicChord@acc,
+    quality/.estore in   = \MusicChord@quality,
+    seven/.estore in     = \MusicChord@seven,
+    alters/.estore in    = \MusicChord@alters,
+    bass/.estore in      = \MusicChord@bass,
+    bass acc/.estore in  = \MusicChord@bassacc,
+    slash/.style         = { bass = {#1} },
+    slash acc/.style     = { bass acc = {#1} },
 }
-% Defined before \ExplSyntaxOn (expl3 identifier rules differ from plain 2e).
+
+
+% -----------------------------------------------------------------------------
+% [5] One alteration token: \MusicChordSetAlterTok{degree}{flat|sharp|natural}
+% Builds \MusicChordAlterTok. Uses \edef so the degree is copied now; otherwise
+% appending \MusicChordAlterTok to a list would all show the last degree.
+% (Must stay plain 2e: defined before \ExplSyntaxOn.)
+% -----------------------------------------------------------------------------
 \newcommand{\MusicChordAlterTok}{}
+
 \newcommand{\MusicChordSetAlterTok}[2]{%
   \def\MusicChordAlterDeg{#1}%
   \def\MusicChordAlterKind{#2}%
-  % Freeze degree into \MusicChordAlterTok (tl accumulation used \MusicChordAlterDeg
-  % by reference, so every printed alter showed the last degree, e.g. flat5 twice).
   \ifnum\pdfstrcmp{\MusicChordAlterKind}{flat}=0
-    \begingroup\edef\x{\endgroup\def\noexpand\MusicChordAlterTok{%
-      \noexpand\savedflat\noexpand\mathrm{\MusicChordAlterDeg}}}\x
+    \begingroup
+      \edef\x{%
+        \endgroup
+        \def\noexpand\MusicChordAlterTok{%
+          \noexpand\savedflat\noexpand\mathrm{\MusicChordAlterDeg}%
+        }%
+      }%
+    \x
   \else\ifnum\pdfstrcmp{\MusicChordAlterKind}{sharp}=0
-    \begingroup\edef\x{\endgroup\def\noexpand\MusicChordAlterTok{%
-      \noexpand\savedsharp\noexpand\mathrm{\MusicChordAlterDeg}}}\x
+    \begingroup
+      \edef\x{%
+        \endgroup
+        \def\noexpand\MusicChordAlterTok{%
+          \noexpand\savedsharp\noexpand\mathrm{\MusicChordAlterDeg}%
+        }%
+      }%
+    \x
   \else\ifnum\pdfstrcmp{\MusicChordAlterKind}{natural}=0
-    \begingroup\edef\x{\endgroup\def\noexpand\MusicChordAlterTok{%
-      \noexpand\savednatural\noexpand\mathrm{\MusicChordAlterDeg}}}\x
+    \begingroup
+      \edef\x{%
+        \endgroup
+        \def\noexpand\MusicChordAlterTok{%
+          \noexpand\savednatural\noexpand\mathrm{\MusicChordAlterDeg}%
+        }%
+      }%
+    \x
   \else
     \PackageError{barry-book}{MusicChord alter kind "\MusicChordAlterKind" invalid (use flat, sharp, natural)}{}%
   \fi\fi\fi
 }
-% Letter accidentals (root / bass): raise like a superscript but keep full size.
-% Alterations in parentheses still use \textsuperscript (smaller) below.
+
+
+% -----------------------------------------------------------------------------
+% [6] Letter accidentals (root / bass): raised like superscript, body-sized.
+% Parenthetical alters use \textsuperscript in [7] instead.
+% -----------------------------------------------------------------------------
 \newcommand{\MusicChord@letteracc}[1]{%
   \mbox{\raisebox{0.45ex}{\ensuremath{#1}}}%
 }
+
 \newcommand{\MusicChord@accprint}{%
   \ifnum\pdfstrcmp{\MusicChord@acc}{flat}=0
     \MusicChord@letteracc{\savedflat}%
@@ -68,6 +128,7 @@
     \MusicChord@letteracc{\savedsharp}%
   \fi\fi
 }
+
 \newcommand{\MusicChord@bassaccprint}{%
   \ifnum\pdfstrcmp{\MusicChord@bassacc}{flat}=0
     \MusicChord@letteracc{\savedflat}%
@@ -77,11 +138,21 @@
     \MusicChord@letteracc{\savednatural}%
   \fi\fi\fi
 }
+
+
+% -----------------------------------------------------------------------------
+% [7] expl3: parse alters={9/flat,5/flat,...}, sort by degree descending,
+%     concatenate tokens, wrap in \textsuperscript{\ensuremath{(...)}}.
+%     Also: optional /bass + bass accidental (calls 2e \MusicChord@bassaccprint).
+% -----------------------------------------------------------------------------
 \ExplSyntaxOn
+
 \clist_new:N \l__musicchord_alters_clist
 \seq_new:N \l__musicchord_a_seq
 \seq_new:N \l__musicchord_b_seq
 \tl_new:N \l__musicchord_alters_out_tl
+
+% Input: comma-list of "degree/kind". Empty → print nothing.
 \cs_new_protected:Npn \musicchord_alters_print:n #1
   {
     \clist_clear:N \l__musicchord_alters_clist
@@ -89,6 +160,7 @@
     \clist_if_empty:NTF \l__musicchord_alters_clist
       { }
       {
+        % Sort so larger extension degree appears first (jazz chart convention here).
         \clist_sort:Nn \l__musicchord_alters_clist
           {
             \seq_set_split:Nnx \l__musicchord_a_seq { / } { \tl_trim_spaces:n {##1} }
@@ -105,6 +177,8 @@
         \textsuperscript { \ensuremath { ( \tl_use:N \l__musicchord_alters_out_tl ) } }
       }
   }
+
+% One "9/flat" item → append frozen \MusicChordAlterTok to output tl.
 \cs_new_protected:Npn \musicchord_alter_one:n #1
   {
     \tl_set:Nn \l_tmpa_tl {#1}
@@ -115,6 +189,8 @@
     \MusicChordSetAlterTok { \tl_use:N \l_tmpb_tl } { \tl_use:N \l_tmpc_tl }
     \tl_put_right:No \l__musicchord_alters_out_tl { \MusicChordAlterTok }
   }
+
+% Non-empty bass → "/" + letter + [6] bass accidental printer (2e macro).
 \cs_new_protected:Npn \musicchord_bass_maybe_print:n #1
   {
     \tl_set:Nn \l_tmpa_tl {#1}
@@ -128,37 +204,53 @@
         \tl_use:N \l_tmpb_tl \csname MusicChord@bassaccprint\endcsname
       }
   }
+
 \ExplSyntaxOff
+
+
+% -----------------------------------------------------------------------------
+% [8] 2e bridges: pass expanded pgf-stored strings into expl3 functions by name.
+% -----------------------------------------------------------------------------
 \newcommand{\MusicChord@bassprint}{%
   \expandafter\csname musicchord_bass_maybe_print:n\expandafter\endcsname\expandafter{\MusicChord@bass}%
 }
+
 \newcommand{\MusicChord@altersprint}{%
   \ifstrempty{\MusicChord@alters}{}{%
     \expandafter\csname musicchord_alters_print:n\expandafter\endcsname\expandafter{\MusicChord@alters}%
   }%
 }
+
+
+% -----------------------------------------------------------------------------
+% [9] Quality + extension: four families, different placement of "7", "maj7", etc.
+% -----------------------------------------------------------------------------
 \newcommand{\MusicChord@qdom}{%
   \ifblank{\MusicChord@seven}{}{%
     \MusicChord@seven
   }%
 }
+
 \newcommand{\MusicChord@qmaj}{%
   \ifblank{\MusicChord@seven}{}{%
     maj\textsuperscript{\MusicChord@seven}%
   }%
 }
+
 \newcommand{\MusicChord@qmin}{%
   min%
   \ifblank{\MusicChord@seven}{}{%
     \textsuperscript{\MusicChord@seven}%
   }%
 }
+
 \newcommand{\MusicChord@qaug}{%
   aug%
   \ifblank{\MusicChord@seven}{}{%
     \textsuperscript{\MusicChord@seven}%
   }%
 }
+
 \newcommand{\MusicChord@qualityprint}{%
   \ifblank{\MusicChord@quality}{%
     \PackageError{barry-book}{MusicChord needs quality=maj, min, dom, or aug}{}%
@@ -176,21 +268,29 @@
     \fi\fi\fi\fi
   }%
 }
+
+
+% -----------------------------------------------------------------------------
+% [10] Public command: local pgfkeys group, default empties, then print pipeline.
+% -----------------------------------------------------------------------------
 \newcommand{\MusicChord}[1]{%
   \begingroup
-  \pgfkeys{/MusicChord/.cd,
-    root={}, acc={}, quality={}, seven={}, alters=,
-    bass={}, bass acc={},
-    #1}%
-  \ifblank{\MusicChord@root}{%
-    \PackageError{barry-book}{MusicChord needs root=...}{}%
-  }{%
-    \MusicChord@root
-    \MusicChord@accprint
-    \MusicChord@qualityprint
-    \MusicChord@altersprint
-    \MusicChord@bassprint
-  }%
+    \pgfkeys{%
+      /MusicChord/.cd,
+      root={}, acc={}, quality={}, seven={}, alters=,
+      bass={}, bass acc={},
+      #1%
+    }%
+    \ifblank{\MusicChord@root}{%
+      \PackageError{barry-book}{MusicChord needs root=...}{}%
+    }{%
+      \MusicChord@root
+      \MusicChord@accprint
+      \MusicChord@qualityprint
+      \MusicChord@altersprint
+      \MusicChord@bassprint
+    }%
   \endgroup
 }
+
 \makeatother

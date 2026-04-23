@@ -1,23 +1,67 @@
+% =============================================================================
+% book-examples.lytex — numbered musical examples, list of examples (LoE),
+% and layout hooks for lilypond-book output.
+%
+%   lilypond-book turns each music snippet into PDF (or image) fragments and
+%   emits LaTeX that uses \includegraphics. For multi-system snippets it also
+%   calls \betweenLilyPondSystem{<1-based system index>} between systems.
+%   Optional \preLilyPondExample / \postLilyPondExample wrap each fragment when set.
+%
+%   List of examples (LoE) ........... custom list like ToC but file extension .loe
+%   Example heading + counter ........ \beginBookExample / \finishBookExample
+%   Inline snippet alignment ......... \beginBookInlineMusic / \finishBookInlineMusic
+%   Center each system graphic ....... \bookMusicExampleCenterGraphics (local \let)
+%   Block example + system gap ....... \beginBookExampleMusic, \betweenLilyPondSystem
+%   Fixed-height excerpt column ...... \beginStretchHeightMusicExample (minipage [s])
+%   Multi-page stretch ............... \beginMultiPageStretchMusicExample
+%   Real Book chart pages ............ \realBookChartGeometry, \beginOne/TwoPage..., \finishRealBookChart
+%   Draft chapter banner ............. \incompleteContentNotice
+% =============================================================================
+
 \makeatletter
+
+% -----------------------------------------------------------------------------
+% List of Musical Examples (LoE): parallel to \tableofcontents but uses .loe file.
+% \@starttoc{loe} reads/writes bin/main.loe (or alongside jobname). Entries use
+% \addcontentsline{loe}{bookexample}{...} from \finishBookExample.
+% \l@bookexample defines how each LoE line is formatted (dotted leader, indent).
+% -----------------------------------------------------------------------------
 \newcommand*{\l@bookexample}{\@dottedtocline{1}{0em}{2.3em}}
+
 \newcommand{\listofmusicalexamples}{%
   \frontMatterChapter{List of Musical Examples}%
   \addcontentsline{toc}{chapter}{List of Musical Examples}%
   \@starttoc{loe}%
 }
-\makeatother
 
-\makeatletter
+
+% -----------------------------------------------------------------------------
+% Numbered examples and LoE lines.
+%
+% \beginBookExample{Caption text}
+%   ... music or prose ...
+% \finishBookExample
+%
+% Hyperref / PDF semantics: \addcontentsline is deferred to \finishBookExample so the
+% LoE page number points where the example *ends* (often better for long excerpts).
+% The PDF link target must stay on the *heading*: we \xdef\bookExampleLoEHref at the
+% start (copy of \@currentHref right after \phantomsection), then before \addcontentsline
+% we temporarily restore \@currentHref inside a group so hyperref writes the LoE
+% hyperlink to the heading anchor, not the end of the body.
+% -----------------------------------------------------------------------------
 \newlength{\bookExampleOuterSep}
 \setlength{\bookExampleOuterSep}{1em}
+
 \newlength{\bookExampleInnerSep}
-% Heading-to-music spacing = base gap plus full outer block separation.
 \setlength{\bookExampleInnerSep}{1.35em}
+
 \newlength{\bookExampleBottomSep}
 \setlength{\bookExampleBottomSep}{2\bookExampleOuterSep}
+
 \newcounter{bookExample}
 \newcommand{\bookExampleLoEentry}{}
 \newcommand{\bookExampleLoEHref}{}
+
 \newcommand{\beginBookExample}[1]{%
   \refstepcounter{bookExample}%
   \phantomsection
@@ -27,50 +71,96 @@
   \noindent{\bfseries Example~\thebookExample:} #1\par
   \nobreak\addvspace{\bookExampleInnerSep}%
 }
+
 \newcommand{\finishBookExample}{%
   \par\addvspace{\bookExampleBottomSep}%
-  % Write LoE entry after the body so the page number is correct, but keep the
-  % hyperlink target at the heading captured in \beginBookExample.
   \begingroup
     \edef\@currentHref{\bookExampleLoEHref}%
     \addcontentsline{loe}{bookexample}{\bookExampleLoEentry}%
   \endgroup
 }
+
 \makeatother
 
+
+% -----------------------------------------------------------------------------
+% Inline lilypond-book snippets: vertical alignment relative to text line.
+%
+% lilypond-book calls \preLilyPondExample and \postLilyPondExample around each
+% inline graphic when defined. Here we optionally box the snippet and \raisebox it
+% so it visually centers with surrounding text (vc) or sits on the baseline.
+%
+% \pdfstrcmp compares macro expansion to the string "baseline"; \ifx is unsafe here
+% because \bookInlineMusicAlign is \long (\newcommand default) while a \def test
+% macro would not match even when the letters spell "baseline".
+% -----------------------------------------------------------------------------
 \newsavebox{\bookInlineMusicBox}
+
 \newcommand{\bookInlineMusicAlign}{vc}
-\newcommand{\bookInlineMusicUseVerticalCenter}{\renewcommand{\bookInlineMusicAlign}{vc}}
-\newcommand{\bookInlineMusicUseBaseline}{\renewcommand{\bookInlineMusicAlign}{baseline}}
-% Inline music at the top of a paragraph should use baseline alignment so the paragraph start stays clear.
-% Inline music after the first line should use vertical-center alignment.
+
+\newcommand{\bookInlineMusicUseVerticalCenter}{%
+  \renewcommand{\bookInlineMusicAlign}{vc}%
+}
+
+\newcommand{\bookInlineMusicUseBaseline}{%
+  \renewcommand{\bookInlineMusicAlign}{baseline}%
+}
+
 \newcommand{\beginBookInlineMusic}{%
   \begingroup
-  % Compare expanded strings; \ifx fails here because \bookInlineMusicAlign is \long
-  % (from \newcommand) while a \def test macro would be short-same text, false \ifx.
   \ifnum\pdfstrcmp{\bookInlineMusicAlign}{baseline}=0
   \else
     \def\preLilyPondExample{\setbox\bookInlineMusicBox=\hbox\bgroup}%
-    \def\postLilyPondExample{\egroup\raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}}%
+    \def\postLilyPondExample{%
+      \egroup
+      \raisebox{\dimexpr.5ex-.5\ht\bookInlineMusicBox\relax}{\usebox{\bookInlineMusicBox}}%
+    }%
   \fi
 }
+
 \newcommand{\finishBookInlineMusic}{\endgroup}
+
+
+% -----------------------------------------------------------------------------
+% Center every \includegraphics from lilypond-book inside the current group.
+% Saves the real \includegraphics, then redefines it to wrap content in a
+% full-width centered \makebox. Restored automatically at \endgroup.
+% -----------------------------------------------------------------------------
 \newcommand{\bookMusicExampleCenterGraphics}{%
   \let\bookExampleIncludeGraphics\includegraphics
   \renewcommand{\includegraphics}[2][]{%
     \par\noindent\makebox[\linewidth][c]{\bookExampleIncludeGraphics[##1]{##2}}%
   }%
 }
+
+
+% -----------------------------------------------------------------------------
+% Simple block example: fixed 6mm between systems (lilypond-book system index ignored).
+% -----------------------------------------------------------------------------
 \newcommand{\beginBookExampleMusic}{%
   \par
   \begingroup
   \bookMusicExampleCenterGraphics
   \def\betweenLilyPondSystem##1{\par\vspace{6mm}}%
 }
+
 \newcommand{\finishBookExampleMusic}{\par\endgroup}
+
+
+% Default between-system behavior when no example wrapper redefined it (e.g. stray snippet).
 \newcommand{\betweenLilyPondSystem}[1]{\vspace{6mm}\linebreak}
-% Tall in-flow music: fixed-height wrapper plus stretchy glue between systems.
-% Usage: \beginStretchHeightMusicExample{0.42\textheight} ... \finishStretchHeightMusicExample
+
+
+% -----------------------------------------------------------------------------
+% Fixed vertical slot for an excerpt: minipage [t][height][s] + \vfill between systems.
+% The [s] ("stretch") argument lets \vfill absorb slack when the score is shorter than #1,
+% so multi-system excerpts still fill the reserved height (predictable chapter layout).
+%
+% Usage:
+%   \beginStretchHeightMusicExample{0.42\textheight}
+%     \lilypondfile{...}
+%   \finishStretchHeightMusicExample
+% -----------------------------------------------------------------------------
 \newcommand{\beginStretchHeightMusicExample}[1]{%
   \par
   \begingroup
@@ -79,14 +169,22 @@
   \begin{minipage}[t][#1][s]{\linewidth}%
   \def\betweenLilyPondSystem##1{\par\vfill}%
 }
+
 \newcommand{\finishStretchHeightMusicExample}{%
   \par\vfill
   \end{minipage}%
   \endgroup
   \par
 }
+
 \newcommand{\beginFixedHeightMusicExample}[1]{\beginStretchHeightMusicExample{#1}}
 \newcommand{\finishFixedHeightMusicExample}{\finishStretchHeightMusicExample}
+
+
+% -----------------------------------------------------------------------------
+% Multi-page stretch: force \clearpage after system #1, then \vspace*{#2} on the new page.
+% Other system breaks use \vfill like the single-page stretch minipage pattern.
+% -----------------------------------------------------------------------------
 \newcommand{\beginMultiPageStretchMusicExample}[2]{%
   \begingroup
   \bookMusicExampleCenterGraphics
@@ -101,17 +199,25 @@
     \fi
   }%
 }
+
 \newcommand{\finishMultiPageStretchMusicExample}{%
   \par
   \endgroup
 }
+
+
+% -----------------------------------------------------------------------------
+% Real Book style lead sheets: tight paper, empty headers, optional two-page spread.
+% \realBookChartGeometry begins a group (must pair with \finishRealBookChart).
+% -----------------------------------------------------------------------------
 \newcommand{\realBookChartGeometry}{%
   \clearpage
-  \pagestyle{empty}
-  \thispagestyle{empty}
-  \newgeometry{top=0.45cm,bottom=1.5cm,inner=1.25cm,outer=0.85cm}
+  \pagestyle{empty}%
+  \thispagestyle{empty}%
+  \newgeometry{top=0.45cm,bottom=1.5cm,inner=1.25cm,outer=0.75cm}%
   \begingroup
 }
+
 \newcommand{\beginOnePageRealBookChart}{%
   \realBookChartGeometry
   \def\betweenLilyPondSystem##1{%
@@ -120,6 +226,7 @@
     \noindent
   }%
 }
+
 \newcommand{\beginTwoPageRealBookChart}[2]{%
   \realBookChartGeometry
   \def\betweenLilyPondSystem##1{%
@@ -133,23 +240,30 @@
     \noindent
   }%
 }
+
 \newcommand{\finishRealBookChart}{%
   \endgroup
   \clearpage
   \restoregeometry
-  \pagestyle{fancy}
+  \pagestyle{fancy}%
 }
+
+
+% -----------------------------------------------------------------------------
+% Visible “draft chapter” notice (used after \chapter{...} in main.lytex for WIP parts).
+% -----------------------------------------------------------------------------
 \newcommand{\incompleteContentNotice}{%
-\par\vspace{0.5em}
-\noindent\begingroup
-\setlength{\fboxsep}{0pt}%
-\color{barryBlack}%
-\begin{minipage}{0.88\textwidth}
-\rule{\linewidth}{0.4pt}\par
-\vspace{0.65em}
-{\bfseries Draft notice.} This chapter is incomplete and part of an open source textbook in progress. Contributions, corrections, examples, and source-level improvements are welcome.
-\vspace{0.65em}\par
-\rule{\linewidth}{0.4pt}
-\end{minipage}
-\endgroup\par\vspace{0.5em}
+  \par\vspace{0.5em}%
+  \noindent\begingroup
+  \setlength{\fboxsep}{0pt}%
+  \color{barryBlack}%
+  \begin{minipage}{0.88\textwidth}%
+    \rule{\linewidth}{0.4pt}\par
+    \vspace{0.65em}%
+    {\bfseries Draft notice.} This chapter is incomplete and part of an open source textbook in progress. Contributions, corrections, examples, and source-level improvements are welcome.
+    \vspace{0.65em}\par
+    \rule{\linewidth}{0.4pt}%
+  \end{minipage}%
+  \endgroup
+  \par\vspace{0.5em}%
 }
