@@ -5,7 +5,6 @@
 
 \let\savedflat\flat
 \let\savedsharp\sharp
-\let\savednatural\natural
 \usepackage{lilyglyphs}
 
 \providecommand{\RomNum}[1]{\ensuremath{\mathrm{#1}}}
@@ -17,7 +16,7 @@
 %   slash, slashacc — meta aliases for bass / bassacc (slash bass in lead-sheet spelling)
 % Example:
 %   \MusicChord{ root=C, quality=maj, seven=7, alts={9/flat,5/flat}, bass=E, bassacc=flat }
-% Each alts item is degree/kind with kind one of: flat, sharp, natural (e.g. 11/natural).
+% Each alts item is degree/kind with kind one of: flat, sharp (e.g. 11/sharp).
 
 \ExplSyntaxOn
 
@@ -39,8 +38,8 @@
   { musicchord:~unknown~alts~kind~'#1'. }
   {
     Each~alts~list~item~must~be~degree/kind.^^J
-    kind~must~be~flat,~sharp,~or~natural~(lowercase).^^J
-    Example:~alts=\{9/flat,~11/natural\}.
+    kind~must~be~flat~or~sharp~(lowercase).^^J
+    Example:~alts=\{9/flat,~11/sharp\}.
   }
 \msg_new:nnnn { musicchord } { malformed-alt }
   { musicchord:~malformed~alts~item~'#1'. }
@@ -49,7 +48,7 @@
   }
 \msg_new:nnnn { musicchord } { unknown-bass-acc }
   { musicchord:~unknown~bass~accidental~'#1'. }
-  { Allowed:~bassacc=flat|sharp|natural,~or~omit~bassacc. }
+  { Allowed:~bassacc=flat|sharp,~or~omit~bassacc. }
 
 \tl_new:N \l__musicchord_root_tl
 \tl_new:N \l__musicchord_acc_tl
@@ -123,7 +122,6 @@
           {
             { flat } { \musicchord_letteracc:n { \savedflat } }
             { sharp } { \musicchord_letteracc:n { \savedsharp } }
-            { natural } { \musicchord_letteracc:n { \savednatural } }
           }
           {
             \msg_error:nne { musicchord } { unknown-bass-acc }
@@ -145,11 +143,6 @@
           {
             \tl_put_right:Nx \l__musicchord_alts_out_tl
               { \exp_not:n { \savedsharp \mathrm { #1 } } }
-          }
-        { natural }
-          {
-            \tl_put_right:Nx \l__musicchord_alts_out_tl
-              { \exp_not:n { \savednatural \mathrm { #1 } } }
           }
       }
       {

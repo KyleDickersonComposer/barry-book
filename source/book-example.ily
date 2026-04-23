@@ -2,7 +2,7 @@
 
 #(set-global-staff-size 15)
 
-\include "lilyjazz-styles/jazzchords.ily"
+\include "jazzchords.ily"
 \include "lilyjazz-styles/lilyjazz.ily"
 \include "lilyjazz-styles/jazzextras.ily"
 \include "numeric-time-signature.ily"
@@ -18,8 +18,8 @@
   ragged-right = ##f
   \context {
     \ChordNames
-    chordRootNamer = #JazzChordNames
-    chordNameExceptions = #JazzChords
+    chordRootNamer = #jazzChordRootNamer
+    chordNameExceptions = #jazzChordNames
   }
   \context {
     \StaffGroup

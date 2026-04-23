@@ -1,6 +1,6 @@
 \version "2.24.0"
 
-\include "lilyjazz-styles/jazzchords.ily"
+\include "jazzchords.ily"
 \include "lilyjazz-styles/lilyjazz.ily"
 \include "lilyjazz-styles/jazzextras.ily"
 \include "numeric-time-signature.ily"
