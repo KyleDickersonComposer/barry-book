@@ -53,6 +53,8 @@ realBookTitle = \markup {
 \layout {
   \context {
     \ChordNames
+    % Lead-sheet style: omit repeated chord symbols until the harmony changes.
+    chordChanges = ##t
     chordRootNamer = #jazzChordRootNamer
     chordNameExceptions = #jazzChordNames
     \override ChordName.font-size = #-1

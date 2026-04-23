@@ -18,6 +18,8 @@
   ragged-right = ##f
   \context {
     \ChordNames
+    % Omit repeated chord names until the harmony changes (same as real-book-chart.ily).
+    chordChanges = ##t
     chordRootNamer = #jazzChordRootNamer
     chordNameExceptions = #jazzChordNames
   }
