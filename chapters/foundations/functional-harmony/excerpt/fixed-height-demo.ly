@@ -1,4 +1,4 @@
-\include "../../../../source/book-example.ily"
+\include "book-example.ily"
 
 music = \relative c' {
   \key c \major

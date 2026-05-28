@@ -28,6 +28,14 @@
     % Hide the brace before the first system (ChordNames + staff excerpt).
     \remove "System_start_delimiter_engraver"
   }
+
+	\context {
+		\score
+		\override Score.Clef.break-visibility = #'#(#f #f #f)
+		\override Score.KeySignature.break-visibility = #'#(#f #f #f)
+		\override Score.SystemStartBar.collapse-height = #1
+	}
+
   % No barline before the first measure (book excerpt look).
   \override Score.SystemStartBar.stencil = ##f
 }

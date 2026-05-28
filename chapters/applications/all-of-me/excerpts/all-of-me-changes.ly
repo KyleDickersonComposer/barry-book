@@ -1,7 +1,7 @@
 title = #"All Of Me"
 composer = #"-Simons & Marks"
 meter = #" (Med. Swing)"
-\include "../../../../source/real-book-chart.ily"
+\include "real-book-chart.ily"
 
 theNotes = \relative c' {
 	\key c \major
@@ -77,9 +77,4 @@ theWords = \lyricmode {
 		\new Voice = soloist \theNotes
 		\new Lyrics \lyricsto soloist \theWords
 	>>
-		\layout {
-			\override Score.Clef.break-visibility = #'#(#f #f #f)
-			\override Score.KeySignature.break-visibility = #'#(#f #f #f)
-			\override Score.SystemStartBar.collapse-height = #1
-		}
 }

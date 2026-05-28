@@ -117,3 +117,11 @@
 	\lilypondfile[insert=fullpage]{#1}
 	\restoregeometry
 }
+
+\newcommand{\bookExample}[2]{%
+	\beginBookExample{#1}
+	\begin{adjustwidth}{-0.5in}{-0.5in}
+	\lilypondfile[insert=systems]{#2}
+	\end{adjustwidth}
+	\finishBookExample
+}

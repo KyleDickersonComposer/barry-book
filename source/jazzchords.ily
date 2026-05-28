@@ -20,11 +20,11 @@
 
 #(define-markup-command (jazzChordFlat layout props degree) (string?)
   (interpret-markup layout props
-    (markup #:concat (#:raise 0.55 #:fontsize -3 #:flat degree))))
+    (markup #:concat (#:hspace 0.35 #:raise 0.55 #:flat #:hspace 0.15 degree))))
 
 #(define-markup-command (jazzChordSharp layout props degree) (string?)
   (interpret-markup layout props
-    (markup #:concat (#:raise 0.75 #:fontsize -3 #:sharp degree))))
+    (markup #:concat (#:hspace 0.35 #:raise 0.75 #:sharp #:hspace 0.15 degree))))
 
 #(define-markup-command (jazzChordMin layout props extension) (string?)
   (interpret-markup layout props

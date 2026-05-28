@@ -71,9 +71,4 @@ theWords = \lyricmode {
 		\new Voice = soloist \theNotes
 		\new Lyrics \lyricsto soloist \theWords
 	>>
-		\layout {
-			\override Score.Clef.break-visibility = #'#(#f #f #f)
-			\override Score.KeySignature.break-visibility = #'#(#f #f #f)
-			\override Score.SystemStartBar.collapse-height = #1
-		}
 }
