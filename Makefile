@@ -8,8 +8,9 @@ run:
 	make pdf
 	make open
 pdf:
+	@mkdir -p bin
 	docker build -t barry-book .
-	docker run --rm -v "$(BOOK_ROOT)/bin:/workdir/bin" barry-book
+	docker run --rm -v "$(BOOK_ROOT)/bin:/out" barry-book cp bin/main.pdf /out/main.pdf
 	
 require-pandoc:
 	@command -v pandoc >/dev/null 2>&1 || { \
