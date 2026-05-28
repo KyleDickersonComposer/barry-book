@@ -13,9 +13,12 @@
   indent = 0\mm
   left-margin = 0\cm
   right-margin = 0\cm
-  bottom-margin = 0\cm
+  bottom-margin = 0.5\in
   ragged-last-bottom = ##f
   ragged-bottom = ##f
+  markup-system-spacing.basic-distance = #20
+  markup-system-spacing.minimum-distance = #15
+  markup-system-spacing.padding = #5
 }
 
 realBookTitle = \markup {

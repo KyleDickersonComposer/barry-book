@@ -67,8 +67,8 @@ theWords = \lyricmode {
 	How can I go on dear with -- out you
 
 	You took the best
-	So why not take the rest
-	Ba -- by take all of me.
+	So "why not" take the rest
+	so baby ta -- ke all of me.
 }
 
 \score {

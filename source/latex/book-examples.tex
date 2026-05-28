@@ -110,3 +110,10 @@
   \endgroup
   \par\vspace{0.5em}%
 }
+
+\newcommand{\realbookPage}[1]{%
+	\newgeometry{margin=0cm}
+	\thispagestyle{empty}
+	\lilypondfile[insert=fullpage]{#1}
+	\restoregeometry
+}
