@@ -1,5 +1,4 @@
 \version "2.24.0"
-% One-page real-book charts (only consumers of this file): sizing lives here, not in .tex.
 #(set-global-staff-size 21)
 
 \include "jazzchords.ily"

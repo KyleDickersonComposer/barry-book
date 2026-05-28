@@ -22,8 +22,7 @@ jobs:
           PDF_NAME="${PDF_BASE}.pdf"
           echo "Building PDF: $PDF_NAME"
 
-          # Snippet compile is the first step inside `make pdf` (lilypond-book). We do not
-          # run `make lily` separately here to avoid compiling every snippet twice in CI.
+          # lyluatex compiles the LilyPond scores during the LuaLaTeX passes.
           make pdf
 
           # Copy the built PDF to the timestamped filename

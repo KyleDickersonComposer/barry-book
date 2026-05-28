@@ -94,9 +94,8 @@ The built PDF is also saved at `bin/main.pdf`.
 The build process:
 
 - Starts the Docker build image
-- Processes `main.tex` and included `.tex` files with `lilypond-book`
-- Copies `references.bib` into the build directory
-- Runs `pdflatex`, `biber`, `makeglossaries`, and final LaTeX passes
+- Processes `main.tex` and included `.tex` files with LuaLaTeX and `lyluatex`
+- Runs `lualatex -shell-escape`, `biber`, `makeglossaries`, and final LaTeX passes
 - Generates `bin/main.pdf`
 
 ### Clean Build Artifacts

@@ -11,9 +11,8 @@
     marginparsep=0pt
 ]{geometry}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{microtype}
@@ -25,6 +24,7 @@
 \usepackage{makeidx}
 \usepackage[backend=biber, style=authoryear]{biblatex}
 \usepackage[hidelinks]{hyperref}
+\usepackage[tmpdir=bin/tmp-ly, includepaths={./source}]{lyluatex}
 \usepackage{bookmark}
 
 \makeglossaries
