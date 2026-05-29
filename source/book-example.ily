@@ -36,8 +36,7 @@
 		\override Score.Clef.break-visibility = #'#(#f #f #f)
 		\override Score.KeySignature.break-visibility = #'#(#f #f #f)
 		\override Score.SystemStartBar.collapse-height = #1
+		\override Score.SystemStartBar.stencil = ##f
 	}
 
-	% No barline before the first measure (book excerpt look).
-	\override Score.SystemStartBar.stencil = ##f
 }

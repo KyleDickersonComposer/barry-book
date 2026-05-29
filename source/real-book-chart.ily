@@ -7,18 +7,19 @@
 \include "numeric-time-signature.ily"
 
 \paper {
-  paper-height = 12\in
-  paper-width = 19.15\cm
-  line-width = 19.15\cm
-  indent = 0\mm
-  left-margin = 0\cm
-  right-margin = 0\cm
-  bottom-margin = 0.5\in
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  markup-system-spacing.basic-distance = #20
-  markup-system-spacing.minimum-distance = #15
-  markup-system-spacing.padding = #5
+	paper-height = 11\in
+	paper-width = 8.5\in
+	indent = 0\mm
+	left-margin = 0\in
+	right-margin = 0\in
+	bottom-margin = 0.5\in
+	ragged-last-bottom = ##f
+	ragged-bottom = ##f
+	markup-system-spacing.basic-distance = #20
+	markup-system-spacing.minimum-distance = #15
+	markup-system-spacing.padding = #5
+	system-system-spacing.basic-distance = #15
+	system-system-spacing.minimum-distance = #10
 }
 
 realBookTitle = \markup {
@@ -63,7 +64,7 @@ realBookTitle = \markup {
 	}
 
 	\context {
-		\score
+		\Score
 		\override Score.Clef.break-visibility = #'#(#f #f #f)
 		\override Score.KeySignature.break-visibility = #'#(#f #f #f)
 		\override Score.SystemStartBar.collapse-height = #1

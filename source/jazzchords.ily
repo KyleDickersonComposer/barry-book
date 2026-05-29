@@ -39,8 +39,8 @@
       (markup "maj" #:super extension))))
 
 jazzChordNamesList = {
-  <c es ges>1-\markup { \super "dim" } % :dim
-  <c es ges beses>1-\markup { \super "7dim" } % :dim7
+  <c es ges>1-\markup { dim } % :dim
+  <c es ges beses>1-\markup { dim7 } % :dim7
   <c es g>1-\markup { \jazzChordMin #"" } % :m
   <c es g a>1-\markup { "min6" } % :m6
   <c es g a d'>1-\markup { \concat { "min6" \super "/9" } } % :m6.9

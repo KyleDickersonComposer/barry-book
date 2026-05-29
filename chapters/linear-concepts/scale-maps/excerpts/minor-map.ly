@@ -4,7 +4,7 @@ theNotes = \relative c' {
 	\key c \minor
 	d8 ees f g aes bes c4 |
 	g8 a b c d ees f4 |
-	c8, d ees f g a b a |
+	c,8 d ees f g a b a |
 	g f ees d c2 \bar "||"
 }
 

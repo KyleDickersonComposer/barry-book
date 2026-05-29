@@ -112,10 +112,16 @@
 }
 
 \newcommand{\realbookPage}[1]{%
-	\newgeometry{margin=0cm}
+	\newgeometry{top=0cm, left=0.5in, right=0.5in, bottom=0cm}
 	\thispagestyle{empty}
 	\lilypondfile[insert=fullpage]{#1}
 	\restoregeometry
+}
+
+\newcommand{\realbookPageSystemsInsertMode}[1]{%
+    \begin{adjustwidth}{-\oddsidemargin-0.5in}{-\oddsidemargin-0.5in}
+        \lilypondfile[insert=systems, ]{#1}
+    \end{adjustwidth}
 }
 
 \newcommand{\bookExample}[2]{%
