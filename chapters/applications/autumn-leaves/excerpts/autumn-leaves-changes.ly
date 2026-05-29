@@ -38,7 +38,7 @@ theTune = \relative c' {
 	c2. bes4 |
 	a2 bes4 d, |
 	g1~ |
-	g1 \bar "|."
+	g1 \bar "||"
 }
 
 theChords = \chordmode {

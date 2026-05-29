@@ -37,7 +37,7 @@ theNotes = \relative c' {
 	c2 a4 c
 	e2 e2
 	c1 ~
-	c1 \bar "|."
+	c1 \bar "||"
 }
 
 theChords = \chordmode {
