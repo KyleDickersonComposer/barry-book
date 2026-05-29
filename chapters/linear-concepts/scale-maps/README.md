@@ -1,11 +1,9 @@
 # Scale Maps
 
 ### Rough Outline
-This chapter motivates scale maps and shows how you can take a tune and reduce the complex of its changes to a very simple linear structure. Also, showing that this can work for any tune, because all tunes use the same kinds of harmonic structures repeatedly.
+Basic introduction to the scale maps is done.
 
-This covers things like 2-5-1, 2-5, and 3-6-2-5 etc... also tonicizing other keys and so on.
-
-This chapter will surely be example heavy and less dense.
+I think what makes the most sense here is to only expand this chapter after having made of stuff in other places because it will probably be specific to the tunes we end up with. Also, whatever complex moves we have to account for we can list thing in subsequent sections of this chapter.
 
 
 ## Source Files

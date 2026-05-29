@@ -59,7 +59,7 @@ realBookTitle = \markup {
 		chordChanges = ##t
 		chordRootNamer = #jazzChordRootNamer
 		chordNameExceptions = #jazzChordNames
-		\override ChordName.font-size = #-1
+		\override ChordName.font-size = #-0.3
 	}
 
 	\context {

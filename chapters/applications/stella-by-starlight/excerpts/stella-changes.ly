@@ -60,7 +60,7 @@ theWords = \lyricmode {
 	The mur -- mur of a brook at eve -- n -- tide
 	That ripp -- les by a nook where two lov -- ers hide
 	A great sym -- phon -- ic theme
-	That's Ste -- lla by star -- light and not a dream
+	That's Stel -- la by star -- light and not a dream
 	She's all of these and more
 	She's eve -- ry -- thing that you'd a -- dore
 }
