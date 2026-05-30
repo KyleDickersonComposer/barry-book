@@ -30,7 +30,7 @@ realBookTitle = \markup {
       s^\markup {
         \fill-line {
           \fontsize #1 \lower #1 \rotate #7 \concat { " " #meter }
-          \fontsize #8
+          \fontsize #(if (defined? 'fontSize) fontSize 8)
           \override #'(offset . 7)
           \override #'(thickness . 6)
           \underline \larger \larger #title
