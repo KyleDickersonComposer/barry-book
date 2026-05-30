@@ -1,7 +1,7 @@
 title = #"All The Things You Are"
 composer = #"Jerome Kern"
 meter = #" (Med. Swing)"
-fontSize = #4
+fontSize = #6
 
 \include "real-book-chart.ily"
 
@@ -16,8 +16,8 @@ theNotes = \relative c' {
 	e1~ |
 	e1 |
 	ees1 |
-	aes2. ees4 | \break
-	d4 d d d |
+	aes2. ees4 |
+	d4 d d d | \break
 	d4 g2 d4 |
 	c4 c c c |
 	c d8 ees d4 c |

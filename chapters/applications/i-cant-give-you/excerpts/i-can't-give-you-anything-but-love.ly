@@ -1,7 +1,7 @@
 title = #"I Can't Give You Anything But Love"
 composer = #"Sigmund Romburg"
 meter = #" (Med. Swing)"
-fontSize = #4
+fontSize = #5
 
 \include "real-book-chart.ily"
 

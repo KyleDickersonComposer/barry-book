@@ -55,7 +55,7 @@ theChords = \chordmode {
 	f:6 |
 	f:m7 |
 	bes:7 |
-	ees:m7 |
+	ees:maj7 |
 	a2:m7.5- d:7 |
 	g1:m6
 	a2:m7.5- d:7 |
@@ -72,7 +72,7 @@ theChords = \chordmode {
 	f:6 |
 	f:m7 |
 	bes:7 |
-	ees:m7 |
+	ees:maj7 |
 	a2:m7.5- d:7 |
 	g1:6
 	a2:m7 d:7 |
@@ -98,7 +98,7 @@ theWords = \lyricmode {
 	The dark -- est night would shine
 	If you would come to me soon.
 	Un -- til you will, how still my heart,
-	How high the moon!
+	How high the moon
 }
 
 \score {
