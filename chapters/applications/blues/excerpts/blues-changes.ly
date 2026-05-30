@@ -9,7 +9,7 @@ theTune = \relative c'' {
 	\omit Stem
 	b4 b b b | b b b b | b b b b | b b b b | \break
 	b b b b | b b b b | b b b b | b b b b | \break
-	b b b b | b b b b | b b b b | b b b b \bar "||"
+	b b b b | b b b b | b b b b | b b b b \bar "|."
 	\improvisationOff
 	\omit Stem
 }

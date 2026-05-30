@@ -40,7 +40,7 @@ theNotes = \relative c' {
 	g1 |
 	f |
 	ees~ |
-	ees \bar "||"
+	ees \bar "|."
 }
 
 theChords = \chordmode {
