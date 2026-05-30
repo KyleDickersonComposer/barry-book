@@ -99,4 +99,3 @@ theWords = \lyricmode {
 		\new Lyrics \lyricsto soloist \theWords
 	>>
 }
-
