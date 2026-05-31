@@ -21,8 +21,8 @@ theNotes = \relative c' {
 	d4 g2 d4 |
 	c4 c c c |
 	c d8 ees d4 c |
-	b1~ | \break
-	b4 d g d' |
+	b1~ | 
+	b4 d g d' \bar "||" \break
 	d4. c8 c2~ |
 	c4 ees, e c' |
 	b1~ |
@@ -30,8 +30,8 @@ theNotes = \relative c' {
 	b4. a8 a2~ |
 	a4 bes, b a' |
 	gis1~ |
-	gis \bar "||"
-	aes1 | \break
+	gis \bar "||" \break
+	aes1 |
 	des2. aes4 |
 	g4 g g g |
 	g4 c2 g4 |

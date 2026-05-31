@@ -1,5 +1,5 @@
 title = #"I Can't Give You Anything But Love"
-composer = #"Sigmund Romburg"
+composer = #"Jimmy McHugh"
 meter = #" (Med. Swing)"
 fontSize = #5
 

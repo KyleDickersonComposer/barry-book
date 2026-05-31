@@ -1,18 +1,18 @@
 \include "book-example.ily"
 
 theNotes = \relative c' {
-	\key c \major
-	d8 e f g a b c4 |
-	g8 a b c d e f4 |
-	a,8 b cis d e fis g4 |
-	g,8 a b c d e f4 \bar "||"
+	\key f \major
+	f8 a g bes a c bes d |
+	c e d f e g d f |
+	c e bes d a c g bes |
+	f1 \bar "||"
 }
 
 theChords = \chordmode {
-	d1:m7 |
-	g1:7 |
-	e2:m7 a:7 |
-	d2:m7 g:7 |
+	f1:6 |
+	f1:6 |
+	f1:6 |
+	f1:6 |
 }
 
 \score {

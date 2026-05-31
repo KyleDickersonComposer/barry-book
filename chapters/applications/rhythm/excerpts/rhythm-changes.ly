@@ -24,16 +24,16 @@ theChords = \chordmode {
 	c:m7 f:7 |
 	d2:m7 g:m7 |
 	c:m7 f:7 |
-	bes:6 bes:6/d |
-	ees:6 e:dim7 |
+	bes:6 bes:7/d |
+	ees:maj7 e:dim7 |
 	bes:6/f f:7 |
 	c:m7 f:7 |
 	bes:6 g:m7 |
 	c:m7 f:7 |
 	d:m7 g:m7 |
 	c:m7 f:7 |
-	bes2:6 bes:6/d |
-	ees:6 e:dim7 |
+	bes:6 bes:7/d |
+	ees:maj7 e:dim7 |
 	bes:6/f f:7 |
 	bes1:6 |
 	% bridge
@@ -47,10 +47,10 @@ theChords = \chordmode {
 	f:7 |
 	bes2:6 g:m7 |
 	c:m7 f:7 |
-	d:7 g:m7 |
+	d:m7 g:m7 |
 	c:m7 f:7 |
-	bes:6 bes:6/d |
-	ees:6 e:dim7 |
+	bes:6 bes:7/d |
+	ees:maj7 e:dim7 |
 	bes:6/f f:7 |
 	bes1:6 |
 }

@@ -78,7 +78,7 @@ theChords = \chordmode {
 
 	f1:6 |
 	e2:m7.5- a:7 |
-	d:m6 |
+	d1:m6 |
 	c2:m7 f:7 |
 	bes1:7 |
 	a2:m7 d:7 |
