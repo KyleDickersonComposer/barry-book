@@ -39,7 +39,7 @@ theNotes = \relative c' {
 	g8 d' \tuplet 3/2 {bes16 c bes} g8 a8 cis,4 g'8~ |
 	g8 f4. r4 r8 a |
 	g8 bes \tuplet 3/2 {a16 bes a } g8 r8 f4 bes8 | \break
-	b8 bes \tuplet 3/2 {aes16 bes aes} f8 bes a4. |
+	b8 bes \tuplet 3/2 {aes16 bes aes} f8 bes aes4. |
 	r8 c8 \tuplet 3/2 {bes16 c bes} aes8 a cis, d f~ |
 	f4 f8 a r8 f4. |
 	f4 r4 r2 \bar "|."
