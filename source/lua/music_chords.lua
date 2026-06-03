@@ -91,6 +91,10 @@ local function quality(opts)
 		return "min" .. ((seven and seven ~= "") and ("\\textsuperscript{" .. seven .. "}") or "")
 	elseif q == "aug" then
 		return "aug" .. ((seven and seven ~= "") and ("\\textsuperscript{" .. seven .. "}") or "")
+	elseif q == "maj6" then
+		return "6"
+	elseif q == "min6" then
+		return "min6"
 	end
 
 	package_error("unknown quality `" .. tostring(q) .. "`", "Allowed qualities are maj, min, dom, and aug.")
