@@ -151,3 +151,11 @@
 \newcommand{\flatSixDom}{%
 	\textsuperscript{$\flat$}\RomNumS{VI}{7}
 }
+
+\newcommand{\meter}[2]{%
+	\sfrac{#1}{#2}\xspace
+}
+
+\newcommand{\mnote}[2][]{%
+    #2\IfStrEqCase{#1}{{flat}{\musicchordLetterAcc{\savedflat}}{sharp}{\musicchordLetterAcc{\savedsharp}}{}{}}[\PackageError{mnote}{Invalid accidental '#1'. Use flat or sharp.}{}]\xspace
+}

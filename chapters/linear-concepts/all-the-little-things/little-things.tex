@@ -1,23 +1,64 @@
 \section{Little Things}
 
-Now that we can create simple scale maps for any tune, we can take the next step in our improvisation journey. With our scale maps we are essentially using four kinds of scales. The major scale which is used for when we have a major chord with tonic function, the minor 7 scale for when we have a minor seventh chord with predominant function, the minor scale with the raised seventh for when we have a minor chord with tonic function, and the dominant scale which is used for chords with dominant function. Next, we will practice what we will call \emph{little things}. These are short melodic modules that we will practice in order to develop the technical dexterity required to improvise fluidly on tunes.
+Now that we can create simple scale maps for any tune, we can take the next step in our improvisation journey. With our scale maps we are essentially using four kinds of scales. The major scale which is used for when we have a major chord with tonic function, the minor 7 scale for when we have a minor seventh chord with predominant function, the minor scale with the raised sixth and raised seventh for when we have a minor chord with tonic function, and the dominant scale which is used for chords with dominant function. Next, we will practice what we will call \emph{little things}. These are short melodic modules that we will practice in order to develop the technical dexterity required to improvise fluidly on tunes.
 
-The first few things we learn will be familiar. If the scale maps exercises are about learning to play the scales up and down, then a large part of our study of little things will be about finding different ways to practice our scales. One simple thing to try is playing our scale in thinds up and down. 
+The first few things we learn will be familiar. If the scale maps exercises are about learning to play the scales up and down, then a large part of our study of little things will be about finding different ways to practice our scales. One simple thing to try is playing our scale in thinds up and down. Practicing this in all 12 keys with the four different scales will take quite some time to get under our fingers.
 
 \bookExample{Scales in Thirds}{./excerpts/in-thirds.ly}
 
- Practicing this in all 12 keys with the four different scales will take quite some time to get under our fingers. Even with this simple example, there a number of small variations we can practice.
+Even with this simple example, there a number of small variations we can practice.
 
 \begin{bookStyledBulletList}{Variations on the Thirds}
-	\item Higher note first.
+	\item Maintain the same pitches but start on a different note.
 	\item Offset the rhythm by one 8th note.
 	\item Play slower or faster rhythmic values.
-	\item Add a step above or below one of the notes.
-	\item Change the rhythm
-	\item Add some bebop turns. (16th note triplets ala Parker)
+	\item Add a step above or below one of the notes (half or whole).
+	\item Add some bebop turns (16th note triplets ala Parker).
+	\item Add a chromatic gliss. to or from a note.
 	\item Instead of moving by step, move by a different interval.
 \end{bookStyledBulletList}
 
 Once we are comfortable with thirds like the above in all the necessary keys, we can apply this to a tune. It's important to remember to play this in time with a metronome. If we are comfortable performing the scale map as normal, we can now play through our tune in thirds  without jumping around, like the scale maps do. We should maintain our direction and simply switch scales instead of jumping to the tonic of the other scale. This can become quite complex if we add some of the variations listed above to this process.
 
+If this is too difficult for now, break the tune apart and practice in four bar sections, then stitch it together.
 
+\section{All of Them}
+Now that we are comfortable with our first little thing, we will address a few more. Remember that the variations we applied to the thirds excerise should be applied to all of our little things going forward. In addition to the above variations we should invent our own, because that's what improvisation is all about.
+
+\bookExample{All the Things}{./excerpts/all-the-little-things.ly}
+
+\section{Bebop Chromatic Scale}
+Barry's scale exercises featuring chromatic notes are where things start sounding like bebop lines. Normally what Barry teaches here are his \emph{half step rules}, but we will present a simplified model.
+
+The point of Barry's scale exercises are so that the notes of the scale we're playing land on the beats. If our notes aren't landing in the right spots, it sounds awkward. Here is an example that sounds wrong, we will see thatnotes foreign to our scale are landing on the beat on beat 4 of bar 1 and beat 1 of bar 2:
+
+\bookExample{Awkward Chromatic Scale}{./excerpts/awkward-chromatic-scale.ly}
+
+Looking at the previous example, we can see that when you get to the half step in the scale, the notes after it are landing in the wrong spot. The half steps between \mnote{A} and \mnote[flat]{B}, and \mnote {D} \mnote[flat]{E}, are the problem. We can see that after \mnote[flat]{B} everything is off by an 8th note. To fix this, we add an 8th note filler between \mnote{A} and \mnote[flat]{B} to keep everything on track. There are a number of different filler notes we can choose, but we will choose a common solution, which is to insert the note who is one step above the higher note of the half step.
+
+\bookExample{Bebop Chromatic Scale}{./excerpts/bebop-chromatic-scale.ly}
+
+On the way down we apply the same rule as ascending. We still deal with the half steps in the scale by inserting a note above the highest note of the halfstep.
+
+\bookExample{Bebop Chromatic Scale Descending}{./excerpts/bebop-chrom-desc.ly}
+
+There is nothing wrong with scale notes that don't land on the beat, but for the most part, we should try to stay on track. It's quite normal for a solo to loosen up and become more intense as the choruses go by. But, if everything is loosey-goosey, all the time, that's no bueno.
+
+
+\section{Substituting Sonorities}
+Because this bebop chromatic scale concept can be applied to any scale we will see in a standard, we can apply this concept anywhere. This even works with more complex sonorities, here we are playing a \MusicChord{root=F, quality=dom, alts={11/sharp}} chord which is a \MusicChord{root=G, quality=dom} scale over F.
+
+\bookExample{Bebop Chromatic Scale Works with Subtituted Sonorites}{./excerpts/bebop-chrom-with-sub.ly}
+
+Try out some of these sonorities in context and see what we can do in terms of combining a number of the approaches in this chapter.
+
+\begin{bookStyledList} {Common Jazz Sonorites}
+	\item \MusicChord{root=F, quality=dom, alts={11/sharp}} = \MusicChord{root=G, quality=dom, bass=F}
+	\item \MusicChord{root=F, quality=dom, alts={9/sharp}} = \MusicChord{root=A, acc=flat, quality=dom, bass=F}
+	\item \MusicChord{root=F, quality=dom, alts={9/flat, 11/sharp}} = \MusicChord{root=B, quality=dom, bass=F}
+\end{bookStyledList}
+
+\section{Linear Delays}
+A good reason to practice the bebop chromatic scale concept is so that when you choose to put a note that's foreign to the scale on the beat, it can be more effective. This concept doesn't always have to be a note that isn't in the scale, it can also be a note that isn't the \emph{obvious target} of the line. The idea behind delays is that you are leaning on the \emph{wrongness} of a sound before making it right. The concept of a delay is most effective on a strong beat, meaning beats one and three in \meter{4}{4}. You can see the delays at the beginning of each the bars. \mnote{E} is a delay for the note \mnote[flat]{E} in the first bar of the excerpt. In the second bar, the \mnote[flat]{E} delays the \mnote{D}. And in the last bar, the \mnote{C} delays the \mnote[flat]{B}:
+
+\bookExample{Linear Delays from Last Three Bars of Anthropology}{./excerpts/delays-from-anthro.ly}

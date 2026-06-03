@@ -1,0 +1,13 @@
+{
+	"diagnostics": {
+		"globals": [
+			"tex"
+		]
+	},
+	"workspace": {
+		"library": [
+			"~/ReposOther/tex-luatex/library"
+		],
+		"preloadFileSize": 5000
+	}
+}

@@ -1,7 +1,4 @@
 % music-chords.tex — chord symbols (\MusicChord) and Roman numerals.
-% \MusicChord uses l3keys + expl3 + l3msg (short summary + fix hints in the log).
-% Keys in \keys_define:nn must be comma-separated (LaTeX3 keyval_parse).
-% Inside \__musicchord_keys_define:, use ##1 (not #1) in .meta:n and .choices:nn bodies.
 
 \let\savedflat\flat
 \let\savedsharp\sharp
@@ -11,278 +8,29 @@
 \providecommand{\RomNumS}[2]{\mbox{\ensuremath{\mathrm{#1}^{#2}\!}}}
 \providecommand{\RomViiO}{\mbox{\ensuremath{\mathrm{vii}^\circ}}}
 
-% \MusicChord keys (l3keys module musicchord):
-%   root, acc (choice: flat|sharp), quality (choice: maj|min|dom|aug), seven, alts, bass, bassacc
-%   slash, slashacc — meta aliases for bass / bassacc (slash bass in lead-sheet spelling)
+\newcommand{\musicchordLetterAcc}[1]{\mbox{\raisebox{0.45ex}{\ensuremath{#1}}}}
+
+% \MusicChord keys:
+%   root, acc (flat|sharp), quality (maj|min|dom|aug), seven, alts, bass, bassacc
+%   slash, slashacc — aliases for bass / bassacc
 % Example:
-%   \MusicChord{ root=C, quality=maj, seven=7, alts={9/flat,5/flat}, bass=E, bassacc=flat }
+%   \MusicChord{root=C, quality=maj, seven=7, alts={9/flat,5/flat}, bass=E, bassacc=flat}
 % Each alts item is degree/kind with kind one of: flat, sharp (e.g. 11/sharp).
 
-\ExplSyntaxOn
+\directlua{
+  local loader_path = kpse.find_file("source/lua/book_loader.lua")
+    or "source/lua/book_loader.lua"
 
-% --- l3msg: one-line summary + help text (type H in the log for the second block)
-\msg_new:nnnn { musicchord } { missing-root }
-  { musicchord:~missing~root. }
-  {
-    Set~root=<single~letter~A--G>.^^J
-    Example~keyval:~root=C,~quality=dom,~seven=7.^^J
-    Optional:~acc=flat|sharp.
-  }
-\msg_new:nnnn { musicchord } { missing-quality }
-  { musicchord:~missing~quality. }
-  {
-    Set~quality=maj|min|dom|aug~(all~lowercase).^^J
-    Extensions:~seven=7,~six=6,~etc.
-  }
-\msg_new:nnnn { musicchord } { unknown-alt-kind }
-  { musicchord:~unknown~alts~kind~'#1'. }
-  {
-    Each~alts~list~item~must~be~degree/kind.^^J
-    kind~must~be~flat~or~sharp~(lowercase).^^J
-    Example:~alts=\{9/flat,~11/sharp\}.
-  }
-\msg_new:nnnn { musicchord } { malformed-alt }
-  { musicchord:~malformed~alts~item~'#1'. }
-  {
-    Expected~exactly~one~'/'~separating~degree~and~kind,~e.g.~9/flat~or~13/sharp.
-  }
-\msg_new:nnnn { musicchord } { unknown-bass-acc }
-  { musicchord:~unknown~bass~accidental~'#1'. }
-  { Allowed:~bassacc=flat|sharp,~or~omit~bassacc. }
+  if loader_path:sub(1, 1) ~= "/" and lfs and lfs.currentdir then
+    loader_path = lfs.currentdir() .. "/" .. loader_path
+  end
 
-\tl_new:N \l__musicchord_root_tl
-\tl_new:N \l__musicchord_acc_tl
-\tl_new:N \l__musicchord_quality_tl
-\tl_new:N \l__musicchord_seven_tl
-\tl_new:N \l__musicchord_alts_tl
-\tl_new:N \l__musicchord_bass_tl
-\tl_new:N \l__musicchord_bassacc_tl
-
-\clist_new:N \l__musicchord_alts_clist
-\seq_new:N \l__musicchord_a_seq
-\seq_new:N \l__musicchord_b_seq
-\tl_new:N \l__musicchord_alts_out_tl
-
-\cs_generate_variant:Nn \keys_set:nn { nx }
-
-% ##1 in .meta:n: outer macro doubles # so l3keys still sees #1 for the meta value.
-\cs_new_protected:Npn \__musicchord_keys_define:
-  {
-    \keys_define:nn { musicchord }
-      {
-        root .tl_set:N = \l__musicchord_root_tl,
-        acc .choices:nn =
-          { flat , sharp }
-          { \tl_set:Nn \l__musicchord_acc_tl {##1} },
-        quality .choices:nn =
-          { maj , min , dom , aug }
-          { \tl_set:Nn \l__musicchord_quality_tl {##1} },
-        seven .tl_set:N = \l__musicchord_seven_tl,
-        alts .tl_set:N = \l__musicchord_alts_tl,
-        bass .tl_set:N = \l__musicchord_bass_tl,
-        bassacc .tl_set:N = \l__musicchord_bassacc_tl,
-        slash .meta:n = { bass = {##1} },
-        slashacc .meta:n = { bassacc = {##1} },
-      }
-  }
-\__musicchord_keys_define:
-
-\cs_new_protected:Npn \musicchord_reset:
-  {
-    \tl_clear:N \l__musicchord_root_tl
-    \tl_clear:N \l__musicchord_acc_tl
-    \tl_clear:N \l__musicchord_quality_tl
-    \tl_clear:N \l__musicchord_seven_tl
-    \tl_clear:N \l__musicchord_alts_tl
-    \tl_clear:N \l__musicchord_bass_tl
-    \tl_clear:N \l__musicchord_bassacc_tl
-  }
-
-\cs_new_protected:Npn \musicchord_letteracc:n #1
-  { \mbox { \raisebox { 0.45ex } { \ensuremath {#1} } } }
-
-\cs_new_protected:Npn \musicchord_acc_print:
-  {
-    \tl_if_empty:NF \l__musicchord_acc_tl
-      {
-        \exp_args:No \str_case:nn { \tl_use:N \l__musicchord_acc_tl }
-          {
-            { flat } { \musicchord_letteracc:n { \savedflat } }
-            { sharp } { \musicchord_letteracc:n { \savedsharp } }
-          }
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_bassacc_print:
-  {
-    \tl_if_empty:NTF \l__musicchord_bassacc_tl
-      { }
-      {
-        \exp_args:No \str_case:nnF { \tl_use:N \l__musicchord_bassacc_tl }
-          {
-            { flat } { \musicchord_letteracc:n { \savedflat } }
-            { sharp } { \musicchord_letteracc:n { \savedsharp } }
-          }
-          {
-            \msg_error:nne { musicchord } { unknown-bass-acc }
-              { \tl_use:N \l__musicchord_bassacc_tl }
-          }
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_alt_piece:nn #1#2
-  {
-    \str_case:nnF {#2}
-      {
-        { flat }
-          {
-            \tl_put_right:Nx \l__musicchord_alts_out_tl
-              { \exp_not:n { \savedflat \mathrm { #1 } } }
-          }
-        { sharp }
-          {
-            \tl_put_right:Nx \l__musicchord_alts_out_tl
-              { \exp_not:n { \savedsharp \mathrm { #1 } } }
-          }
-      }
-      {
-        \msg_error:nnn { musicchord } { unknown-alt-kind } {#2}
-      }
-  }
-
-% Sort alts by numeric degree descending (larger extension number first).
-\cs_new_protected:Npn \__musicchord_alts_sort:nn #1#2
-  {
-    \seq_set_split:Nnx \l__musicchord_a_seq { / } { \tl_trim_spaces:n {#1} }
-    \seq_set_split:Nnx \l__musicchord_b_seq { / } { \tl_trim_spaces:n {#2} }
-    \int_compare:nNnTF
-      { \seq_item:Nn \l__musicchord_a_seq { 1 } }
-      < { \seq_item:Nn \l__musicchord_b_seq { 1 } }
-      { \sort_return_swapped: }
-      { \sort_return_same: }
-  }
-
-\cs_new_protected:Npn \musicchord_alts_print:n #1
-  {
-    \clist_clear:N \l__musicchord_alts_clist
-    \clist_set:Nx \l__musicchord_alts_clist { \tl_trim_spaces:n {#1} }
-    \clist_if_empty:NTF \l__musicchord_alts_clist
-      { }
-      {
-        \clist_sort:Nn \l__musicchord_alts_clist { \__musicchord_alts_sort:nn {##1} {##2} }
-        \tl_clear:N \l__musicchord_alts_out_tl
-        \clist_map_inline:Nn \l__musicchord_alts_clist
-          { \musicchord_alt_one:n {##1} }
-        \textsuperscript { \ensuremath { ( \tl_use:N \l__musicchord_alts_out_tl ) } }
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_alt_one:n #1
-  {
-    \tl_set:Nn \l_tmpa_tl {#1}
-    \tl_trim_spaces:N \l_tmpa_tl
-    \seq_set_split:NnV \l__musicchord_a_seq { / } \l_tmpa_tl
-    \int_compare:nNnTF { \seq_count:N \l__musicchord_a_seq } = { 2 }
-      {
-        \tl_set:Nx \l_tmpb_tl
-          { \tl_trim_spaces:n { \seq_item:Nn \l__musicchord_a_seq { 1 } } }
-        \tl_set:Nx \l_tmpc_tl
-          { \tl_trim_spaces:n { \seq_item:Nn \l__musicchord_a_seq { 2 } } }
-        \tl_if_empty:NTF \l_tmpb_tl
-          {
-            \msg_error:nne { musicchord } { malformed-alt }
-              { \tl_use:N \l_tmpa_tl }
-          }
-          {
-            \tl_if_empty:NTF \l_tmpc_tl
-              {
-                \msg_error:nne { musicchord } { malformed-alt }
-                  { \tl_use:N \l_tmpa_tl }
-              }
-              {
-                \musicchord_alt_piece:nn
-                  { \tl_use:N \l_tmpb_tl }
-                  { \tl_use:N \l_tmpc_tl }
-              }
-          }
-      }
-      {
-        \msg_error:nne { musicchord } { malformed-alt }
-          { \tl_use:N \l_tmpa_tl }
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_bass_maybe_print:
-  {
-    \tl_if_empty:NTF \l__musicchord_bass_tl
-      { }
-      {
-        /
-        \tl_use:N \l__musicchord_bass_tl
-        \musicchord_bassacc_print:
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_quality_print:
-  {
-    \tl_if_empty:NTF \l__musicchord_quality_tl
-      { \msg_error:nn { musicchord } { missing-quality } }
-      {
-        \exp_args:No \str_case:nn { \tl_use:N \l__musicchord_quality_tl }
-          {
-            { dom }
-              {
-                \tl_if_empty:NF \l__musicchord_seven_tl
-                  { \tl_use:N \l__musicchord_seven_tl }
-              }
-            { maj }
-              {
-                \tl_if_empty:NF \l__musicchord_seven_tl
-                  {
-                    maj \textsuperscript { \tl_use:N \l__musicchord_seven_tl }
-                  }
-              }
-            { min }
-              {
-                min
-                \tl_if_empty:NF \l__musicchord_seven_tl
-                  { \textsuperscript { \tl_use:N \l__musicchord_seven_tl } }
-              }
-            { aug }
-              {
-                aug
-                \tl_if_empty:NF \l__musicchord_seven_tl
-                  { \textsuperscript { \tl_use:N \l__musicchord_seven_tl } }
-              }
-          }
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_print:
-  {
-    \tl_if_empty:NTF \l__musicchord_root_tl
-      { \msg_error:nn { musicchord } { missing-root } }
-      {
-        \tl_use:N \l__musicchord_root_tl
-        \musicchord_acc_print:
-        \musicchord_quality_print:
-        \exp_args:NV \musicchord_alts_print:n \l__musicchord_alts_tl
-        \musicchord_bass_maybe_print:
-      }
-  }
-
-\cs_new_protected:Npn \musicchord_chord:n #1
-  {
-    \musicchord_reset:
-    \keys_set:nx { musicchord } { \tl_trim_spaces:n {#1} }
-    \musicchord_print:
-  }
+  bookloader = dofile(loader_path)
+}
 
 \NewDocumentCommand \MusicChord { m }
   {
-    \group_begin:
-      \musicchord_chord:n {#1}
-    \group_end:
+    \directlua{
+      bookloader.call("music_chords", "print", "\luaescapestring{#1}")
+    }
   }
-
-\ExplSyntaxOff
