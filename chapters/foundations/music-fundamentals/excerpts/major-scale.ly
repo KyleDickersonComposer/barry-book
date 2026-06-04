@@ -2,7 +2,7 @@
 
 theMarkup = {
 	s8 s8^"W" s8 s8^"W" s8 s8^"H" s8 s8^"W" |
-	s8 s8^"W" s8 s8^"W" s8 s8^"W" s8 s8^"H" |
+	s8 s8^"W" s8 s8^"W" s8 s8^"H" s4 |
 }
 
 theNotes = \relative c' {

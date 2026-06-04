@@ -22,9 +22,9 @@ theNotes = \relative c' {
 	c16^"1" d^"2" e^"3" f^"4" g^"5" a^"6" b^"7" c^"8" d^"9" e8.^"10" r4 |
 	<c, f'>1^"ELEVENTH" |
 	c16^"1" d^"2" e^"3" f^"4" g^"5" a^"6" b^"7" c^"8" d^"9" e^"10" f8^"11" r4 | \break
-	<c, g'>1^"TWELFTH" |
+	<c, g''>1^"TWELFTH" |
 	c16^"1" d^"2" e^"3" f^"4" g^"5" a^"6" b^"7" c^"8" d^"9" e^"10" f^"11" g^"12" r4 |
-	<c,, a'>1^"THIRTEENTH" |
+	<c,, a''>1^"THIRTEENTH" |
 	c16^"1" d^"2" e^"3" f^"4" g^"5" a^"6" b^"7" c^"8" d^"9" e^"10" f^"11" g^"12" a4^"13" \bar "||"
 }
 
