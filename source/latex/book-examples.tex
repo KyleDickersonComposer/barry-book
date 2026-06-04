@@ -114,13 +114,13 @@
 \newcommand{\realbookPage}[1]{%
 	\newgeometry{top=0cm, left=0.5in, right=0.5in, bottom=0cm}
 	\thispagestyle{empty}
-	\lilypondfile[insert=fullpage]{#1}
+	\lilypondfile[insert=fullpage, indent=0mm]{#1}
 	\restoregeometry
 }
 
 \newcommand{\realbookPageSystemsInsertMode}[1]{%
     \begin{adjustwidth}{-\oddsidemargin-0.5in}{-\oddsidemargin-0.5in}
-        \lilypondfile[insert=systems, ]{#1}
+        \lilypondfile[insert=systems, indent=0mm]{#1}
     \end{adjustwidth}
 }
 
@@ -130,6 +130,10 @@
 	\lilypondfile[insert=systems]{#2}
 	\end{adjustwidth}
 	\finishBookExample
+}
+
+\newcommand{\inlineExample}[2][center]{%
+	\noindent\lilypondfile[insert=inline, valign=#1, hpadding=0ex, max-left-protrusion=-1cm]{#2}
 }
 
 \newcommand{\twoFive}{%
@@ -153,9 +157,29 @@
 }
 
 \newcommand{\meter}[2]{%
-    \ensuremath{\scalebox{1.3}{\sfrac{#1}{#2}}}\xspace
+	\lilyTimeSignature{#1}{#2}
+}
+
+\newcommand{\wholeRest}{%
+	\wholeNoteRest
+}
+
+\newcommand{\halfRest}{%
+	\halfNoteRest
+}
+
+\newcommand{\quarterRest}{%
+	\crotchetRest
+}
+
+\newcommand{\eighthRest}{%
+	\quaverRest
+}
+
+\newcommand{\sixteenthRest}{%
+	\semiquaverRest
 }
 
 \newcommand{\mnote}[2][]{%
-    #2\IfStrEqCase{#1}{{flat}{\musicchordLetterAcc{\savedflat}}{sharp}{\musicchordLetterAcc{\savedsharp}}{}{}}[\PackageError{mnote}{Invalid accidental '#1'. Use flat or sharp.}{}]\xspace
+    #2\IfStrEqCase{#1}{{flat}{\musicchordLetterAcc{\flat}}{sharp}{\musicchordLetterAcc{\sharp}}{}{}}[\PackageError{mnote}{Invalid accidental '#1'. Use flat or sharp.}{}]\xspace
 }

@@ -67,9 +67,9 @@ local function accidental(kind)
 	if kind == nil or kind == "" then
 		return ""
 	elseif kind == "flat" then
-		return "\\musicchordLetterAcc{\\savedflat}"
+		return "\\musicchordLetterAcc{\\flat}"
 	elseif kind == "sharp" then
-		return "\\musicchordLetterAcc{\\savedsharp}"
+		return "\\musicchordLetterAcc{\\sharp}"
 	end
 
 	package_error("unknown accidental `" .. tostring(kind) .. "`", "Allowed accidentals are flat and sharp.")

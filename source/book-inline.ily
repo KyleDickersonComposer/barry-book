@@ -8,8 +8,7 @@
 #(set-global-staff-size 12)
 
 \layout {
-  indent = 0\mm
   ragged-right = ##t
-  % No barline before inline music examples.
+  indent = 0\mm
   \override Score.SystemStartBar.stencil = ##f
 }

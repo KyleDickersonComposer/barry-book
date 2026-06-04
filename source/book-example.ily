@@ -8,14 +8,11 @@
 \include "numeric-time-signature.ily"
 
 \paper {
-	indent = 0\mm
 	line-width = 175\mm
 	ragged-right = ##f
 }
 
 \layout {
-	indent = 0\mm
-	ragged-right = ##f
 	 \context {
 		\ChordNames
 		% Omit repeated chord names until the harmony changes (same as real-book-chart.ily).
