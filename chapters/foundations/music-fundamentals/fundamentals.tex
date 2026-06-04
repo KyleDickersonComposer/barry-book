@@ -1,18 +1,93 @@
 \section{What is Musical Notation?}
-Musical notation can be thought of as a graph, where the \emph{X axis}, the horizontal axis, is musical time that progresses from the first note to the last, and the \emph{Y axis}, the vertical axis, represents musical pitch, which tells which notes to play. The musical alphabet is composed of seven letter names from \mnote{A} through \mnote{G} which are placed on either a line or a space of the \emph{musical staff}. The musical staff itself, which is a collection of five horizontal lines, doesn't tell us which note to play, a \emph{clef} is required to tell us where \emph{middle \mnote{C}} is, a where every other note is by extension. For the purposes of this book, and the vast majority of musical applications, only the \emph{treble clef}: \clefG{} and \emph{bass clef}: \clefF{} are required. The following examples show the notes of each of the clefs with labels, for treble clef, the middle \mnote{C} is below the staff, and for bass clef the middle \mnote{C} is above the staff:
+Musical notation can be thought of as a graph, where the \emph{X axis}, the horizontal axis, is musical time that progresses from the first note to the last, and the \emph{Y axis}, the vertical axis, represents musical pitch, which tells us which notes to play. The \emph{musical alphabet} is composed of seven letter names from \mnote{A} through \mnote{G} which are placed on either a line or a space of the \emph{musical staff}. The musical staff itself, which is a collection of five horizontal lines, doesn't tell us which note to play, a \emph{clef} is required to tell us where \emph{middle \mnote{C}} is. And when we know where middle \mnote{C} is, we can find all the other notes. For the purposes of this book, and the vast majority of musical applications, only the \emph{treble clef}: \clefG{} and \emph{bass clef}: \clefF{} are required. The following examples show the notes of each of the clefs with labels, for treble clef, the middle \mnote{C} is below the staff, and for bass clef the middle \mnote{C} is above the staff:
 
 \bookExample{Notes of the Treble Clef}{./excerpts/treble-clef.ly}
 
 \bookExample{Notes of the Bass Clef}{./excerpts/bass-clef.ly}
 
-The X axis of music tells us how long to play each note. For the most part, our examples will be relatively simple from a rhythmic perspective. \emph{Whole notes}: \wholeNote{} last for four beats, \emph{half notes}: \halfNote{} last for two beats, \emph{quarter notes}: \quarterNote{} last for one beat, \emph{8th notes} \eighthNote{} last for half a beat, and \emph{16th notes}: \sixteenthNote{} last for a quarter of a beat. Notice that eighth notes, and every rhythmic value faster than that has a flag. They can be beamed together if they are in the same beat. We will see many examples where 8th notes are beamed together like so: \twoBeamedQuavers{}. The convention we use for this book is to beam in half notes. We will often see 4 8th notes beamed together, or 8 sixteenth notes, and so on.
+The X axis of music tells us how long to play each note. For the most part, our examples will be relatively simple from a rhythmic perspective. \emph{Whole notes}: \wholeNote{} last for four beats, \emph{half notes}: \halfNote{} last for two beats, \emph{quarter notes}: \quarterNote{} last for one beat, \emph{8th notes} \eighthNote{} last for half a beat, and \emph{16th notes}: \sixteenthNote{} last for a quarter of a beat. Notice that eighth notes, and every rhythmic value faster than that has a flag. They can be beamed together if they are in the same beat. We will see many examples where 8th notes are beamed together like so: \twoBeamedQuavers{}. The convention we use for this book is to beam in half notes. We will often see four 8th notes beamed together, or eight sixteenth notes, and so on.
 
 But musical notes aren't sounding all of the time, we need a way to indicate silence. For this we use symbols called rests. They have rhythmic values that correspond to the above notes. We have the \emph{whole rest}: \wholeRest{}, the \emph{half rest}: \halfRest{}, the \emph{quarter rest}: \quarterRest{}, the \emph{eighth rest}: \eighthRest{}, and the \emph{sixteenth rest}: \sixteenthRest{}.
 
-Without the concept of meter in music, we would just see a very large sequence of notes one after the other, without deliniation. The meter that our music is in tells us how many notes, and what kind of notes, fit inside the bar. For the vast majority of jazz tunes, the meter will be \meter{4}{4}. We can see it in context here, to the right of the treble clef. So, in \meter{4}{4} meter, we have four quarter notes per bar.
+Without the concept of meter in music, we would just see a very large sequence of notes one after the other, without deliniation. The meter that our music is in tells us how many notes, and what kind of notes, fit inside a single bar of music which are separated by the vertical bar lines that separate each bar. For the vast majority of jazz tunes, the meter will be \meter{4}{4}, which means we have four quarter notes per bar.
 
-Our musical system has the ability to alter the pitch of a given note with special symbols called \emph{accidentals} where the \emph{sharp symbol}: \sharp{}, raises the note by one \emph{half step} and the \emph{flat symbol}: \flat{}, lowers the pitch of the note by one half step and the \emph{natural symbol} \natural{}, cancels the effect of the existing accidental. It's important to note that the accidental only has its effect for the measure it's inside of and doesn't cross the bar line. This means that we have to notate an accidental everytime we need it.
+Our musical system has the ability to alter the pitch of a given note with special symbols called \emph{accidentals}; where the \emph{sharp symbol}: \sharp{}, raises the note by one \emph{half step} and the \emph{flat symbol}: \flat{}, lowers the pitch of the note by one half step and the \emph{natural symbol} \natural{}, cancels the effect of the existing accidental. It's important to note that the accidental only has its effect for the measure it's inside of and doesn't cross the bar line. This means that we have to notate the accidental alterations that we require in every single bar. Because this is tedious, the notion of a \emph{key signature} was developed.
 
 Key signatures are a default set of accidentals that are applied to each bar of a piece where a given key signature is active. Here we will see the key signature that corresponds to the key \mnote{F}, it has a single flat applied to the note \mnote{B} Which means that for every bar where the active key signature is \mnote {F}, every \mnote{B} becomes a \mnote[flat]{B} unless an accidental overrides it. Any accidental symbol is only active for a single bar, then the key signature returns to its normal behavior:
 
-\bookExample{Key Signature Example}{./excerpts/key-example.ly}
+\bookExample{The Key Signature of F Major}{./excerpts/key-example.ly}
+
+\section{Intervals}
+
+An \emph{interval} is the distance between two notes. Intervals can occur in sequence in the context of a musical line. Or, the notes of an interval can occur simulatenously. To identify intervals, we count the distance in steps between the two note names of the interval. For example, the distance between the notes \mnote{C} and \mnote{G} is 5 steps if we include \mnote{C}, therefore it is a fifth. The following example shows the interval identification process for a number of intervals:
+
+\bookExample{Idenifying Intervals}{./excerpts/identify-intervals.ly}
+
+We are half way there when it comes to classifying intervals. Now we need to count the half steps between the two notes of the interval. When counting the half steps we count all the half steps, all the black and white notes we have to move through to get to the last note, or if we're on guitar, we can just count how many frets it takes to get to the final note. When counting half steps we don't count the first note:
+
+\bookExample{Counting the Steps Between Intervals} {./excerpts/counting-halfsteps.ly}
+
+The intervals of the fifth, when it has 7 half steps, is called a \emph{perfect} fifth. This term perfect denotes the interval's quality. The two other perfect intervals are the perfect fourth, which is five half steps, and the perfect octave which is 12 half steps. The intervals of the fifth, fourth, and octave are called perfect because these intervals can't take on the interval qualities of \emph{major} or \emph{minor}, but all of the other intervals can, namely the second, third, sixth, and seventh all have minor and major versions. When we take a perfect fifth and add one half step it takes on a \emph{augmented} quality, and when we subtract on half step from a perfect fifth it becomes a \emph{diminished} fifth. This is true of all of the perfect intervals. For intervals that aren't perfect they can take on the the qualities of major and minor as well. This means that when we subtract one half step from a minor interval it become diminished, when we add one half step to a minor interval it becomes major, when we subtract one half step from a major interval it becomes minor, and when we add a halfstep to a major interval it becomes augmented.
+
+\vspace{\parskip}
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{X X X X X}
+\toprule
+\textbf{Interval}  & \textbf{Half Steps} & \textbf{Quality} & \textbf{Inverts to} \\
+\midrule
+Minor 2nd           & 1  & Minor      & Major 7th      \\
+Major 2nd           & 2  & Major      & Minor 7th      \\
+Minor 3rd           & 3  & Minor      & Major 6th      \\
+Major 3rd           & 4  & Major      & Minor 6th      \\
+Perfect 4th         & 5  & Perfect    & Perfect 5th    \\
+Aug.\ 4th           & 6  & Augmented  & Dim.\ 5th      \\
+Dim.\ 5th           & 6  & Diminished & Aug.\ 4th      \\
+Perfect 5th         & 7  & Perfect    & Perfect 4th    \\
+Minor 6th           & 8  & Minor      & Major 3rd      \\
+Major 6th           & 9  & Major      & Minor 3rd      \\
+Minor 7th           & 10 & Minor      & Major 2nd      \\
+Major 7th           & 11 & Major      & Minor 2nd      \\
+Perfect Octave      & 12 & Perfect    & Perfect Unison \\
+Minor 9th           & 13 & Minor      & Major 7th      \\
+Major 9th           & 14 & Major      & Minor 7th      \\
+Minor 10th          & 15 & Minor      & Major 6th      \\
+Major 10th          & 16 & Major      & Minor 6th      \\
+Perfect 11th        & 17 & Perfect    & Perfect 5th    \\
+Aug.\ 11th          & 18 & Augmented  & Dim.\ 5th      \\
+Perfect 12th        & 19 & Perfect    & Perfect 4th    \\
+Minor 13th          & 20 & Minor      & Major 3rd      \\
+Major 13th          & 21 & Major      & Minor 3rd      \\
+\bottomrule
+\end{tabularx}
+\caption{Some Information About the Common Intervals}
+\end{table}
+\vspace{\parskip}
+
+\section{Scales}
+
+The great thing about Barry's method is that the outrageous scale syllabus of other methods is replaced by three scales. The \emph{Major}, \emph{Minor}, and \emph{Tonic Minor} scales. All that's required in learning how to build these two scales is to learning the location of the half steps. In the following example I will denote the half steps with the letter \emph{H}, notice that the half steps are between scale degrees three to four and scale degrees seven to 1.
+
+\bookExample{Building a Major Scale}{./excerpts/major-scale.ly}
+
+For the minor scale, the half steps are between the second and third scale degrees and the fifth and sixth:
+\bookExample{Building a Minor Scale}{./excerpts/minor-scale.ly}
+
+The tonic minor scale is similar to the major scale except for the third being flatted. This means that the half steps are between scale degrees two to three, and scale degrees six to seven.
+
+\bookExample{Building a Tonic Minor Scale}{./excerpts/tonic-minor.ly}
+
+\section{Chords}
+
+Another great aspect of Barry's system is that there's a much smaller amount of chords to learn than other methods. We need to know about the three notes chords called \emph{traids}. There are \emph{major}, \emph{minor}, and \emph{augmented} triads. The major triad is has a major third and a perfect fifth above the root note of the chord, the minor chord has the minor third and the major fifth, and the augmented chord has the major third and the augmented fifth:
+
+\bookExample{Triads We Need To Know}{./excerpts/triads-to-know.ly}
+
+In terms of four note chords, also called \emph{seventh chords}, we need to know the \emph{major sixth}, \emph{minor sixth}, \emph{major seventh}, \emph{minor seventh}, \emph{dominant seventh}, \emph{minor 7 flat 5} \emph{dominant seventh flat five}, and \emph{diminished chord}:
+
+\bookExample{Seventh Chords We Need To Know}{./excerpts/sevenths-to-know.ly}
+
+\section{Chord Symbols}
+It may take some time to get familiar with the chords in all of the keys, but it's well worth the struggle. Because quickly recognizing is an essential skill in jazz. As a short hand jazz players have devised chord symbols with that are placed above a melody that tell you what chords go with said melody. This will be very common through out the book:
+
+\bookExample{Attaching Chord Symbols to our Chords}{./excerpts/chord-symbols.ly}
