@@ -1,0 +1,57 @@
+\section{What Do We Mean By Classical?}
+
+Classical music has a fairly consistent musical grammar that spans from approximately the 17th century to the somewhere in the early 20th century. The musical system that provides this level of consistency is called \emph{thoroughbass}. Thoroughbass comes from the need to simplify large choral works so that the accompanists could fill in holes in the music due to missing singers. The procedure for preparing a thoroughbass accomaniment was to write out the lowest sounding voice of the music all the way through, then to add arabic numerals below that thoroughbass line to indicate the required intervals above the bass. Over time, instead of writing out all the intervals they devised a short hand that required a smaller number of numerals.
+
+Classical harmony doesn't have a notion of harmonic function until well into the 19th century. The way they classified harmonies was based on if a certain chord was dissonant or not. For the most part, bass notes with figures above them are dissonant, with the exception of the figure \emph{six}, which means a triad with the third in the bass.
+
+In thoroughbass we measure the intervals from the written bass note. We don't think in terms of roots of chords, there are only intervals above bass notes. This means that a chord from the perspective of thoroughbass is a collection of intervals above a bass note and nothing more. 
+
+The term \emph{dissonance} is of great importantance to thoroughbass because if a chord contains a dissonance, it is dissonant. For modern musicians, the term dissonance is foreign to us. Today we use the term suspension to refer to concept of dissonance.
+
+The concept of a dissonance comes from counterpoint. In terms of basic counterpoint rules, you determine whether or not an interval between two voices is dissonant or not based on a few simple rules. It's important to note that we only check for whether a note is a dissonance if it's on a strong beat\footnote{Sometimes in a meter like \meter{4}{4}, you can have strong beat on beats one and three, but you can also have a version of \meter{4}{4} that has a strong beat on every beat.}.
+
+\begin{bookStyledList} {Rules for Identifying Dissonant Notes in Simple Counterpoint Exercises}
+\item Dissonances can only occur on strong beats.
+\item All augmented and diminished intervals are dissonant.
+\item All Second, fourth, and seventh intervals are dissonant.
+\end{bookStyledList}
+
+There is some confusion on whether or not the fourth is a dissonant interval. This comes from confusion about what the term dissonance means. The term dissonance isn't a question of how harsh the interval sounds, it's a question about whether or not in linear or contrapuntal contexts does the interval require downward resolution when it occurs on a strong beat? Sensitive ears will hear this tendency to resolve downard.
+
+One of the conflicts during the early days of thoroughbass was this notion of determining which note was dissonant. The old rules of counterpoint didn't quite fit the new thoroughbass system, and alterations to the rules were made. There are some places where based on the context of the chord being played, intervals that aren't dissonant become dissonant. An  example of this is the \emph{six five} figure where the fifth becomes dissonant, and the \emph{four three} figure where the third becomes dissonant.
+
+Thus far we have only discussed which notes are dissonant in the context of thoroughbass. Now we will discuss how dissonances are treated in thoroughbass. Dissonances have three requirements:
+
+\bookExample{A Simple Dissonance}{./excerpts/dissonance.ly}
+
+\begin{bookStyledList} {Dissonance Treatment}
+\item Dissonances must be prepared as a consonant note.
+\item Dissonances must sound as a dissonance on the beat.
+\item Dissonances must resolve down by step to a consonance.
+\end{bookStyledList}
+
+One of the most exciting concepts in thoroughbass is the appoggiatura. The appoggiatura is a dissonance that lacks the preparation step. The effect of preparation is to soften the harsh qualities of unprepared dissonances. Appoggiaturas have been widely used for hundreds of years for stark harmonic colors and shocking effects.
+
+The appoggiatura was used to the extreme by composers like Richard Wagner, Alexander Scriabin, and Hugo Wolf. In this example you can see appoggiaturas that are a half step below the actual note of the chord in the melody, we can see that the \mnote[sharp]{G} is occuring on the beat here instead of the \mnote{A} in the bar with \MusicChord{root=F, quality=dom, alts={5/flat}} chord and the \mnote[sharp]{A} is on the beat instead of the of the \MusicChord{root=E, quality=dom} chord:
+
+\bookExample{Appoggiaturas In Tristan and Isolde by Wagner}{./excerpts/tristan.ly}
+
+If we take the concept of the appoggiatura to its extreme, we can think of it as a way that any note of chord can have a note that is a half step or whole step above the structural note of the chord. This combined with that natural inclination of dissonant notes to move, we can also elaborate the appoggiatura with extra melodic notes, as long as the core sound of the appoggiatura isn't lost.
+
+In thoroughbass, the bassline is the most essential element of music. For example, \JSBach though that music comes from the bass. This led to the development of a concept called the \emph{rule of the octave}. This is a short set of rules for composing harmonies from a bassline that sound classical. First of all, we need to need to know that when the bass line moves by skip that there will be two notes in common from the previous chord, and when we move by leap there will be one note in common from the previous chord. When the bass moves by step, things need to get a bit more complex because there are no shared notes between the two chords.
+
+\bookExample{Rule of the Octave Ascending in Major}{./excerpts/ro-up.ly}
+
+For scale degree six descending there is what is called, in modern terms, a secondary dominant to the five. And on scale degree four descending, we have the figure two, which is short for a two four six chord. Anytime a the figure of a two shows up, it means that the dissonance is in the bass.
+
+\bookExample{Rule of the Octave Descending in Major}{./excerpts/ro-down.ly}
+
+One area of conern that we haven't touched on yet is the question of whether parallel fifths or octaves are allowed in classical harmony. The answer to this question, suprisingly, is yes. The only place where parallel fifths and octaves are to be strictly avoided is between the outer voices. The reason for the strictness with parallel perfect intervals is because when studying Bach chorales, we avoid them because Bach avoided them systematically. There are only a few examples of \emph{illegal} parallel fifths in all of his 371 chorales. As long as the two outer voices don't have two successive fifth moving in the same direction, we're good to go.
+
+For the minor version of the rule of the octave, it's almost exactly the same except for a few small changes. The ascending version uses the raised sixth and seventh scale degrees in the bass. And descending we take the flatted route.
+
+\bookExample{Rule of the Octave Ascending in Minor}{./excerpts/ro-up-minor.ly}
+
+A great approach to learning the rule of the octave is to try to make it so that the majority of the time the motion between the melody and bass notes either has one note being stationary while the other moves, or it has both notes moving in opposite directions. The names for those types of motion are oblique and contrary motion respecitvely.
+
+\bookExample{Rule of the Octave Descending in Minor}{./excerpts/ro-down-minor.ly}
