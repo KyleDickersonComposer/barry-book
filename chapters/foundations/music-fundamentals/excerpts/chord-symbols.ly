@@ -12,6 +12,7 @@ theNotes = \relative c' {
 	<f a c ees>1 | \break
 	<f aes ces ees>1 |
 	<f a ces ees>1 |
+	<f a cis ees>1 |
 	<f aes b d>1 \bar "||"
 }
 
@@ -26,6 +27,7 @@ theChords = \chordmode {
 	f1:7 |
 	f1:min7.5- |
 	f1:7.5- |
+	f1:aug7 |
 	f1:dim7 |
 }
 

@@ -84,9 +84,9 @@ theChords = \chordmode {
 
 theWords = \lyricmode {
 	Some where there's mus -- ic,
-	How faint the tune!
+	How faint the tune
 	Some where there's hea -- ven,
-	How high the moon!
+	How high the moon
 	There is no moon ab -- ove
 	When love is far a -- way too,
 	'Til it comes true
@@ -94,7 +94,7 @@ theWords = \lyricmode {
 	Some where there's mus -- ic,
 	it's where you are.
 	Some where there's hea -- ven,
-	How near, how far!
+	How near, how far
 	The dark -- est night would shine
 	If you would come to me soon.
 	Un -- til you will, how still my heart,
