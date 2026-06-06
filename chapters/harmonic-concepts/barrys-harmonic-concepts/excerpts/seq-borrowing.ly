@@ -67,6 +67,7 @@ theLH = \relative c {
 		f ees d ees |
 		g f e f |
 		ges f e f | \break
+		\clef treble
 		f ees d ees |
 		ges f e f |
 		aes ges f ges |
