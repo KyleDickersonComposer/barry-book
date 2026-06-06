@@ -8,7 +8,7 @@ global = {
 theRH = \relative c' {
 	\global
 	<c' g ees>4 <d g, d> <c fis, d> <b g d> |
-	<b g d>4 <c g c,> <b g f> <c g es> \bar "||"
+	<b g d>4 <c g c,> <b g f> <c g ees> \bar "||"
 }
 
 theLH = \relative c {

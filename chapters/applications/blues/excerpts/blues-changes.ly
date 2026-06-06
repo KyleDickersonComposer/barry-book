@@ -26,7 +26,7 @@ theChords = \chordmode {
 	g1:m7 |
 	c1:7 |
 	f1:7 |
-	g:m7 c:7 |
+	g2:m7 c:7 |
 }
 
 \score {

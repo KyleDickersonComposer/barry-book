@@ -93,6 +93,8 @@ local function quality(opts)
 		return "aug" .. ((seven and seven ~= "") and ("\\textsuperscript{" .. seven .. "}") or "")
 	elseif q == "maj6" then
 		return "6"
+	elseif q == "dim" then
+		return "dim7"
 	elseif q == "min6" then
 		return "min6"
 	end

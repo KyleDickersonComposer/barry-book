@@ -7,7 +7,7 @@ global = {
 
 theRH = \relative c' {
 	\global
-	g2' d'~|
+	g'2 d'~|
 	d2 c \bar "||"
 }
 
