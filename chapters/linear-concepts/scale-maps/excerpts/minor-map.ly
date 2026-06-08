@@ -2,9 +2,9 @@
 
 theNotes = \relative c' {
 	\key c \minor
-	d8 ees f g aes bes c4 |
-	g8 a b c d ees f4 |
-	c,8 d ees f g a b a |
+	f8 g aes bes c cis d4 |
+	aes'8 g f ees d c b4 |
+	c8 d ees f g gis a aes |
 	g f ees d c2 \bar "||"
 }
 

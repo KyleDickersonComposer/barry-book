@@ -33,7 +33,7 @@ theNotes = \relative c' {
 	g2 a~ |
 	a4 c, f g |
 	aes1~ |
-	aes4 d4, ees f | \break
+	aes4 d,4 ees f | \break
 	g g g g |
 	g g8 a~ a g a4 |
 	b1~ |

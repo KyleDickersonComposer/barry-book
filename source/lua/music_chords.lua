@@ -83,7 +83,7 @@ local function quality(opts)
 	if not q or q == "" then
 		package_error("missing quality", "Set quality=maj|min|dom|aug.")
 		return ""
-	elseif q == "dom" then
+	elseif q == "dom" or q == "dom7" then
 		return (seven and seven ~= "") and seven or "7"
 	elseif q == "maj" then
 		return (seven and seven ~= "") and ("maj\\textsuperscript{" .. seven .. "}") or ""
@@ -93,10 +93,12 @@ local function quality(opts)
 		return "aug" .. ((seven and seven ~= "") and ("\\textsuperscript{" .. seven .. "}") or "")
 	elseif q == "maj6" then
 		return "6"
-	elseif q == "dim" then
+	elseif q == "dim" or q == "dim7" then
 		return "dim7"
 	elseif q == "min6" then
 		return "min6"
+	elseif q == "min7" then
+		return "min7"
 	end
 
 	package_error("unknown quality `" .. tostring(q) .. "`", "Allowed qualities are maj, min, dom, and aug.")
@@ -171,13 +173,13 @@ function M.render(input)
 	end
 
 	local out = {}
-	out[#out + 1] = opts.root
+	out[#out + 1] = string.upper(opts.root)
 	out[#out + 1] = accidental(opts.acc)
 	out[#out + 1] = quality(opts)
 	out[#out + 1] = alts(opts.alts or "")
 
 	if opts.bass and opts.bass ~= "" then
-		out[#out + 1] = "/" .. opts.bass .. accidental(opts.bassacc)
+		out[#out + 1] = "/" .. string.upper(opts.bass) .. accidental(opts.bassacc)
 	end
 
 	return table.concat(out)

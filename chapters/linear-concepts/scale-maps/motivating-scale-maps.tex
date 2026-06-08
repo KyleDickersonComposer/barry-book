@@ -1,25 +1,25 @@
 \section{Motivating Scale Maps}
-\Gls{scale-maps} are preparatory exercises for linear improvisation on tunes. To create a scale map, we take the changes of a tune and go bar by bar substituting the appropriate scale for every chord. Barry's approach to linear improvization is similar to, but not the same as, other chord-scale based approaches. The main difference is that Barry's method respects the harmonic functions that the changes infuse into a tune. For Barry, the \twoChord chord is a chord with predominant function that is a component of a \twoFive movement. Many modern methods would have us think of the \twoChord as a sonority in itself or a dorian sound, disconnected from the context of the functional harmonies.
+\Gls{scale-maps} are preparatory exercises for linear improvisation on tunes. To create a scale map, we take the changes of a tune and go bar by bar substituting the appropriate scale for every chord. Barry's approach to linear improvisation is similar to, but not the same as, other chord-scale based approaches. The main difference is that Barry's method respects the harmonic functions that the changes infuse into a tune. For Barry, the \twoChord{}  chord is a chord with predominant function that is a component of a \twoFive movement. Many modern methods would have us think of the \twoChord{} as a sonority in itself or a dorian sound, disconnected from the context of the functional harmonies.
 
-Once we have the notes to play, we can perform the scale maps exercise. The procedure is to run up and down the scale in 8th notes. For chords that are a single bar, for example the \twoChord chord, you run up up to the seventh scale degree. When the same chord spans two bars, you run up an down the scale.  This means that we land on the first scale degree on beat three of the second bar.
+Once we have the notes to play, we can perform the scale maps exercise. The procedure is to run up and down the scale in 8th notes. For chords that are a single bar, for example the \twoChord{} chord, you run up up to the seventh scale degree. When the same chord spans two bars, you run up an down the scale.  This means that we land on the first scale degree on beat three of the second bar.
 
-\bookExample{\twoFiveOne~Scale Map}{./excerpts/first-map.ly}
+\bookExample{\twoFiveOne{} Scale Map}{./excerpts/first-map.ly}
 
-The next most common movement is the turnaround. Turnarounds are mostly used, by composers, to fill space or to generate a feeling of harmonic momentum towards a key center. The turnaround in a major key is special because it's the only scale map that features a note that isn't contained in the scale of the key.
+The next most common movement is the turnaround. Turnarounds are mostly used, by composers, to fill space or to generate a feeling of harmonic momentum towards a key center. In the Barry system, a four bar turnaround in a major key goes up and down the scale landing on the third of the \sixChord{} chord.
 
 \bookExample{Turnaround Scale Map}{./excerpts/turnaround-map.ly}
 
-When the \twoFive is in a minor key, you simply play the minor version of the \twoChord chord. Notice that we are playing the minor scale with the natural sixth and the natural seventh on the \MusicChord{root=C, quality={min6}} chord.
+When the \twoFive{} is in a minor key, we to have think about how that works in the Barry system. For Barry, there is a preference for sixth chords. Instead of thinking of the \twoChord{} in minor as a seventh chord, we can think about it as the minor sixth chord; It's just a different way of thinking about the same notes. The \MusicChord{root=D, quality=min7, alts={5/flat}} becomes a \MusicChord{root=F, quality=min6}. But in Barry's system, a minor sixth chord is the \emph{sixth on the fifth} of a dominant chord. So really, we can think about our minor \twoChord in \mnote{C} minor as \MusicChord{root=B, acc=flat, quality=dom}. Here we have a similar situation as the major turn around where we are going down scale and landing on the third.
 
-\bookExample{Minor~\twoFiveOne~Scale Map}{./excerpts/minor-map.ly}
+\bookExample{Minor~\twoFiveOne{} Scale Map}{./excerpts/minor-map.ly}
 
-In the minor key turnaround, we use the \flatSixDom instead. We don't insert a note foreign to the key here because the major third of the \flatSixDom is contained in our key.
+For a turnaround in minor, we can use a few substitute colors from their family members to get a nice minor sound. For both the \MusicChord{root=A, quality=dom} and the \MusicChord{root=G, quality=dom}, we can use the dominant seventh chord that is a minor third above their root. Take a \MusicChord{root=C, acc=sharp, quality=dim} chord and put a \mnote{A} under it in the bass, then put a \mnote{C} under it. without changing the upper notes you will see that both chords are dominant seventh chords with a minor ninth, this demonstrates their relatedness. We will play a \MusicChord{root=G, quality=min6} scale on the \MusicChord{root=A, quality=dom7}, which is the \emph{sixth on the fifth} of \MusicChord{root=C, quality=dom7}. Then for the \MusicChord{root=G, quality=dom7} we will play the \MusicChord{root=E, acc=flat, quality=dom7} scale.
 
 \bookExample{Minor Turnaround Scale Map}{./excerpts/minor-turnaround-map.ly}
 
 Functionally speaking, these four examples are sufficient to cover the vast majority of tunes. With the exception of \twoFives that are within a single bar. A one-bar \twoFive can be thought of as a bar with dominant function, so all we have to do is treat the one-bar \twoFive as if it were a bar with a single dominant chord.
 
-\bookExample{One Bar \twoFive~Scale Map}{./excerpts/one-bar-two-five-map.ly}
+\bookExample{One Bar \twoFive{} Scale Map}{./excerpts/one-bar-two-five-map.ly}
 
 If we ignore slash chords, which are bass notes that are notated inside of the chord symbols, and passing harmonies, that connect the structural changes of a tune, we can more or less create a scale map for any standard.
 

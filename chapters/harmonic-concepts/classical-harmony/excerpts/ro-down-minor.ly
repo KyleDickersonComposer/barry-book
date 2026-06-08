@@ -18,7 +18,7 @@ theLH = \relative c {
 }
 
 theFigures = \figuremode {
-	s4 <6 5> <6+ 4 3> s4 |
+	s4 <6> <6+ 4 3> s4 |
 	<2> <6> <4 3> s4 |
 }
 
