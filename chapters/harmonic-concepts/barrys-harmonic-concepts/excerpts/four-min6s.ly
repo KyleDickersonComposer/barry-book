@@ -3,7 +3,7 @@
 theNotes = \relative c' {
 	\key c \major
 	<c ees ges a>2 <cis dis fis a> |
-	<c ees ges a>2 <c e fis a> | \break
+	<c ees ges a>2 <c e fis a> |
 	<c ees ges a>2 <c ees g a> |
 	<c ees ges a>2 <c ees ges bes> \bar "||"
 }
