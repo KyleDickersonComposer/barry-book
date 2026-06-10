@@ -16,7 +16,7 @@ theMap = \relative c' {
 	g,8 a b c d e fis4 |
 	d,8 e fis g a b c4 |
 	g8 a b c d e fis4 |
-	d,8 e fis g a b c4 | \break
+	d,8 e fis g a b c4 | \bar "||" \break
 
 	g8 a b c d e fis e |
 	d8 c b a g4 r4 |

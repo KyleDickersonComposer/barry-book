@@ -10,9 +10,9 @@ theRH = \relative c' {
 	<a fis dis b~ >2 <b~ g d e b> |
 	b4 d, <g e cis> <a fis ees c> |
 	<bes^~ g d>1 |
-	<bes g des>4  c, <f d b> <g e d bes>| \break
+	<bes g des>4  c, <f d bes> <g e d bes>| \break
 	<g e cis a>2 <a^~ f d c a>2 |
-	a4 c, <f d b> <g e d bes e> |
+	a4 c, <f d bes> <g e d bes e> |
 	<aes~ f c>1 |
 	<aes fis? c>4 d, es f | \break
 	<g f d>4 g <g f des> g |
@@ -27,9 +27,9 @@ theRH = \relative c' {
 	<a fis dis b~ >2 <b~ g d e b> |
 	b4 d, <g e cis> <a fis ees c> |
 	<bes^~ g d>1 |
-	<bes g des>4  c, <f d b> <g e d bes>| \break
+	<bes g des>4  c, <f d bes> <g e d bes>| \break
 	<g e cis a>2 <a^~ f d c a>2 |
-	a4 c, <f d b> <g e d bes e> |
+	a4 c, <f d bes> <g e d bes e> |
 	<aes~ f c>1 |
 	<aes fis? c>4 d, es f | \break
 
@@ -61,7 +61,7 @@ theLH = \relative c {
 	g1 ~ |
 	g4 fis'? gis a |
 	b2 bes |
-	a4 r4 r2 |
+	a4 r4 g fis |
 
 	<g,~ dis'>2 <g e'> |
 	r2 g'4 fis |
