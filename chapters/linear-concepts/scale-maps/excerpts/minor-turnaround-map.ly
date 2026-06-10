@@ -4,8 +4,8 @@ theNotes = \relative c' {
 	\key c \minor
 	c8 d ees f g gis a4 |
 	g8 a bes c d ees e4 |
-	f,8 g aes b c cis d4 |
-	ees,8 f g aes bes c des4\bar "||"
+	f,8 g aes bes c cis d4 |
+	aes'8 g f ees d c b4 \bar "||"
 }
 
 theChords = \chordmode {

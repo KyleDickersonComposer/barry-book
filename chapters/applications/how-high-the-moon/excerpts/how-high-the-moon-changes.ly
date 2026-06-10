@@ -78,8 +78,8 @@ theChords = \chordmode {
 	a2:m7 d:7 |
 	b2:m7 e:7 |
 	a2:m7 d:7 |
-	g:6 |
-	g:6 |
+	g1:6 |
+	g1:6 |
 }
 
 theWords = \lyricmode {
