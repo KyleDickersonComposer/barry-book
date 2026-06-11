@@ -29,6 +29,8 @@ theTune = \relative c' {
 	r8 des ees f aes4 \tuplet 3/2 {aes8 bes e,} |
 	des2 r2 \bar "||" \break
 
+	\set Staff.explicitKeySignatureVisibility = #end-of-line-invisible
+	\set Staff.printKeyCancellation = ##f
 	\key d \major
 	r8 d e fis a8 a4 a8 |
 	d8 d4 fis,8  a8 a4 g8 |
@@ -37,8 +39,10 @@ theTune = \relative c' {
 	r8 d e f a8 a4 g8 |
 	e'8 e4 b8 d8 d4 a8 |
 	c8 c4 a8 b8 b4 g8 |
-	e4 dis d bes' | \break
+	e4 dis d bes' \bar "||" \break
 
+	\set Staff.explicitKeySignatureVisibility = #end-of-line-invisible
+	\set Staff.printKeyCancellation = ##f
 	\key des \major
 	r8 ees, f ees f4 ees |
 	bes'4 bes2. |
