@@ -33,7 +33,7 @@ theChords = \chordmode {
 
 \score {
 	<<
-		\new \ChordNames {\theChords}
+		\new ChordNames {\theChords}
 		\new Voice \theNotes
 	>>
 }
