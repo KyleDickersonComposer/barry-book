@@ -22,7 +22,7 @@ theRH = \relative c' {
 	<b~ g d e>1 |
 	b4 <a e c> <b f d> <c fis, e> |
 	<d a fis>4 d <d aes f> d  |
-	<d g, e>4 d, <g e cis> <a fis e c>| \break
+	<d g, e>4 d, <g e cis> <a fis e c>| \bar "||" \break
 
 	<a fis dis b~ >2 <b~ g d e b> |
 	b4 d, <g e cis> <a fis ees c> |
@@ -32,10 +32,9 @@ theRH = \relative c' {
 	a4 c, <f d bes> <g e d bes e> |
 	<aes~ f c>1 |
 	<aes fis? c>4 d, es f | \break
-
 	<g f d>4 g <g f des> g |
 	<g ees c>4 <g es c>8 <a f ees c>~ a g <a f ees c>4 |
-	b1~ |
+	<b~ g d e>1 |
 	b4 <a e c> <b f d> <c fis, e> | \break
 	<d a fis>4 d <d aes f> d  |
 	<d g, e>4 d, <g e cis> <a fis e c>|

@@ -21,7 +21,7 @@ theChords = \chordmode {
 	c2:m7  f:7 |
 	bes1:7 |
 	b:dim7 |
-	bes:7 |
+	f:7 |
 	a2:m7 d2:7 |
 	g1:m7 |
 	c1:7 |

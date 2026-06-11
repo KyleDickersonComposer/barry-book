@@ -14,7 +14,7 @@ theTune = \relative c' {
 	c1~ |
 	c4 d, e fis |
 	bes1 |
-	r4 g a bes | \break
+	r4 g a bes \bar "||" \break
 	ees1~ |
 	ees4 f, g a |
 	d2 d~ |
@@ -30,7 +30,7 @@ theTune = \relative c' {
 	c1~ |
 	c4 f, f' ees |
 	d1~ |
-	d4 r cis d | \break
+	d4 r cis d \bar "||" \break
 	ees4 ees c c |
 	a2. ees'4 |
 	d2 d~ |
