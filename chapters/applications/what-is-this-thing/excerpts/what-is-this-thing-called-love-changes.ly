@@ -1,6 +1,6 @@
 title = #"What Is This Thing Called Love"
 composer = #"Cole Porter"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 fontSize = #6
 
 \include "real-book-chart.ily"
@@ -68,7 +68,7 @@ theChords = \chordmode {
 	f1:7 |
 	bes1:maj7 |
 	bes1:6 |
-	aes2  aes:aug|
+	aes1:6 |
 	d1:7 |
 	d1:min7/g |
 	des1:7 |

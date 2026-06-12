@@ -1,6 +1,6 @@
 title = #"All The Things You Are"
 composer = #"Jerome Kern"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 fontSize = #6
 
 \include "real-book-chart.ily"

@@ -1,6 +1,6 @@
 title = #"How High the Moon"
 composer = #"Morgan Lewis"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 \include "real-book-chart.ily"
 
 theNotes = \relative c' {

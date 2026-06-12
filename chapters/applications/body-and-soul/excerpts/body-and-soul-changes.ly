@@ -73,7 +73,7 @@ theChords = \chordmode {
 	bes2:min7 ees4:min7 aes:7 |
 	des2:6 e4:min7 a:7 |
 
-	d2:6 d:min7 |
+	d2:6 e:min7 |
 	d2/fis  g4:min7 c:7 |
 	fis4:min7 b:min7 e:min7 a:7 |
 	d1:6 |
@@ -89,7 +89,7 @@ theChords = \chordmode {
 	ees1:min7 |
 	c2:min7.5- f:7 |
 	bes2:min7 ees4:min7 aes:7 |
-	des2:6 e4:min7 a:7 |
+	des1:6 |
 }
 
 \score {

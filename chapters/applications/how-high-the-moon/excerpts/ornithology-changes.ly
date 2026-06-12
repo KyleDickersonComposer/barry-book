@@ -1,6 +1,6 @@
 title = #"Ornithology"
 composer = #"Charlie Parker"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 \include "real-book-chart.ily"
 
 global = {
@@ -13,7 +13,7 @@ theTune = \relative c' {
 	d8
 
 	g8 a b c d b c d |
-	b8 d r4 r4 r8 d, |
+	b8 g r4 r4 r8 d |
 	g8 a bes c d8 e4 f8 |
 	r8 g, a bes~ bes4. d8 | \break
 	c8 a4 f8 bes8 gis a f |
@@ -30,7 +30,7 @@ theTune = \relative c' {
 	fis!8 a c ees~ ees4 d8 d, \bar "||" \break
 
 	g8 a b c d b c d |
-	b8 d r4 r4 r8 d, |
+	b8 g r4 r4 r8 d |
 	g8 a bes c d8 e4 f8 |
 	r8 g, a bes~ bes4. d8 | \break
 	c8 a4 f8 bes8 gis a f |
@@ -83,8 +83,8 @@ theChords = \chordmode {
 	d1:7 |
 	b2:min7 bes:min7 |
 	a2:min7 aes:min7 |
-	g1:7|
-	g1:7|
+	g1:6|
+	g1:6|
 }
 
 \score {

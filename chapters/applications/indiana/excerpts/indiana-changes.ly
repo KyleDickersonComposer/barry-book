@@ -1,6 +1,6 @@
 title = #"Indiana"
 composer = #"James F. Hanley"
-meter = #"(Med. Swing)"
+meter = #"(Med.)"
 
 \include "real-book-chart.ily"
 

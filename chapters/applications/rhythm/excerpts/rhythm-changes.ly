@@ -1,6 +1,6 @@
 title = #"Rhythm"
 composer = #""
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 \include "real-book-chart.ily"
 
 theTune = \relative c'' {

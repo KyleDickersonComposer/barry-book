@@ -1,6 +1,6 @@
 title = #"April in Paris"
 composer = #"Vernon Duke"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 
 \include "real-book-chart.ily"
 
@@ -28,7 +28,7 @@ theTune = \relative c' {
 	e1 \bar "||" \break
 
 	e2 d8 ais b d |
-	c4 c e2 |
+	c4 c c2 |
 	d8 ais b d c4 c |
 	c1 | \break
 	e2 d8 ais b d |
@@ -65,13 +65,13 @@ theChords = \chordmode {
 	b2:min7 e:7 |
 	e2:min7.5- a:7 |
 
-	f2:min7.5- f:dim7 |
-	c:2/e ees:dim7 |
+	fis2:min7.5- f:dim7 |
+	c2:/e ees:dim7 |
 	d1:min7.5- |
-	c:1/e |
+	c1:/e |
 	b2:min7.5- e:7 |
 	a1:min6 |
-	f2:min7.5- b:7 |
+	fis2:min7.5- b:7 |
 	e2:maj7 d4:min7 g4:7 |
 
 	f1:m6 |

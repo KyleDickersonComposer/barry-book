@@ -1,6 +1,6 @@
 title = #"Stella by Starlight"
 composer = #"Victor Young"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 \include "real-book-chart.ily"
 
 theNotes = \relative c' {

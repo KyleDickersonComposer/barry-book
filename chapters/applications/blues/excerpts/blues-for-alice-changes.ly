@@ -1,6 +1,6 @@
 title = #"Blues For Alice"
 composer = #"Charlie Parker"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 \include "real-book-chart.ily"
 
 global = {

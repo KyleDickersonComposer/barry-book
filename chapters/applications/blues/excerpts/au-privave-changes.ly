@@ -1,6 +1,6 @@
 title = #"Au Privave"
 composer = #"Charlie Parker"
-meter = #" (Med. Swing)"
+meter = #" (Med.)"
 \include "real-book-chart.ily"
 
 theTune = \relative c' {
