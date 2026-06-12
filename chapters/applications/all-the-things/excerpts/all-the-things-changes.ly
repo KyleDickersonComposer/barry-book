@@ -52,8 +52,8 @@ theChords = \chordmode {
 	aes1:maj7 |
 	des1:maj7 |
 	g1:7 |
-	c1:m6 |
-	c1:m6 |
+	c1:6 |
+	c1:6 |
 	c1:m7 |
 	f1:m7 |
 	bes1:7 |

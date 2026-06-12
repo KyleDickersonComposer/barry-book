@@ -108,7 +108,7 @@ theChords = \chordmode {
 	bes1:maj7 |
 	c1:7 |
 	c1:7 |
-	c1:min6 |
+	c1:min7 |
 	f1:7 |
 	bes1:6 |
 	bes1:6 \bar "||"
@@ -142,7 +142,7 @@ theChords = \chordmode {
 	bes1:maj7 |
 	c1:7 |
 	c1:7 |
-	c1:min6 |
+	c1:min7 |
 	f1:7 |
 	bes1:6 |
 	bes1:6 \bar "|."

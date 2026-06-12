@@ -28,11 +28,11 @@ theMap = \relative c' {
 	f,8 g aes bes c cis d4 |
 	c,8 d e f g a b4 |
 	c,8 d e f g a b a |
-	g8 f e d cis4 r4 |
+	g8 f e d cis4 r4 | \break
 	d8 e fis g a b c4 |
 	g8 a b c d e f4 |
 	c,8 d e f g a b a |
-	g8 f e d c4 \bar "|." \break
+	g8 f e d c4 r4 \bar "|." \break
 }
 
 theChords = \chordmode {

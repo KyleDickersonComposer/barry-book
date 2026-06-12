@@ -52,7 +52,7 @@ theChords = \chordmode {
 	ees2:min/d ees2:min/des
 	c2:dim7 aes4:min7 des:7 |
 	c1:min7.5- |
-	ces4:min7 fes:7 bes:min7 ees:7 |
+	b4:min7 e:7 bes:min7 ees:7 |
 	aes2:min7 des:7 |
 	ees2:min7 aes:7.5- |
 	c4:min7.5- b4:7.5- s2 |
@@ -79,7 +79,7 @@ theChords = \chordmode {
 	ees2:min/d ees2:min/des
 	c2:dim7 aes4:min7 des:7 |
 	c1:min7.5- |
-	ces4:min7 fes:7 bes:min7 ees:7 |
+	b4:min7 e:7 bes:min7 ees:7 |
 	aes2:min7 des:7 |
 	ees2:min7 aes:7.5- |
 	c4:min7.5- b:7.5- bes2:7 |

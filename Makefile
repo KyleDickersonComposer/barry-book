@@ -7,10 +7,14 @@ MAIN = main
 run:
 	make pdf
 	make open
+
 pdf:
-	@mkdir -p bin
+	@mkdir -p bin/tmp-ly
 	docker build -t barry-book .
-	docker run --rm -v "$(BOOK_ROOT)/bin:/out" barry-book cp bin/main.pdf /out/main.pdf
+	docker run --rm \
+		-v "$(BOOK_ROOT)/bin:/out" \
+		-v "$(BOOK_ROOT)/bin/tmp-ly:/workdir/bin/tmp-ly" \
+		barry-book cp bin/main.pdf /out/main.pdf
 	
 require-pandoc:
 	@command -v pandoc >/dev/null 2>&1 || { \
@@ -18,6 +22,7 @@ require-pandoc:
 		echo "Install it with: brew install pandoc"; \
 		exit 1; \
 	}
+
 docx: pdf require-pandoc
 	@echo "Exporting bin/$(MAIN).docx for Google Docs spell checking..."
 	cd bin && pandoc \

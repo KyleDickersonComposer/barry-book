@@ -32,8 +32,8 @@ theTune = \relative c' {
 	ees1~ |
 	ees8 f4. ees4 c |
 	bes4. f8~ f2~ |
-	f2 g4 aes |
-	c2. g4 | \break
+	f2 g4 aes | \break
+	c2. g4 |
 	c2. bes4 |
 	aes1~ |
 	aes4 r4 aes bes | \bar "||" \break
