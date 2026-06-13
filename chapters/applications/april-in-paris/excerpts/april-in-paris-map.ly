@@ -27,7 +27,7 @@ theMap = \relative c' {
 	e8 fis gis a b cis dis4 | \break
 	f,8 g aes bes c cis d4 |
 	c,8 d e f g a b4 |
-	c,8 d e f g a b a |
+	c,8 d e f g a bes a |
 	g8 f e d cis4 r4 | \break
 	d8 e fis g a b c4 |
 	g8 a b c d e f4 |

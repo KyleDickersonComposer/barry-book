@@ -4,7 +4,7 @@ theMap = \relative c' {
 	\key aes \major
 
 	f8 g aes bes c des ees4 |
-	bes8 c des ees f ges aes4 |
+	bes8 c des ees f g aes4 |
 	ees,8 f g aes bes c des4 |
 	aes8 bes c des ees f g4 | \break
 	des,8 ees f g aes bes c4 |
@@ -31,7 +31,7 @@ theMap = \relative c' {
 	aes8 bes c des ees f ges4 \bar "||" \break
 
 	f,8 g aes bes c des ees4 |
-	bes8 c des ees f ges aes4 |
+	bes8 c des ees f g aes4 |
 	ees,8 f g aes bes c des4 |
 	aes8 bes c des ees f g4 | \break
 	des,8 ees f g aes bes c4 |

@@ -16,13 +16,13 @@ theMap = \relative c' {
 	bes,8 c d ees f g aes g |
 	f8 ees d c b4 r4|
 	c8 d e f g a b4 |
-	c8 d e f g a bes4 | \break
+	c,8 d e f g a bes4 | \break
 	f8 g a bes c d ees d |
 	c8 bes a g f4 r4 |
 	bes,8 c d ees f g aes g |
 	f8 ees d c b4 r4 | \break
 	aes8 bes  c des ees f g4 |
-	d,8 e fis g a b c4 |
+	d8 e fis g a b c4 |
 	g8 a b c d e f e |
 	d c b a g4 r4 | \break
 	ees8 f g aes bes c des c |
@@ -30,7 +30,7 @@ theMap = \relative c' {
 	f8 g aes bes c cis d des |
 	c8 bes aes g f4 r4 | \break
 	bes,8 c d ees f g aes g |
-	f8 ees d c b4 r4 |
+	f8 ees d c b!4 r4 |
 	c8 d e f g a b a |
 	g8 f e d c4 r4 \bar "|." \break
 }

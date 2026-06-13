@@ -10,7 +10,7 @@ theTune = \relative c' {
 		f8 e f c r4 a'8aes |
 		a8 c, r8 e~ e g f e |
 		g8 f a bes c a g ees |
-		r8 d' r4 r8 des~ des bes | \break
+		r8 d' r4 r8 des4 bes8 | \break
 		b4. f'8 r8 b, bes4~ |
 		bes2 aes8 f g f |
 		c'4 r8 a bes4 r8 g |

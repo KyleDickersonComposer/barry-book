@@ -21,10 +21,10 @@ theMap = \relative c' {
 	f8 g a bes c d e4 | \bar "||"
 
 	c,8 d ees f g gis a4 |
-	f,8 g a bes c d ees4 |
+	f8 g a bes c d ees4 |
 	bes8 c d ees f g a g |
 	f8 ees d c bes4 r4 | \break
-	aes8 bes c des ees f ges f |
+	aes,8 bes c des ees f ges f |
 	ees8 des c bes aes4 r4 |
 	des8 ees f ges aes bes c4 |
 	fis,8 gis ais b cis dis e4 \bar "||"
