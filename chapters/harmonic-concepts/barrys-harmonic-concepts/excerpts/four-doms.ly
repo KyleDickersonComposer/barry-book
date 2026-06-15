@@ -5,7 +5,7 @@ theNotes = \relative c' {
 	<c ees fis a>2 <b dis fis a> |
 	<c ees fis a>2 <c d fis a> |
 	<c ees fis a>2 <c ees f a> |
-	<c ees ges a>2 <c ees ges aes> \bar "||"
+	<c ees fis a>2 <c ees ges aes> \bar "||"
 }
 
 theChords = \chordmode {

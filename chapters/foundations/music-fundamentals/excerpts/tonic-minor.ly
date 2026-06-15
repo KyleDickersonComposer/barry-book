@@ -7,7 +7,7 @@ theMarkup = {
 
 theNotes = \relative c' {
 	\key f \major
-	f4 g aes bes? |
+	f4 g aes bes! |
 	c d e f \bar "||"
 }
 
