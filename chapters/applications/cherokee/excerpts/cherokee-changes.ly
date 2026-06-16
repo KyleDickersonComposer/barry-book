@@ -57,7 +57,7 @@ theTune = \relative c' {
 	d2 a' |
 	a4 f d2~ |
 	d2 g |
-	c1, |
+	c,1 |
 	cis1 \bar "||" \break
 
 	d1 |

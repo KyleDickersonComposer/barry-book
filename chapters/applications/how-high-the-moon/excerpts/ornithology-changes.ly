@@ -81,8 +81,8 @@ theChords = \chordmode {
 	a2:min7.5- d:7 |
 	g1:6 |
 	d1:7 |
-	b2:min7 bes:min7 |
-	a2:min7 aes:min7 |
+	b2:min7 e:7 |
+	a2:min7 d:7 |
 	g1:6|
 	g1:6|
 }

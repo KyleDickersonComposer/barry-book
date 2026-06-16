@@ -13,7 +13,7 @@ theSolo = \relative c' {
 	f8 a bes8 g e gis a4 |
 	r8 d, dis e g f fis g |
 	aes8 c, ees g8~ g4 r8 f |
-	ges8 b,! d f8~ f8 ees4 dis8 | \break
+	ges8 b,! d f8~ f8 ees4 cis8 | \break
 	d8 ees f g f fis g bes |
 	aes a bes b c cis d dis |
 	e8 ees d e~ e8 d8 r8 \tuplet 3/2 {d,16 des c}|
